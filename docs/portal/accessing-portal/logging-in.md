@@ -1,6 +1,6 @@
 # Logging In
 
-1. Visit our login page at [https://console.cdnetworks.com/ecp](<https://console.cdnetworks.com/ecp>).
+1. Visit our login page at [https://console.cdnetworks.com/hdt](<https://console.cdnetworks.com/hdt>).
 
 ![null](</docs/resources/images/accessing-portal/portal-login.png>)
 
@@ -12,5 +12,5 @@
 
 ### Where to Go from Here
 
-After you log in to the portal, review the [ECP interface](</docs/portal/accessing-portal/navigating-ui.md>).
+After you log in to the portal, review the [HDT interface](</docs/portal/accessing-portal/navigating-ui.md>).
 

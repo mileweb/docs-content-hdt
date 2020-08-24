@@ -1,25 +1,25 @@
 {
     "metadata": {
-      "id": "ecp",
-      "title": "ECP",
-      "description": "Edge Computing Platform (ECP) enables customers to meet growing business demands by effortlessly deploying and scaling up container-based applications. ECP places high-performance compute, storage and network resources as close as possible to end users.",
+      "id": "hdt",
+      "title": "HDT",
+      "description": "",
       "showOnMainPage": true,
       "links": [
         {
           "title": "Quick Start",
-          "caption": "Getting started with ECP",
+          "caption": "Getting started with HDT",
           "icon": "bolt",
           "path": "docs/intro"
         },
         {
           "title": "Portal Reference",
-          "caption": "ECP Portal reference",
+          "caption": "HDT Portal reference",
           "icon": "book",
           "path": "docs/portal/accessing-portal/logging-in"
         },
         {
           "title": "API Reference",
-          "caption": "ECP API reference",
+          "caption": "HDT API reference",
           "icon": "gear",
           "path": "apidocs"
         }
@@ -51,89 +51,23 @@
           },
           { "title": "Dashboard", "path": "/docs/portal/dashboard.md" },
           {
-            "title": "Applications",
+            "title": "Transports",
             "routes": [
               {
-                "title": "Managing Applications",
-                "path": "/docs/portal/applications/managing-applications.md"
+                "title": "Add New Transport",
+                "path": "/docs/portal/transports/add-tranport.md"
               },
               {
-                "title": "Adding and Deploying Aplications",
-                "path": "/docs/portal/applications/adding-and-deploying-applications.md"
+                "title": "Edit Transport",
+                "path": "/docs/portal/transports/edit-tranport.md"
               },
               {
-                "title": "Viewing Application Information",
-                "path": "/docs/portal/applications/viewing-application-information.md"
-              },
-              {
-                "title": "Retrieving Instances of an Application",
-                "path": "/docs/portal/applications/retrieving-instances-of-an-application.md"
-              },
-              {
-                "title": "Updating an Application",
-                "path": "/docs/portal/applications/updating-an-application.md"
-              },
-              {
-                "title": "Deleting an Application",
-                "path": "/docs/portal/applications/deleting-an-application.md"
-              },
-              {
-                "title": "Troubleshooting an Application",
-                "path": "/docs/portal/applications/troubleshooting-an-application.md"
+                "title": "View Transport",
+                "path": "/docs/portal/transports/view-tranport.md"
               }
             ]
           },
           { "title": "Reports", "path": "/docs/portal/reports.md" },
-          {
-            "title": "ImagePullSecrets",
-            "routes": [
-              {
-                "title": "Managing ImagePullSecrets",
-                "path": "/docs/portal/image-pull-secrets/managing-image-pull-secrets.md"
-              },
-              {
-                "title": "Adding an ImagePullSecret",
-                "path": "/docs/portal/image-pull-secrets/adding-an-image-pull-secret.md"
-              },
-              {
-                "title": "Viewing ImagePullSecret Information",
-                "path": "/docs/portal/image-pull-secrets/viewing-image-pull-secret-information.md"
-              },
-              {
-                "title": "Updating an ImagePullSecret",
-                "path": "/docs/portal/image-pull-secrets/updating-image-pull-secret.md"
-              },
-              {
-                "title": "Deleting an ImagePullSecret",
-                "path": "/docs/portal/image-pull-secrets/deleting-an-image-pull-secret.md"
-              }
-            ]
-          },
-          {
-            "title": "CNAMEs",
-            "routes": [
-              {
-                "title": "Managing CNAMEs",
-                "path": "/docs/portal/cnames/managing-cnames.md"
-              },
-              {
-                "title": "Adding a CNAME",
-                "path": "/docs/portal/cnames/adding-a-cname.md"
-              },
-              {
-                "title": "Viewing CNAME Information",
-                "path": "/docs/portal/cnames/viewing-cname-information.md"
-              },
-              {
-                "title": "Updating a CNAME",
-                "path": "/docs/portal/cnames/updating-a-cname.md"
-              },
-              {
-                "title": "Deleting a CNAME",
-                "path": "/docs/portal/cnames/deleting-a-cname.md"
-              }
-            ]
-          },
           { "title": "Global Presence", "path": "/docs/portal/global-presence.md" }
         ]
       }
