@@ -2,7 +2,7 @@
     "metadata": {
       "id": "hdt",
       "title": "HDT",
-      "description": "",
+      "description": "Boost your enterprise application speed.",
       "showOnMainPage": true,
       "links": [
         {
@@ -54,16 +54,16 @@
             "title": "Transports",
             "routes": [
               {
-                "title": "Add New Transport",
-                "path": "/docs/portal/transports/add-tranport.md"
+                "title": "Add Transport",
+                "path": "/docs/portal/transports/add-transport.md"
               },
               {
                 "title": "Edit Transport",
-                "path": "/docs/portal/transports/edit-tranport.md"
+                "path": "/docs/portal/transports/edit-transport.md"
               },
               {
                 "title": "View Transport",
-                "path": "/docs/portal/transports/view-tranport.md"
+                "path": "/docs/portal/transports/view-transport.md"
               }
             ]
           },
