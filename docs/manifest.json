@@ -2,7 +2,7 @@
     "metadata": {
       "id": "hdt",
       "title": "HDT",
-      "description": "",
+      "description": "Boost your enterprise application speed.",
       "showOnMainPage": true,
       "links": [
         {
@@ -64,7 +64,9 @@
               {
                 "title": "View Transport",
                 "path": "/docs/portal/transports/view-transport.md"
-              },
+              }
+            ]
+          },
           { "title": "Reports", "path": "/docs/portal/reports.md" },
           { "title": "Global Presence", "path": "/docs/portal/global-presence.md" }
         ]
