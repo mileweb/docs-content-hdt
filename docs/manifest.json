@@ -55,18 +55,16 @@
             "routes": [
               {
                 "title": "Add New Transport",
-                "path": "/docs/portal/transports/add-tranport.md"
+                "path": "/docs/portal/transports/add-transport.md"
               },
               {
                 "title": "Edit Transport",
-                "path": "/docs/portal/transports/edit-tranport.md"
+                "path": "/docs/portal/transports/edit-transport.md"
               },
               {
                 "title": "View Transport",
-                "path": "/docs/portal/transports/view-tranport.md"
-              }
-            ]
-          },
+                "path": "/docs/portal/transports/view-transport.md"
+              },
           { "title": "Reports", "path": "/docs/portal/reports.md" },
           { "title": "Global Presence", "path": "/docs/portal/global-presence.md" }
         ]
