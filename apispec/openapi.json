@@ -31,5 +31,27 @@
         }
       }
     }
-  }
+  },
+  "tags": [
+    {
+      "name": "Applications",
+      "description": "Configure your containerized application once and then distribute your application to our ECP locations across the globe."
+    },
+    {
+      "name": "PoPs and regions",
+      "description": "Get a list of ECP PoPs and regions."
+    },
+    {
+      "name": "imagePullSecrets",
+      "description": "An ImagePullSecret is a type of kubernetes secret that contains an image registry password. The secret is passed to and used by Kubelet to authenticate with your image registry and pull private images on behalf of your pod."
+    },
+    {
+      "name": "CNAMEs",
+      "description": "A Canonical Name Record (or \"CNAME\") is a DNS record used to alias one domain name to a different domain name. While your application runs on ECP, you can create a CNAME and point the hostname of your application to this CNAME. Then ECP will help manage global traffic for your application by resolving the CNAME to different IP addresses pointing to your application instances at the edge as per user/client location. Incoming requests will always be routed to the closest application instances."
+    },
+    {
+      "name": "Reports",
+      "description": "Call our report APIs to get information about your resources consumption on ECP."
+    }
+  ]
 }
