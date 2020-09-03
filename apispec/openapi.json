@@ -31,9 +31,6 @@
             "$ref": "#/components/parameters/Accept"
           },
           {
-            "$ref": "#/components/parameters/Mw-Access"
-          },
-          {
             "$ref": "#/components/parameters/On-Behalf-Of"
           },
           {
@@ -219,13 +216,13 @@
                   "type": "object"
                 },
                 "examples": {
-                  "example-1": {
+                  "MissingDateHeader": {
                     "value": {
                       "error": "MissingDateHeader",
                       "message": "Authorized request must have a Date header."
                     }
                   },
-                  "example-2": {
+                  "RequestExpired": {
                     "value": {
                       "error": "RequestExpired",
                       "message": "Request has expired. Timestamp date is xxx."
@@ -249,6 +246,14 @@
                     "message": {
                       "type": "string",
                       "description": "This user is not allowed to perform this request."
+                    }
+                  }
+                },
+                "examples": {
+                  "AccessDenied": {
+                    "value": {
+                      "error": "AccessDenied",
+                      "message": "This user is not allowed to perform this request."
                     }
                   }
                 }
@@ -281,6 +286,14 @@
                       "description": "This user is not allowed to perform this request."
                     }
                   }
+                },
+                "examples": {
+                  "AccessDenied": {
+                    "value": {
+                      "error": "AccessDenied",
+                      "message": "This user is not allowed to perform this request."
+                    }
+                  }
                 }
               }
             }
@@ -308,7 +321,7 @@
                   }
                 },
                 "examples": {
-                  "example-1": {
+                  "NoSuchTransportType": {
                     "value": {
                       "error": "NoSuchTransportType",
                       "message": "The specified transport type does not exist."
@@ -341,7 +354,7 @@
                   }
                 },
                 "examples": {
-                  "example-1": {
+                  "InternalError": {
                     "value": {
                       "error": "InternalError",
                       "message": "We encountered an internal error. Please try again."
@@ -675,13 +688,13 @@
                   "type": "object"
                 },
                 "examples": {
-                  "example-1": {
+                  "InvalidAccessDomain": {
                     "value": {
                       "error": "InvalidAccessDomain",
                       "message": "The value of field ‘accessDomain’ is invalid."
                     }
                   },
-                  "example-2": {
+                  "InvalidUseStandardPort": {
                     "value": {
                       "error": "InvalidUseStandardPort",
                       "message": "The value of field ‘useStandardPort’ is invalid."
@@ -705,6 +718,14 @@
                     "message": {
                       "type": "string",
                       "description": "Invalid authentication / authorization credentials."
+                    }
+                  }
+                },
+                "examples": {
+                  "UnAuthorized": {
+                    "value": {
+                      "error": "UnAuthorized",
+                      "message": "Invalid authentication / authorization credentials."
                     }
                   }
                 }
@@ -757,7 +778,7 @@
                   "type": "object"
                 },
                 "examples": {
-                  "example-1": {
+                  "AccessDenied": {
                     "value": {
                       "error": "AccessDenied",
                       "message": "This user is not allowed to perform this request."
@@ -808,13 +829,13 @@
                   "type": "object"
                 },
                 "examples": {
-                  "example-1": {
+                  "NoSuchTransportType": {
                     "value": {
                       "error": "NoSuchTransportType",
                       "message": "The specified transport type does not exist."
                     }
                   },
-                  "example-2": {
+                  "DistributeConfigFailed": {
                     "value": {
                       "error": "DistributeConfigFailed",
                       "message": "HDT system error. Please contact HDT support team."
@@ -845,6 +866,14 @@
                       "description": "We encountered an internal error. Please try again."
                     }
                   }
+                },
+                "examples": {
+                  "InternalError": {
+                    "value": {
+                      "error": "InternalError",
+                      "message": "We encountered an internal error. Please try again."
+                    }
+                  }
                 }
               }
             }
@@ -863,9 +892,6 @@
           },
           {
             "$ref": "#/components/parameters/Accept"
-          },
-          {
-            "$ref": "#/components/parameters/Mw-Access"
           },
           {
             "$ref": "#/components/parameters/On-Behalf-Of"
@@ -970,6 +996,198 @@
         ]
       },
       "parameters": []
+    },
+    "/transport/{transport-id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "transport-id",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Query a transport",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "transport": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "transportId": {
+                            "$ref": "#/components/schemas/transport.id"
+                          },
+                          "transportCode": {
+                            "$ref": "#/components/schemas/transport.code"
+                          },
+                          "transportType": {
+                            "$ref": "#/components/schemas/transport.type"
+                          },
+                          "transportName": {
+                            "$ref": "#/components/schemas/transport.name"
+                          },
+                          "targetDomain": {
+                            "$ref": "#/components/schemas/transport.targetDomain"
+                          },
+                          "targetPort": {
+                            "$ref": "#/components/schemas/transport.targetPort"
+                          },
+                          "useFtp": {
+                            "$ref": "#/components/schemas/transport.useFtp"
+                          },
+                          "cName": {
+                            "$ref": "#/components/schemas/transport.cName"
+                          },
+                          "accessPort": {
+                            "$ref": "#/components/schemas/transport.accessPort"
+                          },
+                          "userAccount": {
+                            "$ref": "#/components/schemas/transport.userAccount"
+                          },
+                          "userPwd": {
+                            "$ref": "#/components/schemas/transport.userPwd"
+                          },
+                          "useUdp": {
+                            "$ref": "#/components/schemas/transport.useUdp"
+                          },
+                          "useStandardPort": {
+                            "$ref": "#/components/schemas/transport.useStandardPort"
+                          },
+                          "accessDomain": {
+                            "$ref": "#/components/schemas/transport.accessDomain"
+                          },
+                          "status": {
+                            "$ref": "#/components/schemas/transport.status"
+                          },
+                          "speedLimit": {
+                            "$ref": "#/components/schemas/transport.speedLimit"
+                          },
+                          "concurrentLimit": {
+                            "$ref": "#/components/schemas/transport.concurrentLimit"
+                          },
+                          "transportStrategy": {
+                            "$ref": "#/components/schemas/transport.strategy"
+                          },
+                          "ipWhiteList": {
+                            "$ref": "#/components/schemas/transport.ipWhiteList"
+                          },
+                          "comments": {
+                            "$ref": "#/components/schemas/transport.comments"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Ipport with empty useStandardPort": {
+                    "value": {
+                      "transport": {
+                        "transportId": 1,
+                        "transportCode": "test.domain.com:18888",
+                        "transportType": "ipport",
+                        "transportName": "test.domain.com:18888",
+                        "targetDomain": "test.domain.com",
+                        "targetPort": 18888,
+                        "useFtp": 0,
+                        "cName": "access.domain.com",
+                        "accessPort": 19999,
+                        "useUdp": 0,
+                        "useStandardPort": "",
+                        "accessDomain": "test.domain.com",
+                        "status": "enabled",
+                        "speedLimit": 0,
+                        "concurrentLimit": 0,
+                        "transportStrategy": "topspeed",
+                        "ipWhiteList": "192.168.1.0/26;192.168.10.1-192.168.10.100",
+                        "comments": ""
+                      }
+                    }
+                  },
+                  "Ipport with non-empty useStandardPort": {
+                    "value": {
+                      "transport": {
+                        "transportId": 3,
+                        "transportCode": "test-2.domain.com:1080",
+                        "transportType": "ipport",
+                        "transportName": "test-2.domain.com:1080",
+                        "targetDomain": "test-2.domain.com",
+                        "targetPort": 1080,
+                        "useFtp": 0,
+                        "cName": "access.cname.com",
+                        "accessPort": 80,
+                        "useUdp": 0,
+                        "useStandardPort": "http",
+                        "accessDomain": "access.domain.com,access1.domain.com",
+                        "status": "enabled",
+                        "speedLimit": 0,
+                        "concurrentLimit": 0,
+                        "transportStrategy": "topspeed",
+                        "ipWhiteList": "192.168.1.0/26;192.168.10.1-192.168.10.100",
+                        "comments": ""
+                      }
+                    }
+                  },
+                  "vpn or socks5": {
+                    "value": {
+                      "transport": {
+                        "transportId": 2,
+                        "transportCode": "user1",
+                        "transportType": "vpn",
+                        "transportName": "user1",
+                        "useFtp": 0,
+                        "cName": "access.domain.com",
+                        "userAccount": "user1",
+                        "userPwd": "123456",
+                        "status": "enabled",
+                        "speedLimit": 0,
+                        "concurrentLimit": 0,
+                        "transportStrategy": "topspeed",
+                        "ipWhiteList": "192.168.1.0/26;192.168.10.1-100",
+                        "comments": ""
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-transport-by-transportId",
+        "description": "Get transport information by transport Id.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Authorization"
+          },
+          {
+            "$ref": "#/components/parameters/Date"
+          },
+          {
+            "$ref": "#/components/parameters/Accept-Encoding"
+          },
+          {
+            "$ref": "#/components/parameters/Accept"
+          },
+          {
+            "$ref": "#/components/parameters/On-Behalf-Of"
+          }
+        ]
+      }
     }
   },
   "components": {
