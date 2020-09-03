@@ -138,6 +138,7 @@
                 "schema": {
                   "oneOf": [
                     {
+                      "title": "MissingDateHeader",
                       "properties": {
                         "error": {
                           "type": "string",
@@ -150,6 +151,7 @@
                       }
                     },
                     {
+                      "title": "InvalidURI",
                       "properties": {
                         "error": {
                           "type": "string",
@@ -162,6 +164,7 @@
                       }
                     },
                     {
+                      "title": "InvalidDatePeriod",
                       "properties": {
                         "error": {
                           "type": "string",
@@ -174,6 +177,7 @@
                       }
                     },
                     {
+                      "title": "MissingAuthHeader",
                       "properties": {
                         "error": {
                           "type": "string",
@@ -186,6 +190,7 @@
                       }
                     },
                     {
+                      "title": "RequestExpired",
                       "properties": {
                         "error": {
                           "type": "string",
@@ -198,6 +203,7 @@
                       }
                     },
                     {
+                      "title": "InvalidArgument",
                       "properties": {
                         "error": {
                           "type": "string",
@@ -211,6 +217,20 @@
                     }
                   ],
                   "type": "object"
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "error": "MissingDateHeader",
+                      "message": "Authorized request must have a Date header."
+                    }
+                  },
+                  "example-2": {
+                    "value": {
+                      "error": "RequestExpired",
+                      "message": "Request has expired. Timestamp date is xxx."
+                    }
+                  }
                 }
               }
             }
@@ -286,6 +306,520 @@
                       "description": "The specified transport type does not exist."
                     }
                   }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "error": "NoSuchTransportType",
+                      "message": "The specified transport type does not exist."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "InternalError"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "We encountered an internal error. Please try again."
+                    }
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "error": "InternalError",
+                      "message": "We encountered an internal error. Please try again."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "transports"
+        ]
+      },
+      "post": {
+        "summary": "Create a transport",
+        "operationId": "post-transport",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "transport": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "transportId": {
+                            "$ref": "#/components/schemas/transport.id"
+                          },
+                          "transportCode": {
+                            "$ref": "#/components/schemas/transport.code"
+                          },
+                          "transportType": {
+                            "$ref": "#/components/schemas/transport.type"
+                          },
+                          "transportName": {
+                            "$ref": "#/components/schemas/transport.name"
+                          },
+                          "cName": {
+                            "$ref": "#/components/schemas/transport.cName"
+                          },
+                          "accessPort": {
+                            "$ref": "#/components/schemas/transport.accessPort"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Ipport with empty useStandardPort": {
+                    "value": {
+                      "transport": {
+                        "transportId": 1,
+                        "transportCode": "test.domain.com:18888",
+                        "transportType": "ipport",
+                        "transportName": "test.domain.com:18888",
+                        "cName": "access.domain.com",
+                        "accessPort": 19999
+                      }
+                    }
+                  },
+                  "Ipport with non-empty useStandardPort": {
+                    "value": {
+                      "transport": {
+                        "transportId": 1,
+                        "transportCode": "test.domain.com:8080",
+                        "transportType": "ipport",
+                        "transportName": "test.domain.com:8080",
+                        "cName": "access.domain.com",
+                        "accessPort": 80
+                      }
+                    }
+                  },
+                  "vpn or socks5": {
+                    "value": {
+                      "transport": {
+                        "transportId": 2,
+                        "transportCode": "user1",
+                        "transportType": "vpn",
+                        "transportName": "user1",
+                        "cName": "access.domain.com"
+                      }
+                    }
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              },
+              "text/html": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              },
+              "application/zip": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              },
+              "multipart/form-data": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              },
+              "application/EDIFACT": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "MissingDateHeader",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "MissingDateHeader"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Authorized request must have a Date header."
+                        }
+                      }
+                    },
+                    {
+                      "title": "InvalidURI",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "InvalidURI"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Could not parse the specified URI."
+                        }
+                      }
+                    },
+                    {
+                      "title": "InvalidDatePeriod",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "InvalidDatePeriod"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "The date specified is invalid."
+                        }
+                      }
+                    },
+                    {
+                      "title": "MissingAuthHeader",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "MissingAuthHeader"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "The HTTP authorization header is missing."
+                        }
+                      }
+                    },
+                    {
+                      "title": "RequestExpired",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "RequestExpired"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Request has expired. Timestamp date is xxx."
+                        }
+                      }
+                    },
+                    {
+                      "title": "MissingArgument",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "MissingArgument"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Required parameter is missing."
+                        }
+                      }
+                    },
+                    {
+                      "title": "CNameAlreadyExists",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "CNameAlreadyExists"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "CNAME already exists."
+                        }
+                      }
+                    },
+                    {
+                      "title": "TargetDomainAndPortAlreadyExist",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "TargetDomainAndPortAlreadyExist"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "The target domain and target port already exist."
+                        }
+                      }
+                    },
+                    {
+                      "title": "UserAccountAlreadyExists",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "UserAccountAlreadyExists"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "User account already exists."
+                        }
+                      }
+                    },
+                    {
+                      "title": "InvalidCNameSuffix",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "InvalidCNameSuffix"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Invalid CName suffix."
+                        }
+                      }
+                    },
+                    {
+                      "title": "InvalidArgument",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "InvalidArgument"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "There is a problem with a parameter name or value."
+                        }
+                      }
+                    },
+                    {
+                      "title": "InvalidUseStandardPort",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "InvalidUseStandardPort"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "The value of field ‘useStandardPort’ is invalid."
+                        }
+                      }
+                    },
+                    {
+                      "title": "AccessDomainIsRequired",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "AccessDomainIsRequired"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "'accessDomain' is required and can’t be empty."
+                        }
+                      }
+                    },
+                    {
+                      "title": "InvalidAccessDomain",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "InvalidAccessDomain"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "The value of field ‘accessDomain’ is invalid."
+                        }
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "error": "InvalidAccessDomain",
+                      "message": "The value of field ‘accessDomain’ is invalid."
+                    }
+                  },
+                  "example-2": {
+                    "value": {
+                      "error": "InvalidUseStandardPort",
+                      "message": "The value of field ‘useStandardPort’ is invalid."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "UnAuthorized"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Invalid authentication / authorization credentials."
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "AccessDenied",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "AccessDenied"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "This user is not allowed to perform this request."
+                        }
+                      }
+                    },
+                    {
+                      "title": "ResourceNoAccess",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "ResourceNoAccess"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Read only customer can not modify resources."
+                        }
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "error": "AccessDenied",
+                      "message": "This user is not allowed to perform this request."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "NoSuchTransportType",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "NoSuchTransportType"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "The specified transport type does not exist."
+                        }
+                      }
+                    },
+                    {
+                      "title": "DistributeConfigFailed",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "DistributeConfigFailed"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "HDT system error. Please contact HDT support team."
+                        }
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "error": "NoSuchTransportType",
+                      "message": "The specified transport type does not exist."
+                    }
+                  },
+                  "example-2": {
+                    "value": {
+                      "error": "DistributeConfigFailed",
+                      "message": "HDT system error. Please contact HDT support team."
+                    }
+                  }
                 }
               }
             }
@@ -314,18 +848,6 @@
                 }
               }
             }
-          }
-        },
-        "tags": [
-          "transports"
-        ]
-      },
-      "post": {
-        "summary": "",
-        "operationId": "post-transport",
-        "responses": {
-          "200": {
-            "description": "OK"
           }
         },
         "description": "Create a transport and associate it with the calling customer. It should return a transportId,  a transportCode, a transportName, a transportType, a CNAME and an accessPort to calling customer.",
@@ -369,11 +891,49 @@
                         },
                         "targetDomain": {
                           "$ref": "#/components/schemas/transport.targetDomain"
+                        },
+                        "targetPort": {
+                          "$ref": "#/components/schemas/transport.targetPort"
+                        },
+                        "useFtp": {
+                          "$ref": "#/components/schemas/transport.useFtp"
+                        },
+                        "cName    ": {
+                          "$ref": "#/components/schemas/transport.cName"
+                        },
+                        "userAccount": {
+                          "$ref": "#/components/schemas/transport.userAccount"
+                        },
+                        "userPwd": {
+                          "$ref": "#/components/schemas/transport.userPwd"
+                        },
+                        "accessDomain": {
+                          "$ref": "#/components/schemas/transport.accessDomain"
+                        },
+                        "useStandardPort": {
+                          "$ref": "#/components/schemas/transport.useStandardPort"
+                        },
+                        "ipWhiteList": {
+                          "$ref": "#/components/schemas/transport.ipWhiteList"
+                        },
+                        "useUdp": {
+                          "$ref": "#/components/schemas/transport.useUdp"
+                        },
+                        "status": {
+                          "$ref": "#/components/schemas/transport.status"
+                        },
+                        "comments": {
+                          "$ref": "#/components/schemas/transport.comments"
                         }
                       },
                       "required": [
                         "transportType",
-                        "targetDomain"
+                        "targetDomain",
+                        "targetPort",
+                        "useFtp",
+                        "userAccount",
+                        "userPwd",
+                        "accessDomain"
                       ]
                     }
                   }
@@ -484,7 +1044,14 @@
         "title": "accessDomain",
         "type": "string",
         "description": "Indicates the access domain of accelerated application for the public users. It supports multiple domains separated by commas and  wildcard to match multiple subdomains, currently we support the format of: \"*.domain.com\".\n\nFor example:\naaa.domain1.com,*.domain2.com,*.domain3.org.cn\n\nNote:\n1. Currently HDT does not support more than one level subdomains for \"accessDomain\" field;\n2. 'accessDomain' can't be empty; \n3. When 'useStandardPort' is not empty, the value of combination of 'accessDomain' field and 'useStandardPort' field must be globally unique;\n4. When 'useStandardPort' is empty, the value of 'accessDomain' is unique to each customer. Transports belong to the same  customer can use the same 'accessDomain'.",
-        "x-examples": {}
+        "x-examples": {
+          "example-1": {
+            "accessDomain": "aaa.domain1.com"
+          },
+          "example-2": {
+            "accessDomain": "*.domain2.com"
+          }
+        }
       },
       "transport.status": {
         "type": "string",
@@ -513,7 +1080,12 @@
       "transport.ipWhiteList": {
         "type": "string",
         "title": "ipWhiteList",
-        "description": "Indicates the ip white-list."
+        "description": "Indicates the ip white-list. Valid values are ip, ip segment, ip range or the combination of them separated by semicolons. Spaces, '\\t', '\\r' or '\\r\\n'(which will be  removed before validating)  can only appear in front of or behind ip, ip segment and ip range(The range format should be \"A.B.C.D-A.B.C.E\" and E should greater than D.), but can not be included in them, Default value is blank string.\n\nFor example:\nvalid:\n 11.11.12.3/20;  2.3.4.5-2.3.4.10;\n21.12.45.18\n\nInvalid:\n 11.11. 12.3/20;  2.3.4.5-2.3.\n4.10;\n21.12.45.18",
+        "x-examples": {
+          "example-1": {
+            "ipWhiteList": "11.11.12.3/20;  2.3.4.5-2.3.4.10; 21.12.45.18"
+          }
+        }
       },
       "transport.comments": {
         "title": "comments",
