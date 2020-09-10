@@ -366,7 +366,7 @@
           }
         },
         "tags": [
-          "transports"
+          "Transports"
         ]
       },
       "post": {
@@ -973,7 +973,7 @@
           "description": "Create a transport."
         },
         "tags": [
-          "transports"
+          "Transports"
         ]
       }
     },
@@ -991,7 +991,7 @@
       "get": {
         "summary": "Query a transport",
         "tags": [
-          "transports"
+          "Transports"
         ],
         "responses": {
           "200": {
@@ -1972,7 +1972,7 @@
           "description": "Modify a transport."
         },
         "tags": [
-          "transports"
+          "Transports"
         ]
       },
       "delete": {
@@ -2376,7 +2376,7 @@
           }
         ],
         "tags": [
-          "transports"
+          "Transports"
         ]
       }
     },
@@ -2394,7 +2394,7 @@
       "get": {
         "summary": "Query history of a transport",
         "tags": [
-          "transports"
+          "Transports"
         ],
         "responses": {
           "200": {
@@ -2763,7 +2763,7 @@
       "get": {
         "summary": "Get Transport’s History Configuration",
         "tags": [
-          "transports"
+          "Transports"
         ],
         "responses": {
           "200": {
@@ -3165,7 +3165,7 @@
       "get": {
         "summary": "Get the traffic volume of a transport",
         "tags": [
-          "reports"
+          "Reports"
         ],
         "responses": {
           "200": {
@@ -3613,7 +3613,7 @@
       "get": {
         "summary": "Get the requests count of a transport",
         "tags": [
-          "reports"
+          "Reports"
         ],
         "responses": {
           "200": {
@@ -4375,7 +4375,7 @@
           }
         ],
         "tags": [
-          "logs"
+          "Logs"
         ]
       }
     }
@@ -4814,16 +4814,16 @@
   },
   "tags": [
     {
-      "name": "transports",
-      "description": "Call our report APIs to configure your HDT transports."
+      "name": "Transports",
+      "description": "Call the Transports APIs to configure your HDT transports."
     },
     {
-      "name": "reports",
-      "description": "Call our report APIs to get information about the usage of your HDT transports."
+      "name": "Reports",
+      "description": "Call the Reports APIs to get information about the usage of your HDT transports."
     },
     {
-      "name": "logs",
-      "description": "Call our report APIs to get logs of your HDT transports."
+      "name": "Logs",
+      "description": "Call the Logs APIs to get logs of your HDT transports."
     }
   ]
 }
