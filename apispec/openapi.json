@@ -3,7 +3,7 @@
   "info": {
     "title": "HDT API",
     "version": "1.0",
-    "description": "The CDNetworks ECP API is a RESTful API that allows you to manage transports and retrieve reports.",
+    "description": "The CDNetworks ECP API is a RESTful API that allows you to manage transports, retrieve reports and download logs.",
     "contact": {}
   },
   "servers": [
@@ -15,7 +15,7 @@
     "/transport": {
       "get": {
         "summary": "Query transport list",
-        "operationId": "get-transport-list",
+        "operationId": "get-transport",
         "description": "Get a transport list according to customer user name or transport type.",
         "parameters": [
           {
@@ -35,7 +35,7 @@
           },
           {
             "schema": {
-              "type": "string"
+              "type": "integer"
             },
             "in": "query",
             "name": "limit",
@@ -81,7 +81,7 @@
                         "transport-data": {
                           "type": "array",
                           "items": {
-                            "$ref": "#/components/schemas/transport-data"
+                            "$ref": "#/components/schemas/transport.transportData"
                           }
                         }
                       }
@@ -977,26 +977,6 @@
         ]
       }
     },
-    "/report/flow": {
-      "get": {
-        "summary": "Query the traffic volume for your transport",
-        "tags": [
-          "reports"
-        ],
-        "responses": {},
-        "operationId": "get-report",
-        "description": "Get the usage report.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header"
-          }
-        ]
-      },
-      "parameters": []
-    },
     "/transport/{transport-id}": {
       "parameters": [
         {
@@ -1274,19 +1254,19 @@
                   "properties": {
                     "error": {
                       "type": "string",
-                      "description": "AccessDenied"
+                      "description": "UnAuthorized"
                     },
                     "message": {
                       "type": "string",
-                      "description": "This user is not allowed to perform this request."
+                      "description": "Invalid authentication / authorization credentials."
                     }
                   }
                 },
                 "examples": {
-                  "AccessDenied": {
+                  "Unauthorized": {
                     "value": {
-                      "error": "AccessDenied",
-                      "message": "This user is not allowed to perform this request."
+                      "error": "Unauthorized",
+                      "message": "Invalid authentication / authorization credentials."
                     }
                   }
                 }
@@ -1398,7 +1378,7 @@
             }
           }
         },
-        "operationId": "get-transport-by-transportId",
+        "operationId": "get-transport-transportId",
         "description": "Get transport information by transport Id.",
         "parameters": [
           {
@@ -1420,7 +1400,7 @@
       },
       "put": {
         "summary": "Modify a transport",
-        "operationId": "put-transport-by-transportId",
+        "operationId": "put-transport-transportId",
         "responses": {
           "200": {
             "description": "OK",
@@ -1997,7 +1977,7 @@
       },
       "delete": {
         "summary": "Delete a transport",
-        "operationId": "delete-transport-by-transportId",
+        "operationId": "delete-transport-transportId",
         "responses": {
           "200": {
             "description": "OK",
@@ -2438,7 +2418,7 @@
                           "description": "Indicates the total count of transport history data."
                         },
                         "history-data": {
-                          "$ref": "#/components/schemas/transport-history-data"
+                          "$ref": "#/components/schemas/transport.transportHistoryData"
                         }
                       }
                     }
@@ -2760,6 +2740,1644 @@
           }
         ]
       }
+    },
+    "/transport/{transport-id}/history/{deploy-id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "transport-id",
+          "in": "path",
+          "required": true
+        },
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "deploy-id",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Get Transport’s History Configuration",
+        "tags": [
+          "transports"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "transport": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "deployId": {
+                            "$ref": "#/components/schemas/transport.deployId"
+                          },
+                          "transportCode": {
+                            "$ref": "#/components/schemas/transport.code"
+                          },
+                          "transportType": {
+                            "$ref": "#/components/schemas/transport.type"
+                          },
+                          "transportName": {
+                            "$ref": "#/components/schemas/transport.name"
+                          },
+                          "targetDomain": {
+                            "$ref": "#/components/schemas/transport.targetDomain"
+                          },
+                          "targetPort": {
+                            "$ref": "#/components/schemas/transport.targetPort"
+                          },
+                          "useFtp": {
+                            "$ref": "#/components/schemas/transport.useFtp"
+                          },
+                          "cName": {
+                            "$ref": "#/components/schemas/transport.cName"
+                          },
+                          "accessPort": {
+                            "$ref": "#/components/schemas/transport.accessPort"
+                          },
+                          "userAccount": {
+                            "$ref": "#/components/schemas/transport.userAccount"
+                          },
+                          "userPwd": {
+                            "$ref": "#/components/schemas/transport.userPwd"
+                          },
+                          "useUdp": {
+                            "$ref": "#/components/schemas/transport.useUdp"
+                          },
+                          "useStandardPort": {
+                            "$ref": "#/components/schemas/transport.useStandardPort"
+                          },
+                          "accessDomain": {
+                            "$ref": "#/components/schemas/transport.accessDomain"
+                          },
+                          "status": {
+                            "$ref": "#/components/schemas/transport.status"
+                          },
+                          "speedLimit": {
+                            "$ref": "#/components/schemas/transport.speedLimit"
+                          },
+                          "concurrentLimit": {
+                            "$ref": "#/components/schemas/transport.concurrentLimit"
+                          },
+                          "transportStrategy": {
+                            "$ref": "#/components/schemas/transport.strategy"
+                          },
+                          "ipWhiteList": {
+                            "$ref": "#/components/schemas/transport.ipWhiteList"
+                          },
+                          "comments": {
+                            "$ref": "#/components/schemas/transport.comments"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Ipport": {
+                    "value": {
+                      "transport": {
+                        "deployId": 1,
+                        "transportCode": "test.domain.com:18888",
+                        "transportType": "ipport",
+                        "transportName": "transportName",
+                        "targetDomain": "test.domain.com",
+                        "targetPort": 18888,
+                        "useFtp": 0,
+                        "accessPort": 4096,
+                        "cName": "access.domain.com",
+                        "useUdp": 0,
+                        "useStandardPort": "",
+                        "accessDomain": "test.domain.com",
+                        "status": "enabled",
+                        "speedLimit": 0,
+                        "concurrentLimit": 0,
+                        "transportStrategy": "topspeed",
+                        "ipWhiteList": "192.168.1.0/26;192.168.10.1-192.168.10.100",
+                        "apiRequestId": "qMQkfSZF",
+                        "comments": "comments",
+                        "timestamp": "2014-07-31T23:05:00Z"
+                      }
+                    }
+                  },
+                  "vpn or socks5": {
+                    "value": {
+                      "transport": {
+                        "deployId": 1,
+                        "transportCode": "user1",
+                        "transportType": "vpn",
+                        "transportName": "transportName",
+                        "useFtp": 0,
+                        "cName": "access3.domain.com",
+                        "userAccount": "user1",
+                        "userPwd": "123456",
+                        "status": "enabled",
+                        "speedLimit": 0,
+                        "concurrentLimit": 0,
+                        "transportStrategy": "topspeed",
+                        "ipWhiteList": "192.168.1.0/26;192.168.10.1-100",
+                        "apiRequestId": "G7RtWVwo",
+                        "comments": "comments",
+                        "timestamp": "2014-07-31T23:05:00Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "MissingDateHeader",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "MissingDateHeader"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Authorized request must have a Date header."
+                        }
+                      }
+                    },
+                    {
+                      "title": "InvalidURI",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "InvalidURI"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Could not parse the specified URI."
+                        }
+                      }
+                    },
+                    {
+                      "title": "InvalidDatePeriod",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "InvalidDatePeriod"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "The date specified is invalid."
+                        }
+                      }
+                    },
+                    {
+                      "title": "MissingAuthHeader",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "MissingAuthHeader"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "The HTTP authorization header is missing."
+                        }
+                      }
+                    },
+                    {
+                      "title": "RequestExpired",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "RequestExpired"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Request has expired. Timestamp date is xxx."
+                        }
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "examples": {
+                  "MissingDateHeader": {
+                    "value": {
+                      "error": "MissingDateHeader",
+                      "message": "Authorized request must have a Date header."
+                    }
+                  },
+                  "RequestExpired": {
+                    "value": {
+                      "error": "RequestExpired",
+                      "message": "Request has expired. Timestamp date is xxx."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Unauthorized"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Invalid authentication / authorization credentials."
+                    }
+                  }
+                },
+                "examples": {
+                  "AccessDenied": {
+                    "value": {
+                      "error": "AccessDenied",
+                      "message": "This user is not allowed to perform this request."
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "AccessDenied"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "This user is not allowed to perform this request."
+                    }
+                  }
+                },
+                "examples": {
+                  "AccessDenied": {
+                    "value": {
+                      "error": "AccessDenied",
+                      "message": "This user is not allowed to perform this request."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "NoSuchTransportId"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The specified transport id does not exist."
+                    }
+                  }
+                },
+                "examples": {
+                  "NoSuchTransportType": {
+                    "value": {
+                      "error": "NoSuchTransportType",
+                      "message": "The specified transport type does not exist."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "InternalError"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "We encountered an internal error. Please try again."
+                    }
+                  }
+                },
+                "examples": {
+                  "InternalError": {
+                    "value": {
+                      "error": "InternalError",
+                      "message": "We encountered an internal error. Please try again."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-transport-transportId-history-deployId",
+        "description": "Get transport's detailed history configuration according to {transport-id} and {deploy-id}, {transport-id} is a transport id, {deploy-id} is get from the field 'deployId' of API '/hdt/transport/{transport-id}/history'. ",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Authorization"
+          },
+          {
+            "$ref": "#/components/parameters/Date"
+          },
+          {
+            "$ref": "#/components/parameters/Accept-Encoding"
+          },
+          {
+            "$ref": "#/components/parameters/Accept"
+          },
+          {
+            "$ref": "#/components/parameters/On-Behalf-Of"
+          }
+        ]
+      }
+    },
+    "/report/{transport-id}/flow": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "transport-id",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Get the traffic volume of a transport",
+        "tags": [
+          "reports"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "flow-report": {
+                      "$ref": "#/components/schemas/report.flowReport"
+                    },
+                    "records-count": {
+                      "$ref": "#/components/schemas/report.recordsCount"
+                    },
+                    "upload -summary": {
+                      "$ref": "#/components/schemas/report.downloadSummary"
+                    },
+                    "download-summary": {
+                      "$ref": "#/components/schemas/report.downloadSummary"
+                    },
+                    "flow-data": {
+                      "$ref": "#/components/schemas/report.flowData"
+                    }
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "flow-report": {
+                        "records-count": 6,
+                        "upload–summary": 2508724,
+                        "download-summary": 2508724,
+                        "flow-data": [
+                          {
+                            "timestamp": "2014-07-31T23:05:00",
+                            "upload": 197421,
+                            "download": 297421
+                          },
+                          {
+                            "timestamp": "2014-07-31T23:10:00",
+                            "upload": 255564,
+                            "download": 155564
+                          },
+                          {
+                            "timestamp": "2014-07-31T23:15:00",
+                            "upload": 516326,
+                            "download": 316326
+                          },
+                          {
+                            "timestamp": "2014-07-31T23:20:00",
+                            "upload": 129685,
+                            "download": 329685
+                          },
+                          {
+                            "timestamp": "2014-07-31T23:25:00",
+                            "upload": 516326,
+                            "download": 316326
+                          },
+                          {
+                            "timestamp": "2014-07-31T23:30:00",
+                            "upload": 144774,
+                            "download": 144774
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "MissingDateHeader",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "MissingDateHeader"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Authorized request must have a Date header."
+                        }
+                      }
+                    },
+                    {
+                      "title": "InvalidURI",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "InvalidURI"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Could not parse the specified URI."
+                        }
+                      }
+                    },
+                    {
+                      "title": "InvalidDatePeriod",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "InvalidDatePeriod"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "The date specified is invalid."
+                        }
+                      }
+                    },
+                    {
+                      "title": "MissingAuthHeader",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "MissingAuthHeader"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "The HTTP authorization header is missing."
+                        }
+                      }
+                    },
+                    {
+                      "title": "RequestExpired",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "RequestExpired"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Request has expired. Timestamp date is xxx."
+                        }
+                      }
+                    },
+                    {
+                      "title": "MissingArgument",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "MissingArgument"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Required parameter is missing."
+                        }
+                      }
+                    },
+                    {
+                      "title": "TimeRangeTooLarge",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "TimeRangeTooLarge"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "The date range should be no more than 7 days when querying 1 minute intervals.\nThe date range should be no more than one month when querying 5 minute intervals.\nThe date range should be no more than one year when querying hourly, daily, or monthly intervals."
+                        }
+                      }
+                    },
+                    {
+                      "title": "ReturnRecordTooLarge",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "ReturnRecordTooLarge"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "There are more than 10080 records. Please specify a shorter time range."
+                        }
+                      }
+                    },
+                    {
+                      "title": "InvalidArgument",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "InvalidArgument"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "There is a problem with a parameter name or value."
+                        }
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "examples": {
+                  "MissingDateHeader": {
+                    "value": {
+                      "error": "MissingDateHeader",
+                      "message": "Authorized request must have a Date header."
+                    }
+                  },
+                  "RequestExpired": {
+                    "value": {
+                      "error": "RequestExpired",
+                      "message": "Request has expired. Timestamp date is xxx."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Unauthorized"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "This user is not allowed to perform this request."
+                    }
+                  }
+                },
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "error": "Unauthorized",
+                      "message": "This user is not allowed to perform this request."
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "AccessDenied"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "This user is not allowed to perform this request."
+                    }
+                  }
+                },
+                "examples": {
+                  "AccessDenied": {
+                    "value": {
+                      "error": "AccessDenied",
+                      "message": "This user is not allowed to perform this request."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "NoSuchTransportId"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The specified transport Id does not exist."
+                    }
+                  }
+                },
+                "examples": {
+                  "NoSuchTransportId": {
+                    "value": {
+                      "error": "NoSuchTransportId",
+                      "message": "The specified transport id does not exist."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "InternalError"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "We encountered an internal error. Please try again."
+                    }
+                  }
+                },
+                "examples": {
+                  "InternalError": {
+                    "value": {
+                      "error": "InternalError",
+                      "message": "We encountered an internal error. Please try again."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-report-transportId-flow",
+        "description": "Get the traffic volume in bytes for specified transports. The {transport-id} could be multiple transport IDs separated by commas. If one of transport IDs doesn't exist, this API returns error. Transport ID is a unique integer number in HDT System which is get from api ‘/hdt/transport’. Parameters allow you to specify a time period, an interval type.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Authorization"
+          },
+          {
+            "$ref": "#/components/parameters/Date"
+          },
+          {
+            "$ref": "#/components/parameters/Accept-Encoding"
+          },
+          {
+            "$ref": "#/components/parameters/Accept"
+          },
+          {
+            "$ref": "#/components/parameters/On-Behalf-Of"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "in": "query",
+            "name": "datefrom",
+            "description": "RFC3339 formatted date indicating the starting date . Example:  2013-01-01T22:30:00+08:00",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "in": "query",
+            "name": "dateto",
+            "description": "RFC3339 formatted date indicating the ending date . Example:  2013-01-01T22:30:00+08:00.\nIf the time range of datefrom and dateto is more than 366 days, it will return 'TimeRangeTooLarge' error.\n",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "interval",
+            "description": "Indicates the granularity of time. Can be oneminute, fiveminutes, hourly, daily or monthly.\nIf the time range of datefrom and dateto is less than or equal one day, default value is oneminute;\nIf the time range of datefrom and dateto is more than one day and less than or equal one week, default value is fiveminutes;\nIf the time range of datefrom and dateto is more than one week and less than or equal one month, default value is hourly;\nIf the time range of datefrom and dateto is more than one month, default value is daily; \nRestriction:\n1.\tOne minute - Maximum time range is 7 days\n2.\t5 minute - Maximum time range is 1 month(31d)\n3.\tHourly, Daily, Monthly - Maximum time range is 1 year(366d)"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "timezone",
+            "description": "Indicates the timezone for the report data. It must be relative to GMT and specified in the format GMT+n where  -12<= n <= 12.  For example, timezone=GMT-7  and timezone=GMT+8.  If the parameter is unspecified, results will be in the GMT timezone. The default timezone is GMT+00."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "default": 10080
+            },
+            "in": "query",
+            "name": "limit",
+            "description": "Indicates the maximum number of records to return, the default value is 10080 which means that it returns all data acquiescently."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "default": "0"
+            },
+            "in": "query",
+            "name": "offset",
+            "description": "Indicates the starting position of the query in relation to the complete set of unpaginated records. The default value is 0."
+          }
+        ]
+      }
+    },
+    "/report/{transport-id}/requests": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "transport-id",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Get the requests count of a transport",
+        "tags": [
+          "reports"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "requests-report": {
+                      "$ref": "#/components/schemas/report.requestsReport"
+                    }
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "requests-report": {
+                        "records-count": 6,
+                        "total-summary": 1000,
+                        "success-summary": 900,
+                        "requests-data": [
+                          {
+                            "timestamp": "2014-07-31T23:05:00",
+                            "total": 200,
+                            "success": 200
+                          },
+                          {
+                            "timestamp": "2014-07-31T23:10:00",
+                            "total": 200,
+                            "success": 200
+                          },
+                          {
+                            "timestamp": "2014-07-31T23:15:00",
+                            "total": 100,
+                            "success": 100
+                          },
+                          {
+                            "timestamp": "2014-07-31T23:20:00",
+                            "total": 200,
+                            "success": 100
+                          },
+                          {
+                            "timestamp": "2014-07-31T23:25:00",
+                            "total": 200,
+                            "success": 200
+                          },
+                          {
+                            "timestamp": "2014-07-31T23:30:00",
+                            "total": 100,
+                            "success": 100
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "MissingDateHeader",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "MissingDateHeader"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Authorized request must have a Date header."
+                        }
+                      }
+                    },
+                    {
+                      "title": "InvalidURI",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "InvalidURI"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Could not parse the specified URI."
+                        }
+                      }
+                    },
+                    {
+                      "title": "InvalidDatePeriod",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "InvalidDatePeriod"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "The date specified is invalid."
+                        }
+                      }
+                    },
+                    {
+                      "title": "MissingAuthHeader",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "MissingAuthHeader"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "The HTTP authorization header is missing."
+                        }
+                      }
+                    },
+                    {
+                      "title": "RequestExpired",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "RequestExpired"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Request has expired. Timestamp date is xxx."
+                        }
+                      }
+                    },
+                    {
+                      "title": "MissingArgument",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "MissingArgument"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Required parameter is missing."
+                        }
+                      }
+                    },
+                    {
+                      "title": "TimeRangeTooLarge",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "TimeRangeTooLarge"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "The date range should be no more than 7 days when querying 1 minute intervals.\nThe date range should be no more than one month when querying 5 minute intervals.\nThe date range should be no more than one year when querying hourly, daily, or monthly intervals."
+                        }
+                      }
+                    },
+                    {
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "ReturnRecordTooLarge"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "There are more than 10080 records. Please specify a shorter time range."
+                        }
+                      }
+                    },
+                    {
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "InvalidArgument"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "There is a problem with a parameter name or value."
+                        }
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "examples": {
+                  "MissingDateHeader": {
+                    "value": {
+                      "error": "MissingDateHeader",
+                      "message": "Authorized request must have a Date header."
+                    }
+                  },
+                  "RequestExpired": {
+                    "value": {
+                      "error": "RequestExpired",
+                      "message": "Request has expired. Timestamp date is xxx."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Unauthorized"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "This user is not allowed to perform this request."
+                    }
+                  }
+                },
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "error": "Unauthorized",
+                      "message": "This user is not allowed to perform this request."
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "AccessDenied"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "This user is not allowed to perform this request."
+                    }
+                  }
+                },
+                "examples": {
+                  "AccessDenied": {
+                    "value": {
+                      "error": "AccessDenied",
+                      "message": "This user is not allowed to perform this request."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "NoSuchTransportId"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The specified transport Id does not exist."
+                    }
+                  }
+                },
+                "examples": {
+                  "NoSuchTransportId": {
+                    "value": {
+                      "error": "NoSuchTransportId",
+                      "message": "The specified transport id does not exist."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "InternalError"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "We encountered an internal error. Please try again."
+                    }
+                  }
+                },
+                "examples": {
+                  "InternalError": {
+                    "value": {
+                      "error": "InternalError",
+                      "message": "We encountered an internal error. Please try again."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-report-transportId-requests",
+        "description": "Get the total request count for specified transports. The {transport-id} could be multiple transport IDs separated by commas. If one of transport IDs doesn't exist, this API returns error. Transport ID is a unique integer number in HDT System which is get from api ‘/hdt/transport’. Parameters allow you to specify a time period, an interval type.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Authorization"
+          },
+          {
+            "$ref": "#/components/parameters/Date"
+          },
+          {
+            "$ref": "#/components/parameters/Accept-Encoding"
+          },
+          {
+            "$ref": "#/components/parameters/Accept"
+          },
+          {
+            "$ref": "#/components/parameters/On-Behalf-Of"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "in": "query",
+            "name": "datefrom",
+            "description": "RFC3339 formatted date indicating the starting date . Example:  2013-01-01T22:30:00+08:00",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "in": "query",
+            "name": "dateto",
+            "description": "RFC3339 formatted date indicating the ending date . Example:  2013-01-01T22:30:00+08:00.\nIf the time range of datefrom and dateto is more than 366 days, it will return 'TimeRangeTooLarge' error.\n",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "interval",
+            "description": "Indicates the granularity of time. Can be oneminute, fiveminutes, hourly, daily or monthly.\nIf the time range of datefrom and dateto is less than or equal one day, default value is oneminute;\nIf the time range of datefrom and dateto is more than one day and less than or equal one week, default value is fiveminutes;\nIf the time range of datefrom and dateto is more than one week and less than or equal one month, default value is hourly;\nIf the time range of datefrom and dateto is more than one month, default value is daily; \nRestriction:\n1.\tOne minute - Maximum time range is 7 days\n2.\t5 minute - Maximum time range is 1 month(31d)\n3.\tHourly, Daily, Monthly - Maximum time range is 1 year(366d)"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "timezone",
+            "description": "Indicates the timezone for the report data. It must be relative to GMT and specified in the format GMT+n where  -12<= n <= 12.  For example, timezone=GMT-7  and timezone=GMT+8.  If the parameter is unspecified, results will be in the GMT timezone. The default timezone is GMT+00."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "default": 10080
+            },
+            "in": "query",
+            "name": "limit",
+            "description": "Indicates the maximum number of records to return, the default value is 10080 which means that it returns all data acquiescently."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "default": "0"
+            },
+            "in": "query",
+            "name": "offset",
+            "description": "Indicates the starting position of the query in relation to the complete set of unpaginated records. The default value is 0."
+          }
+        ]
+      }
+    },
+    "/hdtreport/{transport-id}/log": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "transport-id",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Get transport logs by transport-id and time-period",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "logs": {
+                      "$ref": "#/components/schemas/log.logs"
+                    }
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "logs": {
+                        "log": {
+                          "datefrom": "2018-06-10-1600",
+                          "dateto": "2018-06-10-1659",
+                          "log-url": "http://logdl.mileweb.com/hdtlog/1/5067/20180610-1600-1659/35.186.212.62-443_2018-06-10-1600-1659_mproxy_0.log.gz?wskey=a26efbc6e29bdc30f091eb201dbc6236",
+                          "file-size": "205243"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "MissingDateHeader",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "MissingDateHeader"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Authorized request must have a Date header."
+                        }
+                      }
+                    },
+                    {
+                      "title": "InvalidURI",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "InvalidURI"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Could not parse the specified URI."
+                        }
+                      }
+                    },
+                    {
+                      "title": "InvalidDatePeriod",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "InvalidDatePeriod"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "The date specified is invalid."
+                        }
+                      }
+                    },
+                    {
+                      "title": "MissingAuthHeader",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "MissingAuthHeader"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "The HTTP authorization header is missing."
+                        }
+                      }
+                    },
+                    {
+                      "title": "RequestExpired",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "RequestExpired"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Request has expired. Timestamp date is xxx."
+                        }
+                      }
+                    },
+                    {
+                      "title": "MissingArgument",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "MissingArgument"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Required parameter is missing."
+                        }
+                      }
+                    },
+                    {
+                      "title": "InvalidArgument",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "InvalidArgument"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "There is a problem with a parameter name or value."
+                        }
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "examples": {
+                  "MissingDateHeader": {
+                    "value": {
+                      "error": "MissingDateHeader",
+                      "message": "Authorized request must have a Date header."
+                    }
+                  },
+                  "RequestExpired": {
+                    "value": {
+                      "error": "RequestExpired",
+                      "message": "Request has expired. Timestamp date is xxx."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Unauthorized"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "This user is not allowed to perform this request."
+                    }
+                  }
+                },
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "error": "Unauthorized",
+                      "message": "This user is not allowed to perform this request."
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "AccessDenied"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "This user is not allowed to perform this request."
+                    }
+                  }
+                },
+                "examples": {
+                  "AccessDenied": {
+                    "value": {
+                      "error": "AccessDenied",
+                      "message": "This user is not allowed to perform this request."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "NoSuchTransportId"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The specified transport Id does not exist."
+                    }
+                  }
+                },
+                "examples": {
+                  "NoSuchTransportId": {
+                    "value": {
+                      "error": "NoSuchTransportId",
+                      "message": "The specified transport id does not exist."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "InternalError"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "We encountered an internal error. Please try again."
+                    }
+                  }
+                },
+                "examples": {
+                  "InternalError": {
+                    "value": {
+                      "error": "InternalError",
+                      "message": "We encountered an internal error. Please try again."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-hdtreport-transportId-log",
+        "description": "To get transport logs by its transport-id and specified time period. After getting the response, you can download rawlog from returned url.\nSample: \nwget  ‘http://logdl.mileweb.com/hdtlog/1/5067/20180610-1600-1659/35.186.212.62-443_2018-06-10-1600-1659_mproxy_0.log.gz?wskey=a26efbc6e29bdc30f091eb201dbc6236’ -O 1.gz\nCurrently logs are 2 hours delayed, which means you can download the log two hours ago and the completeness is about 99%. The log is aggregated hourly or daily, which is configurable for each transport ID (the configuration item is called log merge granularity). There may be more than one logs for the same time slice, including late logs. For example, if a transport’s log merge granularity is hourly, there may be more than one log for each hour.\nWhether the log is sorted depends on the transport’s sorting configuration. Log sorting means that the log is sorted by the datetime in the log lines.\nThe maximum download speed for a single connection is limited to 5MB/s now.\n",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Authorization"
+          },
+          {
+            "$ref": "#/components/parameters/Date"
+          },
+          {
+            "$ref": "#/components/parameters/Accept-Encoding"
+          },
+          {
+            "$ref": "#/components/parameters/Accept"
+          },
+          {
+            "$ref": "#/components/parameters/On-Behalf-Of"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "in": "query",
+            "name": "datefrom",
+            "description": "RFC3339 formatted date indicating the starting date . Example:  2013-01-01T22:30:00+08:00",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "dateto",
+            "description": "End time, RFC3339 formatted date. Example: 2013-01-01T22:30:00+08:00. You can specify timezone in this parameter, but the result wil convert to timezone GMT+00. This time may be adjusted  according to the log merge granularity. For example, if the granularity is hourly,  \"2018-01-01T22:15:00+00:00\" will be adjusted to \"2018-01-01T22:00:00 +00:00\" and if the granularity is daily, it will be adjusted to \"2018-01-01T00:00:00 +00:00\".",
+            "required": true
+          }
+        ],
+        "tags": [
+          "logs"
+        ]
+      }
     }
   },
   "components": {
@@ -2882,7 +4500,7 @@
         "type": "string",
         "description": "Comment or description for customer to make some notes."
       },
-      "transport-data": {
+      "transport.transportData": {
         "title": "transport-data",
         "type": "array",
         "description": "this container contains \"transportId\", \"transportCode\", \"transportType\", \"transportName\" and \"status\" element for describing one transport.",
@@ -2907,7 +4525,7 @@
           }
         }
       },
-      "transport-history-data": {
+      "transport.transportHistoryData": {
         "title": "transport-history-data",
         "type": "array",
         "description": "A container contains the following elements.\n\n",
@@ -2924,10 +4542,12 @@
               "$ref": "#/components/schemas/transport.name"
             },
             "apiRequestId": {
-              "$ref": "#/components/schemas/api-request-id"
+              "type": "string",
+              "description": "Indicates the api-request-id for modifying this transport configuration."
             },
             "timestamp": {
-              "$ref": "#/components/schemas/timestamp"
+              "type": "string",
+              "description": "Indicates the date and time that the configuration was created."
             }
           }
         }
@@ -2937,15 +4557,186 @@
         "type": "integer",
         "description": "Indicates a transport configuration history id, it is a unique integer number to this transport."
       },
-      "api-request-id": {
-        "title": "apiRequestId",
-        "type": "string",
-        "description": "Indicates the api-request-id for modifying this transport configuration."
+      "report.flowReport": {
+        "title": "flow-report",
+        "type": "object",
+        "description": "container for traffic information. It will contain one <records-count> child element, one <upload-summary> child element, one <download-summary> child element and zero or more <flow-data> child elements indicating volume at different times.",
+        "properties": {
+          "records-count": {
+            "$ref": "#/components/schemas/report.recordsCount"
+          },
+          "upload–summary": {
+            "$ref": "#/components/schemas/report.uploadSummary"
+          },
+          "download-summary": {
+            "$ref": "#/components/schemas/report.downloadSummary"
+          },
+          "flow-data": {
+            "$ref": "#/components/schemas/report.flowData"
+          }
+        }
       },
-      "timestamp": {
+      "report.recordsCount": {
+        "title": "records-count",
+        "type": "integer",
+        "description": "indicates total number of records."
+      },
+      "report.uploadSummary": {
+        "title": "upload -summary",
+        "type": "integer",
+        "description": "Indicates total upload traffic volume in bytes for all records."
+      },
+      "report.downloadSummary": {
+        "title": "download-summary",
+        "type": "integer",
+        "description": "indicates total download traffic volume in bytes for all records."
+      },
+      "report.flowData": {
+        "title": "flow-data",
+        "type": "array",
+        "description": "this container contains a <timestamp> element, a <upload> and a <download> element describing the traffic volume (in bytes) at a particular time.",
+        "items": {
+          "type": "object",
+          "properties": {
+            "timestamp": {
+              "$ref": "#/components/schemas/report.timestamp"
+            },
+            "upload": {
+              "$ref": "#/components/schemas/report.upload"
+            },
+            "download": {
+              "$ref": "#/components/schemas/report.download"
+            }
+          }
+        }
+      },
+      "report.timestamp": {
         "title": "timestamp",
         "type": "string",
-        "description": "Indicates the date and time that the configuration was created."
+        "description": "indicates the date and time.\nThe timestamp is in RFC3339 format and includes the offset from UTC.\nIf the type is \"oneminute/fiveminutes\", the timestamp format is \"YYYY-MM-DD hh:mm:00\", that means the period's end time.\nIf the type is \"hourly\", the timestamp format is \"YYYY-MM-DD'T'hh:mm:00\", that means the period's start time.\nIf the type is \"daily\", the timestamp format is \"YYYY-MM-DD'T'hh:mm:00\", that means the period's start time.\nIf the type is \"monthly\", the timestamp format is \"YYYY-MM-DD'T'hh:mm:00\", that means the period's start time.\n"
+      },
+      "report.upload": {
+        "title": "upload",
+        "type": "integer",
+        "description": "Indicates upload traffic volume in bytes at this period time"
+      },
+      "report.download": {
+        "title": "download",
+        "type": "integer",
+        "description": "indicates download traffic volume in bytes at this period time"
+      },
+      "report.requestsReport": {
+        "title": "requests-report",
+        "type": "object",
+        "description": "container for request count information. It will contain one <records-count> child element, one <total-summary> child element, one <success-summary> child element and zero or more <requests-data> child elements indicating request count at different times.",
+        "properties": {
+          "records-count": {
+            "$ref": "#/components/schemas/report.recordsCount"
+          },
+          "total-summary": {
+            "$ref": "#/components/schemas/report.totalRequestsSummary"
+          },
+          "success-summary": {
+            "$ref": "#/components/schemas/report.successRequestsSummary"
+          },
+          "requests-data": {
+            "$ref": "#/components/schemas/report.requestsData"
+          }
+        }
+      },
+      "report.totalRequestsSummary": {
+        "title": "total-summary",
+        "type": "integer",
+        "description": "indicates total request count for all records."
+      },
+      "report.successRequestsSummary": {
+        "title": "success-summary",
+        "type": "integer",
+        "description": "indicates total successful request count for all records."
+      },
+      "report.requestsData": {
+        "title": "requests-data",
+        "type": "array",
+        "description": "this container contains a <timestamp> element, a <total> and a <success> element describing the request count at a particular time.",
+        "items": {
+          "type": "object",
+          "properties": {
+            "timestamp": {
+              "$ref": "#/components/schemas/report.timestamp"
+            },
+            "total": {
+              "$ref": "#/components/schemas/report.totalRequestsCount"
+            },
+            "success": {
+              "$ref": "#/components/schemas/report.successRequestsCount"
+            }
+          }
+        }
+      },
+      "report.totalRequestsCount": {
+        "title": "total",
+        "type": "integer",
+        "description": "Indicates total request count at this period time"
+      },
+      "report.successRequestsCount": {
+        "title": "success",
+        "type": "integer",
+        "description": "Indicates total successful request count at this period time."
+      },
+      "log.log": {
+        "title": "log",
+        "type": "array",
+        "description": "Log details container, including fields <datefrom>, <dateto>, <log-url> and <file-size>.",
+        "items": {
+          "type": "object",
+          "properties": {
+            "datefrom": {
+              "$ref": "#/components/schemas/log.dateFrom"
+            },
+            "dateto": {
+              "$ref": "#/components/schemas/log.dateTo"
+            },
+            "log-url": {
+              "$ref": "#/components/schemas/log.logUrl"
+            },
+            "file-size": {
+              "$ref": "#/components/schemas/log.fileSize"
+            }
+          }
+        }
+      },
+      "log.dateFrom": {
+        "title": "datefrom",
+        "type": "string",
+        "description": "Formatting: yyyyMMdd-HHmm, timezone gmt+0"
+      },
+      "log.dateTo": {
+        "title": "dateto",
+        "type": "string",
+        "description": "Formatting: yyyyMMdd-HHmm, timezone gmt+0"
+      },
+      "log.logUrl": {
+        "title": "log-url",
+        "type": "string",
+        "description": "full url of the log file that you can download.\nThe log file name format is\ndomain-port_YYYY-MM-DD-hhmm-hhmm_mproxy_X.log.gz and\ndomain-port_YYYY-MM-DD-hhmm-hhmm_mproxy_X.late.log.gz:\n1) domain-port represents the hdt transport;\n2) YYYY-MM-DD-hhmm-hhmm means the time range is from YYYY-MM-DD-hhmm to YYYY-MM-DD-hhmm;\n3) mproxy is fixed string;\n4) late.log.gz means that the log which delay time is more than 2 hours. Usually, the proportion of the late log is small, no more than 1%.\n5) X is the sequence number, it increases when the file size(uncompressed) reaches 2GB(this is an approximation).\n"
+      },
+      "log.fileSize": {
+        "title": "file-size",
+        "type": "integer",
+        "description": "The size of log data in bytes"
+      },
+      "log.logs": {
+        "title": "logs",
+        "type": "array",
+        "description": "A list of log.",
+        "items": {
+          "type": "object",
+          "properties": {
+            "log": {
+              "$ref": "#/components/schemas/log.log"
+            }
+          }
+        }
       }
     },
     "parameters": {
@@ -3024,11 +4815,15 @@
   "tags": [
     {
       "name": "transports",
-      "description": "Configure your HDT transports."
+      "description": "Call our report APIs to configure your HDT transports."
     },
     {
       "name": "reports",
       "description": "Call our report APIs to get information about the usage of your HDT transports."
+    },
+    {
+      "name": "logs",
+      "description": "Call our report APIs to get logs of your HDT transports."
     }
   ]
 }
