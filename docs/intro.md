@@ -1,6 +1,7 @@
 # Welcome to the High-Speed Data Transmission Customer Portal
 
-High-speed Data Transmission (HDT) is designed to optimize big data TCP/UDP application acceleration over long distance. HDT accelerates both TCP & UDP protocol applications with superior performance and benefits. For example, HDT boosts the file transfer speed without compromising performance or security. It is tailored to help Fortune 500 companies accelerate large enterprise applications running across continents.
+High-speed Data Transmission (HDT) is designed to optimize TCP/UDP application acceleration with superior performance and benefits. The HDT Customer Portal is a web-based user interface for the HDT platform, where you can add, view, and manage your transports and retrieve detailed reports about the usage.
+
 
 ## HDT Features
 
