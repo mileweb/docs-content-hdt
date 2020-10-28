@@ -2,6 +2,8 @@
 
 1. Visit our login page at [https://console.cdnetworks.com/hdt](<https://console.cdnetworks.com/hdt>).
 
+![null](</docs/resources/images/accessing-portal/portal-login.png>)
+
 2. Enter your username in the top field and your password in the bottom field.
 
 **Note**: If you forgot your password, click [here](</docs/portal/accessing-portal/forgot-password.md>).
