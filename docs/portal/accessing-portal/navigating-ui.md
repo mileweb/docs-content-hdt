@@ -18,7 +18,7 @@ The [Reports](</docs/portal/reports.md>) allows you to view and generate reports
 
 ## Transports
 
-The [Transports](</docs/portal/transports/managing-transport.md>) allows you to manage your transports.
+The [Transports](</docs/portal/transports/manage-transport.md>) allows you to manage your transports.
 
 ## Global Presence Page
 
