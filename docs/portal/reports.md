@@ -30,6 +30,6 @@ The following figure shows the key elements on the page.
 3. Click the **Generate Report** button to generate the report.
 4. With a generated report (similar to the one below) displayed at the bottom of the form, you can:
 
-<ul><ul><li>Hold your cursor over data points in the report to view detailed information. The default time zone in the tooltips is from the local browser time, you can also overwrite it by changing the timezone in the "My Info".</li></ul></ul>
-<ul><ul><li>Use the <strong>Download</strong> button at the top-right of the report to download the report in JPEG, PNG, and PDF formats.</li></ul></ul>
+  - Hold your cursor over data points in the report to view detailed information. The default time zone in the tooltips is from the local browser time, you can also overwrite it by changing the timezone in the "My Info".
+  - Use the <strong>Download</strong> button at the top-right of the report to download the report in JPEG, PNG, and PDF formats.
 
