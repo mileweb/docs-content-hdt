@@ -9,7 +9,7 @@ To display this page, click **Transports** in the left pane.
 
 - To **view transport**, click the transport name allow you to view detailed configuration about the transport.
 
-- To **Edit, Show History, Delete, Active/Suspend" a transport, click the "Action" dropdown box, and select the action you want to take.
+- To **Edit, Show History, Delete, Active/Suspend** a transport, click the "Action" dropdown box, and select the action you want to take.
 
 - To **Add New Transport**, click the "Add New Transport" button in the top right corner.
 

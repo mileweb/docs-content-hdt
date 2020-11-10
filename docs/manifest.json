@@ -64,6 +64,10 @@
               {
                 "title": "View Transport",
                 "path": "/docs/portal/transports/view-transport.md"
+              },
+              {
+                "title": "Manage Transport",
+                "path": "/docs/portal/transports/manage-transport.md"
               }
             ]
           },
