@@ -2,7 +2,7 @@
 
 To display this page, click **Transports** in the left pane.
 
-![null](</docs/resources/images/transports/manage_transports.png>)
+![null](</docs/resources/images/transports/manage-transports.png>)
 
 
 - To **filter transports**, type characters in the search box and then press the Enter key or click Magnifier icon. All transports that do not contain the typed characters will be hidden. Filtering is not case-sensitive. To remove the filter, click the "Reset" button.
