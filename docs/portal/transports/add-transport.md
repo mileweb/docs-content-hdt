@@ -7,13 +7,20 @@ To create a transport for your High-speed Data Transmission service select **Tra
 
 | Fields               | Description   |
 | -------------------- | ------------- |
-| Description          | Enter a name that helps you identify this transport, if leave it empty, portal will generate the name as "Target Domain:Target Port" |
+| Transport Name       | Enter a name that helps you identify this transport, if leave it empty, portal will generate the name as "Target Domain:Target Port" |
 | Version Number       | The version number of the transport configuration in the history. |
 | Application Protocol | <li><strong> HTTP </strong> : For HTTP protocol.</li> <li><strong> HTTPs </strong> : For HTTPs protocol with SNI(Server Name Indication), if SNI is not supported for the transport, please use <strong> Others </strong>.</li>   <li><strong> FTP </strong> : For FTP protocol.</li> <li><strong> Others </strong> : For other protocols.</li> |
 
 ## Settings
 ![null](</docs/resources/images/transports/add-transport-settings-1.png>)
 ![null](</docs/resources/images/transports/add-transport-settings-2.png>)
+
+| Fields               | Description   |
+| -------------------- | ------------- |
+| Fixed Shields        | The shield servers (the HDT servers that connection to your origin servers) will be fixed. |
+| Dedicated IP Service | The IPs for serving the transport will be dedicated, and only for the cname. The option will be NOT applicable if you select HTTP or HTTPs as the Application Protocol. If you wish to use <strong> Dedicated IP Service </strong> for your HTTP/HTTPs applications, please select Others as the Application Protocol.|
+
+
 ![null](</docs/resources/images/transports/add-transport-settings-3.png>)
 
 | Fields               | Description   |
