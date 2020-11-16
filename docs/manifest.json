@@ -54,16 +54,20 @@
             "title": "Transports",
             "routes": [
               {
+                "title": "Manage Transport",
+                "path": "/docs/portal/transports/manage-transport.md"
+              },
+              {
                 "title": "Add Transport",
                 "path": "/docs/portal/transports/add-transport.md"
               },
               {
-                "title": "Edit Transport",
-                "path": "/docs/portal/transports/edit-transport.md"
-              },
-              {
                 "title": "View Transport",
                 "path": "/docs/portal/transports/view-transport.md"
+              },
+              {
+                "title": "Edit Transport",
+                "path": "/docs/portal/transports/edit-transport.md"
               }
             ]
           },
