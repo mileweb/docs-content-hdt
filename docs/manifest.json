@@ -54,20 +54,32 @@
             "title": "Transports",
             "routes": [
               {
-                "title": "Manage Transport",
+                "title": "Manage Transports",
                 "path": "/docs/portal/transports/manage-transport.md"
               },
               {
-                "title": "Add Transport",
+                "title": "Add New Transport",
                 "path": "/docs/portal/transports/add-transport.md"
               },
               {
-                "title": "View Transport",
+                "title": "View a Transport",
                 "path": "/docs/portal/transports/view-transport.md"
               },
               {
-                "title": "Edit Transport",
+                "title": "Edit a Transport",
                 "path": "/docs/portal/transports/edit-transport.md"
+              },
+              {
+                "title": "Show History of a Transport",
+                "path": "/docs/portal/transports/show-history.md"
+              },
+              {
+                "title": "Suspend/Active a Transport",
+                "path": "/docs/portal/transports/suspend-active-transport.md"
+              },
+              {
+                "title": "Delete a Transport",
+                "path": "/docs/portal/transports/delete-transport.md"
               }
             ]
           },
