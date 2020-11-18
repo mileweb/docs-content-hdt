@@ -5,12 +5,13 @@ High-speed Data Transmission (HDT) is designed to optimize TCP/UDP application a
 
 ## HDT Features
 
-- Web and application data travels the fastest path with the best success rate
-- Multiple paths used to transmit and merge data, significantly improving speed
-- Efficiency with our bandwidth estimation, rapid retransmission and fast recovery technology
-- Access to the closest edge server and shield server for the source and destination with over 1,500 Points of Presence
-- Data encryption and origin IP masking protects content from known/emerging threats
-- Enable transport services in seconds
+
+- Web and application data travels the fastest path with our over 1,000 Points of Presence in the global regions.
+- Smart routing keeps the best performance in case of network congestion.
+- Multiple paths are used to transmit and merge data, significantly improve the speed.
+- High-efficiency service is delivered with our bandwidth-estimation, rapid-retransmission, and fast-recovery technologies.
+- Data encryption and origin IP masking protects content from known and emerging threats.
+- The transport services can be enabled in seconds.
 
 
 ## Where to Go from Here
