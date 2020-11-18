@@ -9,4 +9,4 @@ When prompted to confirm the deletion, click "Yes, delete!" to delete the transp
 
 ![null](</docs/resources/images/transports/delete-transport-2.png>)
 
-Note: Deleting a transport will deletes all objects created for the transport.
+Note: Deleting a transport will delete all objects created for the transport.

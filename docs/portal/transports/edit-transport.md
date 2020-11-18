@@ -9,7 +9,7 @@ Edit the items to make the changes you want to make, then click the "Next" butto
 
 ![null](</docs/resources/images/transports/edit-transport-2.png>)
 
-The comparison page will appear, confirm the changes by clicking the "Save" button.
+The comparison page will appear. Confirm the changes by clicking the "Save" button.
 
 ![null](</docs/resources/images/transports/edit-transport-3.png>)
 
