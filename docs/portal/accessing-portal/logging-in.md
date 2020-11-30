@@ -1,6 +1,6 @@
 # Logging In
 
-1. Visit our login page at [https://console.cdnetworks.com/hdt](<https://console.cdnetworks.com/hdt>).
+1. Visit our login page at [https://console.{{siteDomain}}.com/hdt](<https://console.{{siteDomain}}.com/hdt>).
 
 ![null](</docs/resources/images/accessing-portal/portal-login.png>)
 

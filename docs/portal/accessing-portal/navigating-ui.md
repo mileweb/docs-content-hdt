@@ -20,7 +20,7 @@ The [Transports page](</docs/portal/transports/manage-transport.md>) allows you 
 
 ## Global Presence Page
 
-The [Global Presence page](</docs/portal/global-presence.md>) shows the worldwide locations of CDNetworks' PoPs. Controls allow you to filter PoPs by region, service zone, and status.
+The [Global Presence page](</docs/portal/global-presence.md>) shows the worldwide locations of {{title}}' PoPs. Controls allow you to filter PoPs by region, service zone, and status.
 
 ## User Info
 
