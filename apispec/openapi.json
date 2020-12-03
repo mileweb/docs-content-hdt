@@ -3186,8 +3186,8 @@
                     "records-count": {
                       "$ref": "#/components/schemas/report.recordsCount"
                     },
-                    "upload -summary": {
-                      "$ref": "#/components/schemas/report.downloadSummary"
+                    "upload-summary": {
+                      "$ref": "#/components/schemas/report.uploadSummary"
                     },
                     "download-summary": {
                       "$ref": "#/components/schemas/report.downloadSummary"
@@ -4376,6 +4376,818 @@
         ],
         "tags": [
           "Logs"
+        ]
+      }
+    },
+    "/report/flow": {
+      "get": {
+        "summary": "Query flow report",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "flow-report": {
+                      "$ref": "#/components/schemas/report.flowReport"
+                    },
+                    "records-count": {
+                      "$ref": "#/components/schemas/report.recordsCount"
+                    },
+                    "upload-summary": {
+                      "$ref": "#/components/schemas/report.uploadSummary"
+                    },
+                    "download-summary": {
+                      "$ref": "#/components/schemas/report.downloadSummary"
+                    },
+                    "flow-data": {
+                      "$ref": "#/components/schemas/report.flowData"
+                    }
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "flow-report": {
+                        "records-count": 6,
+                        "upload–summary": 2508724,
+                        "download-summary": 2508724,
+                        "flow-data": [
+                          {
+                            "timestamp": "2014-07-31T23:05:00",
+                            "upload": 197421,
+                            "download": 297421
+                          },
+                          {
+                            "timestamp": "2014-07-31T23:10:00",
+                            "upload": 255564,
+                            "download": 155564
+                          },
+                          {
+                            "timestamp": "2014-07-31T23:15:00",
+                            "upload": 516326,
+                            "download": 316326
+                          },
+                          {
+                            "timestamp": "2014-07-31T23:20:00",
+                            "upload": 129685,
+                            "download": 329685
+                          },
+                          {
+                            "timestamp": "2014-07-31T23:25:00",
+                            "upload": 516326,
+                            "download": 316326
+                          },
+                          {
+                            "timestamp": "2014-07-31T23:30:00",
+                            "upload": 144774,
+                            "download": 144774
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "MissingDateHeader",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "MissingDateHeader"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Authorized request must have a Date header."
+                        }
+                      }
+                    },
+                    {
+                      "title": "InvalidURI",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "InvalidURI"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Could not parse the specified URI."
+                        }
+                      }
+                    },
+                    {
+                      "title": "InvalidDatePeriod",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "InvalidDatePeriod"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "The date specified is invalid."
+                        }
+                      }
+                    },
+                    {
+                      "title": "MissingAuthHeader",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "MissingAuthHeader"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "The HTTP authorization header is missing."
+                        }
+                      }
+                    },
+                    {
+                      "title": "RequestExpired",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "RequestExpired"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Request has expired. Timestamp date is xxx."
+                        }
+                      }
+                    },
+                    {
+                      "title": "MissingArgument",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "MissingArgument"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Required parameter is missing."
+                        }
+                      }
+                    },
+                    {
+                      "title": "TimeRangeTooLarge",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "TimeRangeTooLarge"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "The date range should be no more than 7 days when querying 1 minute intervals.\nThe date range should be no more than one month when querying 5 minute intervals.\nThe date range should be no more than one year when querying hourly, daily, or monthly intervals."
+                        }
+                      }
+                    },
+                    {
+                      "title": "ReturnRecordTooLarge",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "ReturnRecordTooLarge"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "There are more than 10080 records. Please specify a shorter time range."
+                        }
+                      }
+                    },
+                    {
+                      "title": "InvalidArgument",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "InvalidArgument"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "There is a problem with a parameter name or value."
+                        }
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "examples": {
+                  "MissingDateHeader": {
+                    "value": {
+                      "error": "MissingDateHeader",
+                      "message": "Authorized request must have a Date header."
+                    }
+                  },
+                  "RequestExpired": {
+                    "value": {
+                      "error": "RequestExpired",
+                      "message": "Request has expired. Timestamp date is xxx."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Unauthorized"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "This user is not allowed to perform this request."
+                    }
+                  }
+                },
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "error": "Unauthorized",
+                      "message": "This user is not allowed to perform this request."
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "AccessDenied"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "This user is not allowed to perform this request."
+                    }
+                  }
+                },
+                "examples": {
+                  "AccessDenied": {
+                    "value": {
+                      "error": "AccessDenied",
+                      "message": "This user is not allowed to perform this request."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "InternalError"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "We encountered an internal error. Please try again."
+                    }
+                  }
+                },
+                "examples": {
+                  "InternalError": {
+                    "value": {
+                      "error": "InternalError",
+                      "message": "We encountered an internal error. Please try again."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-report-flow",
+        "description": "Get the total traffic volume in bytes for all of customer’s transports.  Parameters allow you to specify a time period, an interval type.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Authorization"
+          },
+          {
+            "$ref": "#/components/parameters/Date"
+          },
+          {
+            "$ref": "#/components/parameters/Accept-Encoding"
+          },
+          {
+            "$ref": "#/components/parameters/Accept"
+          },
+          {
+            "$ref": "#/components/parameters/Mw-Access"
+          },
+          {
+            "$ref": "#/components/parameters/On-Behalf-Of"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "in": "query",
+            "name": "datefrom",
+            "description": "RFC3339 formatted date indicating the starting date . Example:  2013-01-01T22:30:00+08:00",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "in": "query",
+            "name": "dateto",
+            "description": "RFC3339 formatted date indicating the ending date . Example:  2013-01-01T22:30:00+08:00.\nIf the time range of datefrom and dateto is more than 366 days, it will return 'TimeRangeTooLarge' error.\n",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "interval",
+            "description": "Indicates the granularity of time. Can be oneminute, fiveminutes, hourly, daily or monthly.\nIf the time range of datefrom and dateto is less than or equal one day, default value is oneminute;\nIf the time range of datefrom and dateto is more than one day and less than or equal one week, default value is fiveminutes;\nIf the time range of datefrom and dateto is more than one week and less than or equal one month, default value is hourly;\nIf the time range of datefrom and dateto is more than one month, default value is daily; \nRestriction:\n1.\tOne minute - Maximum time range is 7 days\n2.\t5 minute - Maximum time range is 1 month(31d)\n3.\tHourly, Daily, Monthly - Maximum time range is 1 year(366d)"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "timezone",
+            "description": "Indicates the timezone for the report data. It must be relative to GMT and specified in the format GMT+n where  -12<= n <= 12.  For example, timezone=GMT-7  and timezone=GMT+8.  If the parameter is unspecified, results will be in the GMT timezone. The default timezone is GMT+00."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "default": 10080
+            },
+            "in": "query",
+            "name": "limit",
+            "description": "Indicates the maximum number of records to return, the default value is 10080 which means that it returns all data acquiescently."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "default": "0"
+            },
+            "in": "query",
+            "name": "offset",
+            "description": "Indicates the starting position of the query in relation to the complete set of unpaginated records. The default value is 0."
+          }
+        ]
+      }
+    },
+    "/report/requests": {
+      "get": {
+        "summary": "Query requests report",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "requests-report": {
+                      "$ref": "#/components/schemas/report.requestsReport"
+                    },
+                    "records-count": {
+                      "$ref": "#/components/schemas/report.recordsCount"
+                    },
+                    "total-summary": {
+                      "$ref": "#/components/schemas/report.totalRequestsSummary"
+                    },
+                    "success-summary": {
+                      "$ref": "#/components/schemas/report.successRequestsSummary"
+                    },
+                    "requests-data": {
+                      "$ref": "#/components/schemas/report.requestsData"
+                    }
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "requests-report": {
+                        "records-count": 6,
+                        "total-summary": 1000,
+                        "success-summary": 900,
+                        "requests-data": [
+                          {
+                            "timestamp": "2014-07-31T23:05:00",
+                            "total": 200,
+                            "success": 200
+                          },
+                          {
+                            "timestamp": "2014-07-31T23:10:00",
+                            "total": 200,
+                            "success": 200
+                          },
+                          {
+                            "timestamp": "2014-07-31T23:15:00",
+                            "total": 100,
+                            "success": 100
+                          },
+                          {
+                            "timestamp": "2014-07-31T23:20:00",
+                            "total": 200,
+                            "success": 100
+                          },
+                          {
+                            "timestamp": "2014-07-31T23:25:00",
+                            "total": 200,
+                            "success": 200
+                          },
+                          {
+                            "timestamp": "2014-07-31T23:30:00",
+                            "total": 100,
+                            "success": 100
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "MissingDateHeader",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "MissingDateHeader"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Authorized request must have a Date header."
+                        }
+                      }
+                    },
+                    {
+                      "title": "InvalidURI",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "InvalidURI"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Could not parse the specified URI."
+                        }
+                      }
+                    },
+                    {
+                      "title": "InvalidDatePeriod",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "InvalidDatePeriod"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "The date specified is invalid."
+                        }
+                      }
+                    },
+                    {
+                      "title": "MissingAuthHeader",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "MissingAuthHeader"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "The HTTP authorization header is missing."
+                        }
+                      }
+                    },
+                    {
+                      "title": "RequestExpired",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "RequestExpired"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Request has expired. Timestamp date is xxx."
+                        }
+                      }
+                    },
+                    {
+                      "title": "MissingArgument",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "MissingArgument"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Required parameter is missing."
+                        }
+                      }
+                    },
+                    {
+                      "title": "TimeRangeTooLarge",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "TimeRangeTooLarge"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "The date range should be no more than 7 days when querying 1 minute intervals.\nThe date range should be no more than one month when querying 5 minute intervals.\nThe date range should be no more than one year when querying hourly, daily, or monthly intervals."
+                        }
+                      }
+                    },
+                    {
+                      "title": "ReturnRecordTooLarge",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "ReturnRecordTooLarge"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "There are more than 10080 records. Please specify a shorter time range."
+                        }
+                      }
+                    },
+                    {
+                      "title": "InvalidArgument",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "InvalidArgument"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "There is a problem with a parameter name or value."
+                        }
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "examples": {
+                  "MissingDateHeader": {
+                    "value": {
+                      "error": "MissingDateHeader",
+                      "message": "Authorized request must have a Date header."
+                    }
+                  },
+                  "RequestExpired": {
+                    "value": {
+                      "error": "RequestExpired",
+                      "message": "Request has expired. Timestamp date is xxx."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Unauthorized"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "This user is not allowed to perform this request."
+                    }
+                  }
+                },
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "error": "Unauthorized",
+                      "message": "This user is not allowed to perform this request."
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "AccessDenied"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "This user is not allowed to perform this request."
+                    }
+                  }
+                },
+                "examples": {
+                  "AccessDenied": {
+                    "value": {
+                      "error": "AccessDenied",
+                      "message": "This user is not allowed to perform this request."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "InternalError"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "We encountered an internal error. Please try again."
+                    }
+                  }
+                },
+                "examples": {
+                  "InternalError": {
+                    "value": {
+                      "error": "InternalError",
+                      "message": "We encountered an internal error. Please try again."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-report-requests",
+        "description": "Get the total request count for all of customer’s transports.  Parameters allow you to specify a time period, an interval type.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Authorization"
+          },
+          {
+            "$ref": "#/components/parameters/Date"
+          },
+          {
+            "$ref": "#/components/parameters/Accept-Encoding"
+          },
+          {
+            "$ref": "#/components/parameters/Accept"
+          },
+          {
+            "$ref": "#/components/parameters/Mw-Access"
+          },
+          {
+            "$ref": "#/components/parameters/On-Behalf-Of"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "in": "query",
+            "name": "datefrom",
+            "description": "RFC3339 formatted date indicating the starting date . Example:  2013-01-01T22:30:00+08:00",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "in": "query",
+            "name": "dateto",
+            "description": "RFC3339 formatted date indicating the ending date . Example:  2013-01-01T22:30:00+08:00.\nIf the time range of datefrom and dateto is more than 366 days, it will return 'TimeRangeTooLarge' error.\n",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "interval",
+            "description": "Indicates the granularity of time. Can be oneminute, fiveminutes, hourly, daily or monthly.\nIf the time range of datefrom and dateto is less than or equal one day, default value is oneminute;\nIf the time range of datefrom and dateto is more than one day and less than or equal one week, default value is fiveminutes;\nIf the time range of datefrom and dateto is more than one week and less than or equal one month, default value is hourly;\nIf the time range of datefrom and dateto is more than one month, default value is daily; \nRestriction:\n1.\tOne minute - Maximum time range is 7 days\n2.\t5 minute - Maximum time range is 1 month(31d)\n3.\tHourly, Daily, Monthly - Maximum time range is 1 year(366d)"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "timezone",
+            "description": "Indicates the timezone for the report data. It must be relative to GMT and specified in the format GMT+n where  -12<= n <= 12.  For example, timezone=GMT-7  and timezone=GMT+8.  If the parameter is unspecified, results will be in the GMT timezone. The default timezone is GMT+00."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "default": 10080
+            },
+            "in": "query",
+            "name": "limit",
+            "description": "Indicates the maximum number of records to return, the default value is 10080 which means that it returns all data acquiescently."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "default": "0"
+            },
+            "in": "query",
+            "name": "offset",
+            "description": "Indicates the starting position of the query in relation to the complete set of unpaginated records. The default value is 0."
+          }
         ]
       }
     }
