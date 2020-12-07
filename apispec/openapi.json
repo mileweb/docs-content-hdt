@@ -4382,7 +4382,9 @@
     "/report/flow": {
       "get": {
         "summary": "Query flow report",
-        "tags": [],
+        "tags": [
+          "Reports"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -4788,7 +4790,9 @@
     "/report/requests": {
       "get": {
         "summary": "Query requests report",
-        "tags": [],
+        "tags": [
+          "Reports"
+        ],
         "responses": {
           "200": {
             "description": "OK",
