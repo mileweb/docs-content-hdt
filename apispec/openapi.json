@@ -16,7 +16,7 @@
       "get": {
         "summary": "Query transport list",
         "operationId": "get-transport",
-        "description": "Get a transport list according to customer user name or transport type.",
+        "description": "The API is to query the transport list according to customer user name or transport type.",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
@@ -1379,7 +1379,7 @@
           }
         },
         "operationId": "get-transport-transportId",
-        "description": "Get transport information by transport Id.",
+        "description": "The API is to query the information of a transport by transport-Id.",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
@@ -2705,7 +2705,7 @@
           }
         },
         "operationId": "get-transport-history-by-transportId",
-        "description": "Get transport’s history configuration information according to {transport-id}, which is a transport id.",
+        "description": "The API is to query a transport’s history configuration information according to {transport-id}.",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
@@ -2761,7 +2761,7 @@
         }
       ],
       "get": {
-        "summary": "Get Transport’s History Configuration",
+        "summary": "Query Transport’s History Configuration",
         "tags": [
           "Transports"
         ],
@@ -3131,7 +3131,7 @@
           }
         },
         "operationId": "get-transport-transportId-history-deployId",
-        "description": "Get transport's detailed history configuration according to {transport-id} and {deploy-id}, {transport-id} is a transport id, {deploy-id} is get from the field 'deployId' of API '/hdt/transport/{transport-id}/history'. ",
+        "description": "The API is to query a transport's detailed history configuration according to {transport-id} and {deploy-id}, {transport-id} is a transport id, {deploy-id} is get from the field 'deployId' of API '/hdt/transport/{transport-id}/history'. ",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
@@ -3163,7 +3163,7 @@
         }
       ],
       "get": {
-        "summary": "Get the traffic volume of a transport",
+        "summary": "Query the traffic volume of a transport",
         "tags": [
           "Reports"
         ],
@@ -3525,7 +3525,7 @@
           }
         },
         "operationId": "get-report-transportId-flow",
-        "description": "Get the traffic volume in bytes for specified transports. The {transport-id} could be multiple transport IDs separated by commas. If one of transport IDs doesn't exist, this API returns error. Transport ID is a unique integer number in HDT System which is get from api ‘/hdt/transport’. Parameters allow you to specify a time period, an interval type.",
+        "description": "The API is to query the traffic volume in bytes for specified transports. The {transport-id} could be multiple transport IDs separated by commas. If one of transport IDs doesn't exist, this API returns error. Transport ID is a unique integer number in HDT System which is get from api ‘/hdt/transport’. Parameters allow you to specify a time period, an interval type.",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
@@ -3611,7 +3611,7 @@
         }
       ],
       "get": {
-        "summary": "Get the requests count of a transport",
+        "summary": "Query the requests count of a transport",
         "tags": [
           "Reports"
         ],
@@ -3959,7 +3959,7 @@
           }
         },
         "operationId": "get-report-transportId-requests",
-        "description": "Get the total request count for specified transports. The {transport-id} could be multiple transport IDs separated by commas. If one of transport IDs doesn't exist, this API returns error. Transport ID is a unique integer number in HDT System which is get from api ‘/hdt/transport’. Parameters allow you to specify a time period, an interval type.",
+        "description": "The API is to query the total request count for specified transports. The {transport-id} could be multiple transport IDs separated by commas. If one of transport IDs doesn't exist, this API returns error. Transport ID is a unique integer number in HDT System which is get from api ‘/hdt/transport’. Parameters allow you to specify a time period, an interval type.",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
@@ -4045,7 +4045,7 @@
         }
       ],
       "get": {
-        "summary": "Get transport logs by transport-id and time-period",
+        "summary": "Query transport logs by transport-id and time-period",
         "responses": {
           "200": {
             "description": "OK",
@@ -4337,7 +4337,7 @@
           }
         },
         "operationId": "get-hdtreport-transportId-log",
-        "description": "To get transport logs by its transport-id and specified time period. After getting the response, you can download rawlog from returned url.\nSample: \nwget  ‘http://logdl.mileweb.com/hdtlog/1/5067/20180610-1600-1659/35.186.212.62-443_2018-06-10-1600-1659_mproxy_0.log.gz?wskey=a26efbc6e29bdc30f091eb201dbc6236’ -O 1.gz\nCurrently logs are 2 hours delayed, which means you can download the log two hours ago and the completeness is about 99%. The log is aggregated hourly or daily, which is configurable for each transport ID (the configuration item is called log merge granularity). There may be more than one logs for the same time slice, including late logs. For example, if a transport’s log merge granularity is hourly, there may be more than one log for each hour.\nWhether the log is sorted depends on the transport’s sorting configuration. Log sorting means that the log is sorted by the datetime in the log lines.\nThe maximum download speed for a single connection is limited to 5MB/s now.\n",
+        "description": "The API is to query the transport logs by its transport-id and specified time period. After getting the response, you can download rawlog from returned url.\nSample: \nwget  ‘http://logdl.mileweb.com/hdtlog/1/5067/20180610-1600-1659/35.186.212.62-443_2018-06-10-1600-1659_mproxy_0.log.gz?wskey=a26efbc6e29bdc30f091eb201dbc6236’ -O 1.gz\nCurrently logs are 2 hours delayed, which means you can download the log two hours ago and the completeness is about 99%. The log is aggregated hourly or daily, which is configurable for each transport ID (the configuration item is called log merge granularity). There may be more than one logs for the same time slice, including late logs. For example, if a transport’s log merge granularity is hourly, there may be more than one log for each hour.\nWhether the log is sorted depends on the transport’s sorting configuration. Log sorting means that the log is sorted by the datetime in the log lines.\nThe maximum download speed for a single connection is limited to 5MB/s now.\n",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
@@ -4382,7 +4382,9 @@
     "/report/flow": {
       "get": {
         "summary": "Query flow report",
-        "tags": [],
+        "tags": [
+          "Reports"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -4708,7 +4710,7 @@
           }
         },
         "operationId": "get-report-flow",
-        "description": "Get the total traffic volume in bytes for all of customer’s transports.  Parameters allow you to specify a time period, an interval type.",
+        "description": "The API is to query the total traffic volume in bytes for all of customer’s transports.  Parameters allow you to specify a time period, an interval type.",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
@@ -4788,7 +4790,9 @@
     "/report/requests": {
       "get": {
         "summary": "Query requests report",
-        "tags": [],
+        "tags": [
+          "Reports"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -5114,7 +5118,7 @@
           }
         },
         "operationId": "get-report-requests",
-        "description": "Get the total request count for all of customer’s transports.  Parameters allow you to specify a time period, an interval type.",
+        "description": "The API is to query the total request count for all of customer’s transports.  Parameters allow you to specify a time period, an interval type.",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
