@@ -11,6 +11,7 @@ The <strong> Transports </strong> page can be reached simply by clicking "Transp
 | Transport Name       | Enter a name that helps you identify this transport, if you leave it empty, the HDT portal will generate a default name in the format of "Target Domain:Target Port" |
 | Version Number       | The version number of the transport configuration in the history. |
 | Application Protocol | <li><strong> HTTP </strong> : For HTTP protocol.</li> <li><strong> HTTPS </strong> : For HTTPS protocol with SNI(Server Name Indication). |
+| IP Version           | The IP version of the your application supports. |
 
 ## Settings
 ![null](</docs/resources/images/transports/add-transport-settings-1.png>)

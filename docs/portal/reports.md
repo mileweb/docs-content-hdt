@@ -12,6 +12,8 @@ The following figure shows the key elements on the page.
 
 ![null](</docs/resources/images/reports/reports.png>)
 
+If you are a paid customer of **Virtual Private Line** usage, you can also switch between “Total” and “Virtual Private Line” dashboard by clicking the selection button at the upper right corner.
+
 ## Understanding Report Types
 
 | **HDT Report Options**   | **Description**                               |
