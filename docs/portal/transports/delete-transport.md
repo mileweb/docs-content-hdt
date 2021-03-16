@@ -1,7 +1,7 @@
 # Delete a Transport
 
-To delete a transport, search the transport you want to delete in the <strong> Transport </strong> page if it was not in the page, then click the "Action" button and select the "Delete".
-The <strong> Transports </strong> page can be reached simply by clicking "Transports" from the left pane of HDT portal.
+The <strong> Transports </strong> page can be reached by clicking "Transports" from the left pane of HDT portal.
+To delete a transport, click the "Action" button of the transport entry in the list and select "Delete". If the transport was not in the current page, you can search it in the search box.
 
 ![null](</docs/resources/images/transports/delete-transport-1.png>)
 
