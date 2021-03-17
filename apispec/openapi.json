@@ -39,7 +39,7 @@
             },
             "in": "query",
             "name": "limit",
-            "description": "Indicates the maximum number of items to return. The default value is 20."
+            "description": "Maximum number of items to return. The default value is 20."
           },
           {
             "schema": {
@@ -47,7 +47,7 @@
             },
             "in": "query",
             "name": "offset",
-            "description": "Indicates the starting position of the query in relation to the complete set of unpaginated items. The default value is 0."
+            "description": "Starting position of the query in relation to the complete set of unpaginated items. The default value is 0."
           },
           {
             "schema": {
@@ -76,7 +76,7 @@
                       "properties": {
                         "count": {
                           "type": "integer",
-                          "description": "Indicates the total transports"
+                          "description": "Total transports"
                         },
                         "transport-data": {
                           "type": "array",
@@ -1817,7 +1817,7 @@
             }
           }
         },
-        "description": "Modify a transport according to {transport-id}, which is a transport ID. If transport type of is \"ipport\", then \"targetDomain\", \"targetPort\", \"transportName\", \"useFtp\", \"useUdp\", \"useStandardPort\", \"accessDomain\", \"status\", \"comments\", and \"ipWhiteList\" can be modified. If transport type of this transport is \"vpn\" or \"socks5\", \"transportName\", \"useFtp\", \"userPwd\", \"status\", \"comments\", and \"ipWhiteList\" can be modified. It will return parameter information, which takes effect on the HDT system.",
+        "description": "Modify a transport according to transport ID. If the transport type is \"ipport\", then \"targetDomain\", \"targetPort\", \"transportName\", \"useFtp\", \"useUdp\", \"useStandardPort\", \"accessDomain\", \"status\", \"comments\", and \"ipWhiteList\" can be modified. If transport type of this transport is \"vpn\" or \"socks5\", then \"transportName\", \"useFtp\", \"userPwd\", \"status\", \"comments\", and \"ipWhiteList\" can be modified. For successful requests, the settings applied to the HDT system will be returned in the response.",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
@@ -2357,7 +2357,7 @@
             }
           }
         },
-        "description": "Delete a transport according to {transport-id}, which is a transport ID, and disassociate it with the calling customer. ",
+        "description": "Delete a transport according to the transport ID.",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
@@ -2415,7 +2415,7 @@
                       "properties": {
                         "count": {
                           "type": "number",
-                          "description": "Indicates the total count of transport history data."
+                          "description": "Total count of transport history data."
                         },
                         "history-data": {
                           "$ref": "#/components/schemas/transport.transportHistoryData"
@@ -2728,7 +2728,7 @@
             },
             "in": "query",
             "name": "limit",
-            "description": "Indicates the maximum number of items to return. The default value is 20."
+            "description": "Maximum number of items to return. The default value is 20."
           },
           {
             "schema": {
@@ -2736,7 +2736,7 @@
             },
             "in": "query",
             "name": "offset",
-            "description": "Indicates the starting position of the query in relation to the complete set of unpaginated items. The default value is 0."
+            "description": "Starting position of the query in relation to the complete set of unpaginated items. The default value is 0."
           }
         ]
       }
@@ -3525,7 +3525,7 @@
           }
         },
         "operationId": "get-report-transportId-flow",
-        "description": "Returns the traffic volume in bytes for specified transports. The {transport-id} could be multiple transport IDs separated by commas. If one of the transport IDs doesn't exist, this API returns an error. Transport ID is a unique integer number in the HDT system and is fetched from the API ‘/hdt/transport’. Parameters allow you to specify a time period and an interval type.",
+        "description": "Returns the traffic volume in bytes for specified transports. The {transport-id} could be multiple transport IDs separated by commas. If one of the transport IDs doesn't exist, this API returns an error. Transport ID is a unique integer in the HDT system and is fetched from the API ‘/hdt/transport’. Parameters allow you to specify a time period and an interval type.",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
@@ -3568,7 +3568,7 @@
             },
             "in": "query",
             "name": "interval",
-            "description": "Indicates the granularity of time. Can be oneminute, fiveminutes, hourly, daily or monthly.\nIf the time range of datefrom and dateto is less than or equal to one day, the default value is oneminute;\nIf the time range of datefrom and dateto is more than one day and less than or equal to one week, the default value is fiveminutes;\nIf the time range of datefrom and dateto is more than one week and less than or equal to one month, the default value is hourly;\nIf the time range of datefrom and dateto is more than one month, the default value is daily; \nRestriction:\n1.\tOne minute - Maximum time range is 7 days\n2.\t5 minutes - Maximum time range is 1 month(31d)\n3.\tHourly, Daily, Monthly - Maximum time range is 1 year(366d)"
+            "description": "Granularity of time. Can be oneminute, fiveminutes, hourly, daily or monthly.\nIf the time range of datefrom and dateto is less than or equal to one day, the default value is oneminute;\nIf the time range of datefrom and dateto is more than one day and less than or equal to one week, the default value is fiveminutes;\nIf the time range of datefrom and dateto is more than one week and less than or equal to one month, the default value is hourly;\nIf the time range of datefrom and dateto is more than one month, the default value is daily; \nRestriction:\n1.\tOne minute - Maximum time range is 7 days\n2.\t5 minutes - Maximum time range is 1 month(31d)\n3.\tHourly, Daily, Monthly - Maximum time range is 1 year(366d)"
           },
           {
             "schema": {
@@ -3576,7 +3576,7 @@
             },
             "in": "query",
             "name": "timezone",
-            "description": "Indicates the timezone for the report data. It must be relative to GMT and specified in the format GMT+n where -12<= n <= 12.  For example, timezone=GMT-7 and timezone=GMT+8.  If the parameter is unspecified, the results will be in the GMT timezone. The default timezone is UTC+00."
+            "description": "Timezone for the report data. It must be relative to UTC and specified in the format UTC+n where -12<= n <= 12.  For example, timezone=UTC-7 and timezone=UTC+8.  If the parameter is unspecified, the results will be in the UTC timezone. The default timezone is UTC+00."
           },
           {
             "schema": {
@@ -3585,7 +3585,7 @@
             },
             "in": "query",
             "name": "limit",
-            "description": "Indicates the maximum number of records to return. The default value is 10080."
+            "description": "Maximum number of records to return. The default value is 10080."
           },
           {
             "schema": {
@@ -3594,7 +3594,7 @@
             },
             "in": "query",
             "name": "offset",
-            "description": "Indicates the starting position of the query in relation to the complete set of unpaginated records. The default value is 0."
+            "description": "Starting position of the query in relation to the complete set of unpaginated records. The default value is 0."
           }
         ]
       }
@@ -4002,7 +4002,7 @@
             },
             "in": "query",
             "name": "interval",
-            "description": "Indicates the granularity of time. Can be oneminute, fiveminutes, hourly, daily or monthly.\nIf the time range of datefrom and dateto is less than or equal to one day, the default value is oneminute;\nIf the time range of datefrom and dateto is more than one day and less than or equal to one week, the default value is fiveminutes;\nIf the time range of datefrom and dateto is more than one week and less than or equal to one month, the default value is hourly;\nIf the time range of datefrom and dateto is more than one month, the default value is daily; \nRestriction:\n1.\tOne minute - Maximum time range is 7 days\n2.\t5 minutes - Maximum time range is 1 month(31d)\n3.\tHourly, Daily, Monthly - Maximum time range is 1 year(366d)"
+            "description": "Granularity of time. Can be oneminute, fiveminutes, hourly, daily or monthly.\nIf the time range of datefrom and dateto is less than or equal to one day, the default value is oneminute;\nIf the time range of datefrom and dateto is more than one day and less than or equal to one week, the default value is fiveminutes;\nIf the time range of datefrom and dateto is more than one week and less than or equal to one month, the default value is hourly;\nIf the time range of datefrom and dateto is more than one month, the default value is daily; \nRestriction:\n1.\tOne minute - Maximum time range is 7 days\n2.\t5 minutes - Maximum time range is 1 month(31d)\n3.\tHourly, Daily, Monthly - Maximum time range is 1 year(366d)"
           },
           {
             "schema": {
@@ -4010,7 +4010,7 @@
             },
             "in": "query",
             "name": "timezone",
-            "description": "Indicates the timezone for the report data. It must be relative to GMT and specified in the format GMT+n where -12<= n <= 12.  For example, timezone=GMT-7 and timezone=GMT+8.  If the parameter is unspecified, the results will be in the GMT timezone. The default timezone is GMT+00."
+            "description": "Timezone for the report data. It must be relative to UTC and specified in the format UTC+n where -12<= n <= 12.  For example, timezone=UTC-7 and timezone=UTC+8.  If the parameter is unspecified, the results will be in the UTC timezone. The default timezone is UTC+00."
           },
           {
             "schema": {
@@ -4019,7 +4019,7 @@
             },
             "in": "query",
             "name": "limit",
-            "description": "Indicates the maximum number of records to return. The default value is 10080."
+            "description": "Maximum number of records to return. The default value is 10080."
           },
           {
             "schema": {
@@ -4028,7 +4028,7 @@
             },
             "in": "query",
             "name": "offset",
-            "description": "Indicates the starting position of the query in relation to the complete set of unpaginated records. The default value is 0."
+            "description": "Starting position of the query in relation to the complete set of unpaginated records. The default value is 0."
           }
         ]
       }
@@ -4337,7 +4337,7 @@
           }
         },
         "operationId": "get-hdtreport-transportId-log",
-        "description": "Returns transport logs for a specified transport and time period. After getting the response, you can download the raw log from the returned URL.\nSample: \nwget  ‘http://logdl.mileweb.com/hdtlog/1/5067/20180610-1600-1659/35.186.212.62-443_2018-06-10-1600-1659_mproxy_0.log.gz?wskey=a26efbc6e29bdc30f091eb201dbc6236’ -O 1.gz\nCurrently, logs have a delay of 2 hours. This means that if you download a log two hours ago, the completeness would be about 99%. The log is aggregated hourly or daily, which is configurable for each transport ID (the configuration item is called log merge granularity). There may be more than one log for the same time slice, including late logs. For example, if a transport’s log merge granularity is hourly, there may be more than one log for each hour.\nWhether the log is sorted depends on the transport’s sorting configuration. Log sorting means that the log is sorted by the datetime in the log lines.\nThe maximum download speed for a single connection is limited to 5MB/s now.\n",
+        "description": "Returns transport logs for a specified transport and time period. After getting the response, you can download the raw log from the returned URL.\nSample: \nwget  ‘http://logdl.mileweb.com/hdtlog/1/5067/20180610-1600-1659/35.186.212.62-443_2018-06-10-1600-1659_mproxy_0.log.gz?wskey=a26efbc6e29bdc30f091eb201dbc6236’ -O 1.gz\nCurrently, there might be a 2 hours delay in data ingestion, for a log  two hours eariler, the data accuracy is 99%approximately. The log is aggregated hourly or daily, which is configurable for each transport ID (the configuration item is called log merge granularity). There may be more than one log for the same time slice, including late logs. For example, if a transport’s log merge granularity is hourly, there may be more than one log for each hour.\nWhether the log is sorted depends on the transport’s sorting configuration. Log sorting means that the log is sorted by the datetime in the log lines.\nThe maximum download speed for a single connection is limited to 5MB/s now.\n",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
@@ -4370,7 +4370,7 @@
             },
             "in": "query",
             "name": "dateto",
-            "description": "End time, RFC3339-formatted date. Example: 2013-01-01T22:30:00+08:00. You can specify timezone in this parameter, but the result will convert to timezone GMT+00. This time may be adjusted according to the log merge granularity. For example, if the granularity is hourly, \"2018-01-01T22:15:00+00:00\" will be adjusted to \"2018-01-01T22:00:00 +00:00\" and if the granularity is daily, it will be adjusted to \"2018-01-01T00:00:00 +00:00\".",
+            "description": "End time, RFC3339-formatted date. Example: 2013-01-01T22:30:00+08:00. You can specify timezone in this parameter, but the result will convert to timezone UTC+00. This time may be adjusted according to the log merge granularity. For example, if the granularity is hourly, \"2018-01-01T22:15:00+00:00\" will be adjusted to \"2018-01-01T22:00:00 +00:00\" and if the granularity is daily, it will be adjusted to \"2018-01-01T00:00:00 +00:00\".",
             "required": true
           }
         ],
@@ -4753,7 +4753,7 @@
             },
             "in": "query",
             "name": "interval",
-            "description": "Indicates the granularity of time. Can be oneminute, fiveminutes, hourly, daily or monthly.\nIf the time range of datefrom and dateto is less than or equal to one day, the default value is oneminute;\nIf the time range of datefrom and dateto is more than one day and less than or equal to one week, the default value is fiveminutes;\nIf the time range of datefrom and dateto is more than one week and less than or equal to one month, the default value is hourly;\nIf the time range of datefrom and dateto is more than one month, the default value is daily; \nRestriction:\n1.\tOne minute - Maximum time range is 7 days\n2.\t5 minutes - Maximum time range is 1 month(31d)\n3.\tHourly, Daily, Monthly - Maximum time range is 1 year(366d)"
+            "description": "Granularity of time. Can be oneminute, fiveminutes, hourly, daily or monthly.\nIf the time range of datefrom and dateto is less than or equal to one day, the default value is oneminute;\nIf the time range of datefrom and dateto is more than one day and less than or equal to one week, the default value is fiveminutes;\nIf the time range of datefrom and dateto is more than one week and less than or equal to one month, the default value is hourly;\nIf the time range of datefrom and dateto is more than one month, the default value is daily; \nRestriction:\n1.\tOne minute - Maximum time range is 7 days\n2.\t5 minutes - Maximum time range is 1 month(31d)\n3.\tHourly, Daily, Monthly - Maximum time range is 1 year(366d)"
           },
           {
             "schema": {
@@ -4761,7 +4761,7 @@
             },
             "in": "query",
             "name": "timezone",
-            "description": "Indicates the timezone for the report data. It must be relative to GMT and specified in the format GMT+n where -12<= n <= 12.  For example, timezone=GMT-7 and timezone=GMT+8.  If the parameter is unspecified, the results will be in the GMT timezone. The default timezone is GMT+00."
+            "description": "Timezone for the report data. It must be relative to UTC and specified in the format UTC+n where -12<= n <= 12.  For example, timezone=UTC-7 and timezone=UTC+8.  If the parameter is unspecified, the results will be in the UTC timezone. The default timezone is UTC+00."
           },
           {
             "schema": {
@@ -4770,7 +4770,7 @@
             },
             "in": "query",
             "name": "limit",
-            "description": "Indicates the maximum number of records to return. The default value is 10080."
+            "description": "Maximum number of records to return. The default value is 10080."
           },
           {
             "schema": {
@@ -4779,7 +4779,7 @@
             },
             "in": "query",
             "name": "offset",
-            "description": "Indicates the starting position of the query in relation to the complete set of unpaginated records. The default value is 0."
+            "description": "Starting position of the query in relation to the complete set of unpaginated records. The default value is 0."
           }
         ]
       }
@@ -5158,7 +5158,7 @@
             },
             "in": "query",
             "name": "interval",
-            "description": "Indicates the granularity of time. Can be oneminute, fiveminutes, hourly, daily or monthly.\nIf the time range of datefrom and dateto is less than or equal to one day, the default value is oneminute;\nIf the time range of datefrom and dateto is more than one day and less than or equal to one week, the default value is fiveminutes;\nIf the time range of datefrom and dateto is more than one week and less than or equal to one month, the default value is hourly;\nIf the time range of datefrom and dateto is more than one month, the default value is daily; \nRestriction:\n1.\tOne minute - Maximum time range is 7 days\n2.\t5 minutes - Maximum time range is 1 month(31d)\n3.\tHourly, Daily, Monthly - Maximum time range is 1 year(366d)"
+            "description": "Granularity of time. Can be oneminute, fiveminutes, hourly, daily or monthly.\nIf the time range of datefrom and dateto is less than or equal to one day, the default value is oneminute;\nIf the time range of datefrom and dateto is more than one day and less than or equal to one week, the default value is fiveminutes;\nIf the time range of datefrom and dateto is more than one week and less than or equal to one month, the default value is hourly;\nIf the time range of datefrom and dateto is more than one month, the default value is daily; \nRestriction:\n1.\tOne minute - Maximum time range is 7 days\n2.\t5 minutes - Maximum time range is 1 month(31d)\n3.\tHourly, Daily, Monthly - Maximum time range is 1 year(366d)"
           },
           {
             "schema": {
@@ -5166,7 +5166,7 @@
             },
             "in": "query",
             "name": "timezone",
-            "description": "Indicates the timezone for the report data. It must be relative to GMT and specified in the format GMT+n where -12<= n <= 12.  For example, timezone=GMT-7 and timezone=GMT+8.  If the parameter is unspecified, the results will be in the GMT timezone. The default timezone is GMT+00."
+            "description": "Timezone for the report data. It must be relative to UTC and specified in the format UTC+n where -12<= n <= 12.  For example, timezone=UTC-7 and timezone=UTC+8.  If the parameter is unspecified, the results will be in the UTC timezone. The default timezone is UTC+00."
           },
           {
             "schema": {
@@ -5175,7 +5175,7 @@
             },
             "in": "query",
             "name": "limit",
-            "description": "Indicates the maximum number of records to return. The default value is 10080."
+            "description": "Maximum number of records to return. The default value is 10080."
           },
           {
             "schema": {
@@ -5184,7 +5184,7 @@
             },
             "in": "query",
             "name": "offset",
-            "description": "Indicates the starting position of the query in relation to the complete set of unpaginated records. The default value is 0."
+            "description": "Starting position of the query in relation to the complete set of unpaginated records. The default value is 0."
           }
         ]
       }
@@ -5205,7 +5205,7 @@
       "transport.type": {
         "title": "transportType",
         "type": "string",
-        "description": "Indicates the transport type, i.e., \"ipport\", \"vpn\", or \"socks5\"."
+        "description": "Transport type, i.e., \"ipport\", \"vpn\", or \"socks5\"."
       },
       "transport.name": {
         "title": "transportName",
@@ -5215,12 +5215,12 @@
       "transport.targetDomain": {
         "title": "targetDomain",
         "type": "string",
-        "description": "A domain or IP referring to the destination server of your application. HDT would access this domain/IP to get data from the original server. When transport type is \"ipport\", this parameter is valid and required. It can be a domain name or an IP address. The length of it must be no more than to 250 characters."
+        "description": "A domain or IP referring to the destination server of your application. HDT would access this domain/IP to get data from the original server. When transport type is \"ipport\", this parameter is valid and required. It can be a domain name or an IP address. The length must be no more than to 250 characters."
       },
       "transport.targetPort": {
         "title": "targetPort",
         "type": "integer",
-        "description": "When transport type is \"ipport\", this parameter is valid and required. It must be an integer and range between 1 and 65535."
+        "description": "When transport type is \"ipport\", this parameter is valid and required. It must be an integer between 1 and 65535."
       },
       "transport.useFtp": {
         "title": "useFtp",
@@ -5230,13 +5230,13 @@
       "transport.cName": {
         "type": "string",
         "title": "cName",
-        "description": "The CNAME record HDT generates for a transport. Customer could use the CNAME record to redirect the traffic to the HDT platform.",
+        "description": "The CNAME record HDT generates for a transport, which is used to redirect the traffic to the HDT platform.",
         "format": "hostname"
       },
       "transport.accessPort": {
         "title": "accessPort",
         "type": "integer",
-        "description": "Indicates access port when transport type is \"ipport\". HDT API Server will generate an available port to return. When useStandardPort is \"http\", this parameter is 80; when useStandardPort is \"sni\" this parameter is 443."
+        "description": "Indicates access port when transport type is \"ipport\". HDT API server will generate an available port to return. When useStandardPort is \"http\", this parameter is 80; when useStandardPort is \"sni\" this parameter is 443."
       },
       "transport.userAccount": {
         "title": "userAccount",
@@ -5256,12 +5256,12 @@
       "transport.useStandardPort": {
         "title": "useStandardPort",
         "type": "string",
-        "description": "Indicates the type of protocol that supports the port-sharing feature, such as \"http\", \"sni\". It is valid only for transport type \"ipport\". The valid values are fetched from the API \"hdt/transport-protocol-types\" and default value is empty string."
+        "description": "Type of protocol that supports the port-sharing feature, such as \"http\", \"sni\". It is valid only for transport type \"ipport\". The valid values are fetched from the API \"hdt/transport-protocol-types\" and default value is empty string."
       },
       "transport.accessDomain": {
         "title": "accessDomain",
         "type": "string",
-        "description": "Indicates the access domain of accelerated application for the public users. It supports multiple domains separated by commas and wildcard to match multiple subdomains. Currently, we support the format: \"*.domain.com\".\n\nFor example:\naaa.domain1.com,*.domain2.com,*.domain3.org.cn\n\nNote:\n1. Currently, HDT does not support more than one level subdomains for \"accessDomain\" field;\n2. \"accessDomain\" can't be empty; \n3. When \"useStandardPort\" is not empty, the combined values of \"accessDomain\" field and \"useStandardPort\" field must be globally unique;\n4. When \"useStandardPort\" is empty, the value of \"accessDomain\" is unique to each customer. Transports that belong to the same customer can use the same \"accessDomain\". ",
+        "description": "Access domain of accelerated application for the public users. It supports multiple domains separated by commas and wildcard to match multiple subdomains. Currently, we support the format: \"*.domain.com\".\n\nFor example:\naaa.domain1.com,*.domain2.com,*.domain3.org.cn\n\nNote:\n1. Currently, HDT does not support more than one level subdomains for \"accessDomain\" field;\n2. \"accessDomain\" can't be empty; \n3. When \"useStandardPort\" is not empty, the combined values of \"accessDomain\" field and \"useStandardPort\" field must be globally unique;\n4. When \"useStandardPort\" is empty, the value of \"accessDomain\" is unique to each customer. Transports that belong to the same customer can use the same \"accessDomain\". ",
         "x-examples": {
           "example-1": {
             "accessDomain": "aaa.domain1.com"
@@ -5274,7 +5274,7 @@
       "transport.status": {
         "type": "string",
         "title": "status",
-        "description": "Indicates the status of this transport.",
+        "description": "Status of this transport.",
         "enum": [
           "enabled",
           "disabled"
@@ -5282,23 +5282,23 @@
       },
       "transport.speedLimit": {
         "title": "speedLimit",
-        "description": "Indicates the speed limit in Mbps. ",
+        "description": "Speed limit in Mbps. ",
         "type": "number"
       },
       "transport.concurrentLimit": {
         "title": "concurrentLimit",
         "type": "integer",
-        "description": "Indicates the concurrent limit."
+        "description": "Concurrent limit."
       },
       "transport.strategy": {
         "title": "transportStrategy",
         "type": "string",
-        "description": "Indicates the transport strategy."
+        "description": "Transport strategy."
       },
       "transport.ipWhiteList": {
         "type": "string",
         "title": "ipWhiteList",
-        "description": "Indicates the IP white-list. Valid values are IP, IP segment, IP range, or the combination of them separated by semicolons. Spaces, '\\t', '\\r' or '\\r\\n'(which will be removed before validating) can appear only in front of or behind IP, IP segment and IP range(The range format should be \"A.B.C.D-A.B.C.E\" and E should be greater than D.), but cannot be included in them. The default value is a blank string.\n\nFor example:\nvalid:\n 11.11.12.3/20; 2.3.4.5-2.3.4.10;\n21.12.45.18\n\nInvalid:\n 11.11. 12.3/20;  2.3.4.5-2.3.\n4.10;\n21.12.45.18",
+        "description": "IP white-list. Valid values are IP, IP segment, IP range, or the combination of them separated by semicolons. Spaces, '\\t', '\\r' or '\\r\\n'(which will be removed before validating) can appear only in front of or behind IP, IP segment and IP range(The range format should be \"A.B.C.D-A.B.C.E\" and E should be greater than D.), but cannot be included in them. The default value is a blank string.\n\nFor example:\nvalid:\n 11.11.12.3/20; 2.3.4.5-2.3.4.10;\n21.12.45.18\n\nInvalid:\n 11.11. 12.3/20;  2.3.4.5-2.3.\n4.10;\n21.12.45.18",
         "x-examples": {
           "example-1": {
             "ipWhiteList": "11.11.12.3/20;  2.3.4.5-2.3.4.10; 21.12.45.18"
@@ -5353,11 +5353,11 @@
             },
             "apiRequestId": {
               "type": "string",
-              "description": "Indicates the api-request-id for modifying this transport configuration."
+              "description": "API request ID for modifying this transport configuration."
             },
             "timestamp": {
               "type": "string",
-              "description": "Indicates the date and time that the configuration was created."
+              "description": "Date and time that the configuration was created."
             }
           }
         }
@@ -5518,17 +5518,17 @@
       "log.dateFrom": {
         "title": "datefrom",
         "type": "string",
-        "description": "Formatting: yyyyMMdd-HHmm, timezone gmt+0"
+        "description": "Formatting: yyyyMMdd-HHmm, timezone UTC+0"
       },
       "log.dateTo": {
         "title": "dateto",
         "type": "string",
-        "description": "Formatting: yyyyMMdd-HHmm, timezone gmt+0"
+        "description": "Formatting: yyyyMMdd-HHmm, timezone UTC+0"
       },
       "log.logUrl": {
         "title": "log-url",
         "type": "string",
-        "description": "full URL of the log file that you can download.\nThe log file name format is\ndomain-port_YYYY-MM-DD-hhmm-hhmm_mproxy_X.log.gz and\ndomain-port_YYYY-MM-DD-hhmm-hhmm_mproxy_X.late.log.gz:\n1) domain-port represents the HDT transport;\n2) YYYY-MM-DD-hhmm-hhmm means the time range is from YYYY-MM-DD-hhmm to YYYY-MM-DD-hhmm;\n3) mproxy is a fixed string;\n4) late.log.gz refers to a log whose delay time is more than 2 hours. Usually, the proportion of the late log is small (no more than 1%.\n5). X is the sequence number. It increases when the file size(uncompressed) reaches 2GB(this is an approximation).\n"
+        "description": "full URL of the log file that you can download.\nThe log file name format is\ndomain-port_YYYY-MM-DD-hhmm-hhmm_mproxy_X.log.gz and\ndomain-port_YYYY-MM-DD-hhmm-hhmm_mproxy_X.late.log.gz:\n1) domain-port represents the HDT transport;\n2) YYYY-MM-DD-hhmm-hhmm means the time range is from YYYY-MM-DD-hhmm to YYYY-MM-DD-hhmm;\n3) mproxy is a fixed string;\n4) late.log.gz refers to a log whose delay time is more than 2 hours. Usually, the proportion of the late log is small (no more than 1%.\n5). X is the sequence number. It increases when the uncompressed file size reaches 2GB(this is an approximation).\n"
       },
       "log.fileSize": {
         "title": "file-size",
@@ -5571,7 +5571,7 @@
       "Accept-Encoding": {
         "name": "Accept-Encoding",
         "in": "header",
-        "description": "Indicates the compression format of response data, either \"gzip\" or \"uncompressed\". The default value is \"uncompressed\".",
+        "description": "Compression format of response data, either \"gzip\" or \"uncompressed\". The default value is \"uncompressed\".",
         "required": false,
         "schema": {
           "type": "string"
@@ -5580,7 +5580,7 @@
       "Accept": {
         "name": "Accept",
         "in": "header",
-        "description": "Indicates the response format, either \"application/json\" or \"application/xml\". The default value is \"application/json\".",
+        "description": "Response format, either \"application/json\" or \"application/xml\". The default value is \"application/json\".",
         "required": false,
         "schema": {
           "type": "string"
@@ -5589,7 +5589,7 @@
       "Api-Request-Id": {
         "name": "Api-Request-Id",
         "in": "header",
-        "description": "A string automatically generated by the API server to IDentify each request.",
+        "description": "A string automatically generated by the API server to identify each request.",
         "required": true,
         "schema": {
           "type": "string"
