@@ -1,6 +1,6 @@
 # Reports
 
-HDT Reports provides information about traffic to your HDT transports. Reports cover traffic volume, traffic bandwidth, and requests.
+HDT Reports provide information about traffic to your HDT transports. Reports cover traffic volume, traffic bandwidth, and requests.
 
 If you are a reseller with child accounts, you can select the accounts that a report will cover (the parent account only, the child account only, or both the parent and child accounts).
 
@@ -12,7 +12,7 @@ The following figure shows the key elements on the page.
 
 ![null](</docs/resources/images/reports/reports.png>)
 
-If you are a paid customer of **Virtual Private Line** usage, you can also switch between the “Total” and “Virtual Private Line” dashboard by clicking the selection button at the top-right corner.
+If you are a paid customer of **Virtual Private Line** usage, you can also switch between the “Total” and “Virtual Private Line” dashboard by clicking the selection button at the top right corner.
 
 ## Understanding Report Types
 
@@ -20,7 +20,7 @@ If you are a paid customer of **Virtual Private Line** usage, you can also switc
 | -------------------------|-----------------------------------------------|
 | Bandwidth                | Shows the total peak incoming and outgoing bandwidth, peak total bandwidth, average total bandwidth (in bps), and how the values change over time.|
 | Traffic                  | Shows the total amount of incoming and outgoing traffic, the total traffic value (in bytes), and how the values change over time.|
-| Requests                 | Shows the total number of requests, and how the values change over time.|
+| Requests                 | Shows the total number of requests and how the values change over time.|
 
 
 
@@ -35,5 +35,5 @@ If you are a paid customer of **Virtual Private Line** usage, you can also switc
 ![null](</docs/resources/images/reports/reports-generated.png>)
 
   - Hold your cursor over data points in the report to view detailed information. The default time zone in the tooltips is from the local browser time. You can also overwrite it by changing the timezone in the "My Info".
-  - Use the <strong>Download</strong> button at the top-right of the report to download the report in JPEG, PNG, and PDF formats.
+  - Use the <strong>Download</strong> button at the top right of the report to download the report in JPEG, PNG, and PDF formats.
 
