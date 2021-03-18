@@ -2357,7 +2357,7 @@
             }
           }
         },
-        "description": "Delete a transport according to the transport ID.",
+        "description": "Delete a transport by the transport ID.",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
@@ -4337,7 +4337,7 @@
           }
         },
         "operationId": "get-hdtreport-transportId-log",
-        "description": "Returns transport logs for a specified transport and time period. After getting the response, you can download the raw log from the returned URL.\nSample: \nwget  ‘http://logdl.mileweb.com/hdtlog/1/5067/20180610-1600-1659/35.186.212.62-443_2018-06-10-1600-1659_mproxy_0.log.gz?wskey=a26efbc6e29bdc30f091eb201dbc6236’ -O 1.gz\nCurrently, there might be a 2 hours delay in data ingestion, for a log  two hours eariler, the data accuracy is 99%approximately. The log is aggregated hourly or daily, which is configurable for each transport ID (the configuration item is called log merge granularity). There may be more than one log for the same time slice, including late logs. For example, if a transport’s log merge granularity is hourly, there may be more than one log for each hour.\nWhether the log is sorted depends on the transport’s sorting configuration. Log sorting means that the log is sorted by the datetime in the log lines.\nThe maximum download speed for a single connection is limited to 5MB/s now.\n",
+        "description": "Returns transport logs for a specified transport and time period. After getting the response, you can download the raw log from the returned URL.\nSample: \nwget  ‘http://logdl.mileweb.com/hdtlog/1/5067/20180610-1600-1659/35.186.212.62-443_2018-06-10-1600-1659_mproxy_0.log.gz?wskey=a26efbc6e29bdc30f091eb201dbc6236’ -O 1.gz\nThere can be up to two hours delay in log data processing. The log is aggregated hourly or daily, which is configurable for each transport ID (the configuration item is called log merge granularity). There may be more than one log for the same time slice, including late logs. For example, if a transport’s log merge granularity is hourly, there may be more than one log for each hour.\nWhether the log is sorted depends on the transport’s sorting configuration. Log sorting means that the log is sorted by the datetime in the log lines.\nThe maximum download speed for a single connection is limited to 5MB/s now.\n",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
@@ -5230,7 +5230,7 @@
       "transport.cName": {
         "type": "string",
         "title": "cName",
-        "description": "The CNAME record HDT generates for a transport, which is used to redirect the traffic to the HDT platform.",
+        "description": "The CNAME HDT generates for a transport. To accelerate using HDT, modify your DNS to point your access domain to this value.",
         "format": "hostname"
       },
       "transport.accessPort": {
