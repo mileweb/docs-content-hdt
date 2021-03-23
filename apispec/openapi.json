@@ -3341,7 +3341,7 @@
                         },
                         "message": {
                           "type": "string",
-                          "description": "The date range should be no more than 7 days when querying 1-minute intervals.\nThe date range should be no more than one month when querying 5-minute intervals.\nThe date range should be no more than one year when querying \"hourly\", \"daily\", or \"monthly\" intervals."
+                          "description": "The date range should be no more than 7 days when querying \"oneminute\" intervals.\nThe date range should be no more than one month when querying \"fiveminutes\" intervals.\nThe date range should be no more than one year when querying \"hourly\", \"daily\", or \"monthly\" intervals."
                         }
                       }
                     },
@@ -3777,7 +3777,7 @@
                         },
                         "message": {
                           "type": "string",
-                          "description": "The date range should be no more than 7 days when querying 1-minute intervals.\nThe date range should be no more than one month when querying 5-minute intervals.\nThe date range should be no more than one year when querying \"hourly\", \"daily\", or \"monthly\" intervals."
+                          "description": "The date range should be no more than 7 days when querying \"oneminute\" intervals.\nThe date range should be no more than one month when querying \"fiveminutes\" intervals.\nThe date range should be no more than one year when querying \"hourly\", \"daily\", or \"monthly\" intervals."
                         }
                       }
                     },
@@ -4559,7 +4559,7 @@
                         },
                         "message": {
                           "type": "string",
-                          "description": "The date range should be no more than 7 days when querying 1-minute intervals.\nThe date range should be no more than one month when querying 5-minute intervals.\nThe date range should be no more than one year when querying \"hourly\", \"daily\", or \"monthly\" intervals."
+                          "description": "The date range should be no more than 7 days when querying \"oneminute\" intervals.\nThe date range should be no more than one month when querying \"fiveminutes\" intervals.\nThe date range should be no more than one year when querying \"hourly\", \"daily\", or \"monthly\" intervals."
                         }
                       }
                     },
@@ -4964,7 +4964,7 @@
                         },
                         "message": {
                           "type": "string",
-                          "description": "The date range should be no more than 7 days when querying 1-minute intervals.\nThe date range should be no more than one month when querying 5-minute intervals.\nThe date range should be no more than one year when querying \"hourly\", \"daily\", or \"monthly\" intervals."
+                          "description": "The date range should be no more than 7 days when querying \"oneminute\" intervals.\nThe date range should be no more than one month when querying \"fiveminutes\" intervals.\nThe date range should be no more than one year when querying \"hourly\", \"daily\", or \"monthly\" intervals."
                         }
                       }
                     },
