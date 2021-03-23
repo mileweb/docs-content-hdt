@@ -3341,7 +3341,7 @@
                         },
                         "message": {
                           "type": "string",
-                          "description": "The date range should be no more than 7 days when querying 1-minute intervals.\nThe date range should be no more than one month when querying 5-minute intervals.\nThe date range should be no more than one year when querying hourly, daily, or monthly intervals."
+                          "description": "The date range should be no more than 7 days when querying 1-minute intervals.\nThe date range should be no more than one month when querying 5-minute intervals.\nThe date range should be no more than one year when querying \"hourly\", \"daily\", or \"monthly\" intervals."
                         }
                       }
                     },
@@ -3568,7 +3568,7 @@
             },
             "in": "query",
             "name": "interval",
-            "description": "Granularity of time. Can be oneminute, fiveminutes, hourly, daily or monthly.\nIf the time range of datefrom and dateto is less than or equal to one day, the default value is oneminute;\nIf the time range of datefrom and dateto is more than one day and less than or equal to one week, the default value is fiveminutes;\nIf the time range of datefrom and dateto is more than one week and less than or equal to one month, the default value is hourly;\nIf the time range of datefrom and dateto is more than one month, the default value is daily; \nRestriction:\n1.\tOne minute - Maximum time range is 7 days\n2.\t5 minutes - Maximum time range is 1 month(31d)\n3.\tHourly, Daily, Monthly - Maximum time range is 1 year(366d)"
+            "description": "Granularity of time. Can be \"oneminute\", \"fiveminutes\", \"hourly\", \"daily\", or \"monthly\".\nIf the time range is no more than one day, the default value is \"oneminute\";\nIf the time range is more than one day but less than or equal to one week, the default value is \"fiveminutes\";\nIf the time range is more than one week but less than or equal to one month, the default value is \"hourly\";\nIf the time range is more than one month, the default value is \"daily\"; \nRestriction:\n1.\tOne minute - Maximum time range is 7 days\n2.\t5 minutes - Maximum time range is 1 month(31d)\n3.\tHourly, Daily, Monthly - Maximum time range is 1 year(366d)"
           },
           {
             "schema": {
@@ -3777,7 +3777,7 @@
                         },
                         "message": {
                           "type": "string",
-                          "description": "The date range should be no more than 7 days when querying 1-minute intervals.\nThe date range should be no more than one month when querying 5-minute intervals.\nThe date range should be no more than one year when querying hourly, daily, or monthly intervals."
+                          "description": "The date range should be no more than 7 days when querying 1-minute intervals.\nThe date range should be no more than one month when querying 5-minute intervals.\nThe date range should be no more than one year when querying \"hourly\", \"daily\", or \"monthly\" intervals."
                         }
                       }
                     },
@@ -4002,7 +4002,7 @@
             },
             "in": "query",
             "name": "interval",
-            "description": "Granularity of time. Can be oneminute, fiveminutes, hourly, daily or monthly.\nIf the time range of datefrom and dateto is less than or equal to one day, the default value is oneminute;\nIf the time range of datefrom and dateto is more than one day and less than or equal to one week, the default value is fiveminutes;\nIf the time range of datefrom and dateto is more than one week and less than or equal to one month, the default value is hourly;\nIf the time range of datefrom and dateto is more than one month, the default value is daily; \nRestriction:\n1.\tOne minute - Maximum time range is 7 days\n2.\t5 minutes - Maximum time range is 1 month(31d)\n3.\tHourly, Daily, Monthly - Maximum time range is 1 year(366d)"
+            "description": "Granularity of time. Can be \"oneminute\", \"fiveminutes\", \"hourly\", \"daily\", or \"monthly\".\nIf the time range is no more than one day, the default value is \"oneminute\";\nIf the time range is more than one day but less than or equal to one week, the default value is \"fiveminutes\";\nIf the time range is more than one week but less than or equal to one month, the default value is \"hourly\";\nIf the time range is more than one month, the default value is \"daily\"; \nRestriction:\n1.\tOne minute - Maximum time range is 7 days\n2.\t5 minutes - Maximum time range is 1 month(31d)\n3.\tHourly, Daily, Monthly - Maximum time range is 1 year(366d)"
           },
           {
             "schema": {
@@ -4337,7 +4337,7 @@
           }
         },
         "operationId": "get-hdtreport-transportId-log",
-        "description": "Returns transport logs for a specified transport and time period. After getting the response, you can download the raw log from the returned URL.\nSample: \nwget  ‘http://logdl.mileweb.com/hdtlog/1/5067/20180610-1600-1659/35.186.212.62-443_2018-06-10-1600-1659_mproxy_0.log.gz?wskey=a26efbc6e29bdc30f091eb201dbc6236’ -O 1.gz\nThere can be up to two hours delay in log data processing. The log is aggregated hourly or daily, which is configurable for each transport ID (the configuration item is called log merge granularity). There may be more than one log for the same time slice, including late logs. For example, if a transport’s log merge granularity is hourly, there may be more than one log for each hour.\nWhether the log is sorted depends on the transport’s sorting configuration. Log sorting means that the log is sorted by the datetime in the log lines.\nThe maximum download speed for a single connection is limited to 5MB/s now.\n",
+        "description": "Returns transport logs for a specified transport and time period. After getting the response, you can download the raw log from the returned URL.\nSample: \nwget  ‘http://logdl.mileweb.com/hdtlog/1/5067/20180610-1600-1659/35.186.212.62-443_2018-06-10-1600-1659_mproxy_0.log.gz?wskey=a26efbc6e29bdc30f091eb201dbc6236’ -O 1.gz\nThere can be up to two hours delay in log data processing. The log is aggregated \"hourly\" or \"daily\", which is configurable for each transport ID (the configuration item is called log merge granularity). There may be more than one log for the same time slice, including late logs. For example, if a transport’s log merge granularity is \"hourly\", there may be more than one log for each hour.\nWhether the log is sorted depends on the transport’s sorting configuration. Log sorting means that the log is sorted by the datetime in the log lines.\nThe maximum download speed for a single connection is limited to 5MB/s now.\n",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
@@ -4370,7 +4370,7 @@
             },
             "in": "query",
             "name": "dateto",
-            "description": "End time, RFC3339-formatted date. Example: 2013-01-01T22:30:00+08:00. You can specify timezone in this parameter, but the result will convert to timezone UTC+00. This time may be adjusted according to the log merge granularity. For example, if the granularity is hourly, \"2018-01-01T22:15:00+00:00\" will be adjusted to \"2018-01-01T22:00:00 +00:00\" and if the granularity is daily, it will be adjusted to \"2018-01-01T00:00:00 +00:00\".",
+            "description": "End time, RFC3339-formatted date. Example: 2013-01-01T22:30:00+08:00. You can specify timezone in this parameter, but the result will convert to timezone UTC+00. This time may be adjusted according to the log merge granularity. For example, if the granularity is \"hourly\", \"2018-01-01T22:15:00+00:00\" will be adjusted to \"2018-01-01T22:00:00 +00:00\" and if the granularity is \"daily\", it will be adjusted to \"2018-01-01T00:00:00 +00:00\".",
             "required": true
           }
         ],
@@ -4559,7 +4559,7 @@
                         },
                         "message": {
                           "type": "string",
-                          "description": "The date range should be no more than 7 days when querying 1-minute intervals.\nThe date range should be no more than one month when querying 5-minute intervals.\nThe date range should be no more than one year when querying hourly, daily, or monthly intervals."
+                          "description": "The date range should be no more than 7 days when querying 1-minute intervals.\nThe date range should be no more than one month when querying 5-minute intervals.\nThe date range should be no more than one year when querying \"hourly\", \"daily\", or \"monthly\" intervals."
                         }
                       }
                     },
@@ -4753,7 +4753,7 @@
             },
             "in": "query",
             "name": "interval",
-            "description": "Granularity of time. Can be oneminute, fiveminutes, hourly, daily or monthly.\nIf the time range of datefrom and dateto is less than or equal to one day, the default value is oneminute;\nIf the time range of datefrom and dateto is more than one day and less than or equal to one week, the default value is fiveminutes;\nIf the time range of datefrom and dateto is more than one week and less than or equal to one month, the default value is hourly;\nIf the time range of datefrom and dateto is more than one month, the default value is daily; \nRestriction:\n1.\tOne minute - Maximum time range is 7 days\n2.\t5 minutes - Maximum time range is 1 month(31d)\n3.\tHourly, Daily, Monthly - Maximum time range is 1 year(366d)"
+            "description": "Granularity of time. Can be \"oneminute\", \"fiveminutes\", \"hourly\", \"daily\", or \"monthly\".\nIf the time range is no more than one day, the default value is \"oneminute\";\nIf the time range is more than one day but less than or equal to one week, the default value is \"fiveminutes\";\nIf the time range is more than one week but less than or equal to one month, the default value is \"hourly\";\nIf the time range is more than one month, the default value is \"daily\"; \nRestriction:\n1.\tOne minute - Maximum time range is 7 days\n2.\t5 minutes - Maximum time range is 1 month(31d)\n3.\tHourly, Daily, Monthly - Maximum time range is 1 year(366d)"
           },
           {
             "schema": {
@@ -4964,7 +4964,7 @@
                         },
                         "message": {
                           "type": "string",
-                          "description": "The date range should be no more than 7 days when querying 1-minute intervals.\nThe date range should be no more than one month when querying 5-minute intervals.\nThe date range should be no more than one year when querying hourly, daily, or monthly intervals."
+                          "description": "The date range should be no more than 7 days when querying 1-minute intervals.\nThe date range should be no more than one month when querying 5-minute intervals.\nThe date range should be no more than one year when querying \"hourly\", \"daily\", or \"monthly\" intervals."
                         }
                       }
                     },
@@ -5158,7 +5158,7 @@
             },
             "in": "query",
             "name": "interval",
-            "description": "Granularity of time. Can be oneminute, fiveminutes, hourly, daily or monthly.\nIf the time range of datefrom and dateto is less than or equal to one day, the default value is oneminute;\nIf the time range of datefrom and dateto is more than one day and less than or equal to one week, the default value is fiveminutes;\nIf the time range of datefrom and dateto is more than one week and less than or equal to one month, the default value is hourly;\nIf the time range of datefrom and dateto is more than one month, the default value is daily; \nRestriction:\n1.\tOne minute - Maximum time range is 7 days\n2.\t5 minutes - Maximum time range is 1 month(31d)\n3.\tHourly, Daily, Monthly - Maximum time range is 1 year(366d)"
+            "description": "Granularity of time. Can be \"oneminute\", \"fiveminutes\", \"hourly\", \"daily\", or \"monthly\".\nIf the time range is no more than one day, the default value is \"oneminute\";\nIf the time range is more than one day but less than or equal to one week, the default value is \"fiveminutes\";\nIf the time range is more than one week but less than or equal to one month, the default value is \"hourly\";\nIf the time range is more than one month, the default value is \"daily\"; \nRestriction:\n1.\tOne minute - Maximum time range is 7 days\n2.\t5 minutes - Maximum time range is 1 month(31d)\n3.\tHourly, Daily, Monthly - Maximum time range is 1 year(366d)"
           },
           {
             "schema": {
@@ -5288,7 +5288,7 @@
       "transport.concurrentLimit": {
         "title": "concurrentLimit",
         "type": "integer",
-        "description": "Concurrent limit."
+        "description": "Number of concurrent connections allowed for the transport."
       },
       "transport.strategy": {
         "title": "transportStrategy",
@@ -5423,7 +5423,7 @@
       "report.timestamp": {
         "title": "timestamp",
         "type": "string",
-        "description": "indicates the date and time.\nThe timestamp is in RFC3339 format and includes the offset from UTC.\nIf the type is \"oneminute/fiveminutes\", the timestamp format is \"YYYY-MM-DD hh:mm:00\", that means the period's end time.\nIf the type is \"hourly\", the timestamp format is \"YYYY-MM-DD'T'hh:mm:00\", that means the period's start time.\nIf the type is \"daily\", the timestamp format is \"YYYY-MM-DD'T'hh:mm:00\", that means the period's start time.\nIf the type is \"monthly\", the timestamp format is \"YYYY-MM-DD'T'hh:mm:00\", that means the period's start time.\n"
+        "description": "indicates the date and time.\nThe timestamp is in RFC3339 format and includes the offset from UTC.\nIf the type is \"oneminute\" or \"fiveminutes\", the timestamp format is \"YYYY-MM-DD hh:mm:00\", that means the period's end time.\nIf the type is \"hourly\", the timestamp format is \"YYYY-MM-DD'T'hh:mm:00\", that means the period's start time.\nIf the type is \"daily\", the timestamp format is \"YYYY-MM-DD'T'hh:mm:00\", that means the period's start time.\nIf the type is \"monthly\", the timestamp format is \"YYYY-MM-DD'T'hh:mm:00\", that means the period's start time.\n"
       },
       "report.upload": {
         "title": "upload",
