@@ -5218,7 +5218,7 @@
       "transport.targetDomain": {
         "title": "targetDomain",
         "type": "string",
-        "description": "A domain or IP referring to the destination server of your application. HDT would access this domain/IP to get data from the original server. When transport type is \"ipport\", this parameter is valid and required. It can be a domain name or an IP address. The length must be no more than to 250 characters."
+        "description": "A domain or IP referring to the destination server of your application. HDT will access this domain/IP to get data from the original server. When transport type is \"ipport\", this parameter is valid and required. It can be a domain name or an IP address. The length must be no more than to 250 characters."
       },
       "transport.targetPort": {
         "title": "targetPort",
@@ -5228,13 +5228,14 @@
       "transport.useFtp": {
         "title": "useFtp",
         "type": "boolean",
-        "description": "Indicates whether to use ftp transport."
+        "description": "Indicates if to use ftp transport."
       },
       "transport.cName": {
         "type": "string",
         "title": "cName",
         "description": "The CNAME HDT generates for a transport. To accelerate using HDT, modify your DNS to point your access domain to this value.",
-        "format": "hostname"
+        "format": "hostname",
+        "x-examples": {}
       },
       "transport.accessPort": {
         "title": "accessPort",
@@ -5296,7 +5297,7 @@
       "transport.strategy": {
         "title": "transportStrategy",
         "type": "string",
-        "description": "Transport strategy."
+        "description": "Transport strategy.\n\nDefault: Low cost and high efficiency.\nInteractive: For applications requiring better response times, HDT internal routing is enabled in this mode.\nHigh Concurrency：Suitable for small data transfers and high concurrency. Normally, concurrency is considered to be high when its value exceeds 1,000 connections and low when its value is below 100 connections.\nHigh Real-time: Suitable for applications delivering small data with low concurrency (fewer than 100 connections) and requiring optimized response times."
       },
       "transport.ipWhiteList": {
         "type": "string",
@@ -5316,7 +5317,7 @@
       "transport.transportData": {
         "title": "transport-data",
         "type": "array",
-        "description": "this container contains \"transportId\", \"transportCode\", \"transportType\", \"transportName\" and \"status\" element for describing one transport.",
+        "description": "A container contains \"transportId\", \"transportCode\", \"transportType\", \"transportName\" and \"status\" element for describing a transport.",
         "items": {
           "type": "object",
           "properties": {
@@ -5339,9 +5340,9 @@
         }
       },
       "transport.transportHistoryData": {
-        "title": "transport-history-data",
+        "title": "history-data",
         "type": "array",
-        "description": "A container contains the following elements.\n\n",
+        "description": "A container contains \"deployId\", \"transportCode\", \"transportName\", \"apiRequestId\" and \"timestamp\" elements for describing a deployment in history.\n",
         "items": {
           "type": "object",
           "properties": {
@@ -5387,6 +5388,45 @@
           "flow-data": {
             "$ref": "#/components/schemas/report.flowData"
           }
+        },
+        "x-examples": {
+          "example-1": {
+            "records-count": 6,
+            "upload–summary": 2508724,
+            "download-summary": 2508724,
+            "flow-data": [
+              {
+                "timestamp": "2014-07-31T23:05:00",
+                "upload": 197421,
+                "download": 297421
+              },
+              {
+                "timestamp": "2014-07-31T23:10:00",
+                "upload": 255564,
+                "download": 155564
+              },
+              {
+                "timestamp": "2014-07-31T23:15:00",
+                "upload": 516326,
+                "download": 316326
+              },
+              {
+                "timestamp": "2014-07-31T23:20:00",
+                "upload": 129685,
+                "download": 329685
+              },
+              {
+                "timestamp": "2014-07-31T23:25:00",
+                "upload": 516326,
+                "download": 316326
+              },
+              {
+                "timestamp": "2014-07-31T23:30:00",
+                "upload": 144774,
+                "download": 144774
+              }
+            ]
+          }
         }
       },
       "report.recordsCount": {
@@ -5421,12 +5461,49 @@
               "$ref": "#/components/schemas/report.download"
             }
           }
+        },
+        "x-examples": {
+          "example-1": [
+            {
+              "timestamp": "2014-07-31T23:05:00",
+              "upload": 197421,
+              "download": 297421
+            },
+            {
+              "timestamp": "2014-07-31T23:10:00",
+              "upload": 255564,
+              "download": 155564
+            },
+            {
+              "timestamp": "2014-07-31T23:15:00",
+              "upload": 516326,
+              "download": 316326
+            },
+            {
+              "timestamp": "2014-07-31T23:20:00",
+              "upload": 129685,
+              "download": 329685
+            },
+            {
+              "timestamp": "2014-07-31T23:25:00",
+              "upload": 516326,
+              "download": 316326
+            },
+            {
+              "timestamp": "2014-07-31T23:30:00",
+              "upload": 144774,
+              "download": 144774
+            }
+          ]
         }
       },
       "report.timestamp": {
         "title": "timestamp",
         "type": "string",
-        "description": "The timestamp is in RFC3339 format and includes the offset from UTC.\nIf interval from request is \"oneminute\" or \"fiveminutes\", the format will be \"YYYY-MM-DD hh:mm:00\", which indicates the end time of the interval.\nIf interval from request is \"hourly\", “daily”, or “monthly”, the format will be \"YYYY-MM-DD'T'hh:mm:00\", which indicates the start time of the interval."
+        "description": "The timestamp is in RFC3339 format and includes the offset from UTC.\nIf interval from request is \"oneminute\" or \"fiveminutes\", the format will be \"YYYY-MM-DD hh:mm:00\", which indicates the end time of the interval.\nIf interval from request is \"hourly\", “daily”, or “monthly”, the format will be \"YYYY-MM-DD'T'hh:mm:00\", which indicates the start time of the interval.",
+        "x-examples": {
+          "example-1": "2014-07-31T23:05:00"
+        }
       },
       "report.upload": {
         "title": "upload",
@@ -5458,14 +5535,39 @@
         },
         "x-examples": {
           "example-1": {
-            "records-count": 0,
-            "total-summary": 0,
-            "success-summary": 0,
+            "records-count": 6,
+            "total-summary": 1000,
+            "success-summary": 900,
             "requests-data": [
               {
-                "timestamp": "string",
-                "total": 0,
-                "success": 0
+                "timestamp": "2014-07-31T23:05:00",
+                "total": 200,
+                "success": 200
+              },
+              {
+                "timestamp": "2014-07-31T23:10:00",
+                "total": 200,
+                "success": 200
+              },
+              {
+                "timestamp": "2014-07-31T23:15:00",
+                "total": 100,
+                "success": 100
+              },
+              {
+                "timestamp": "2014-07-31T23:20:00",
+                "total": 200,
+                "success": 100
+              },
+              {
+                "timestamp": "2014-07-31T23:25:00",
+                "total": 200,
+                "success": 200
+              },
+              {
+                "timestamp": "2014-07-31T23:30:00",
+                "total": 100,
+                "success": 100
               }
             ]
           }
@@ -5498,6 +5600,40 @@
               "$ref": "#/components/schemas/report.successRequestsCount"
             }
           }
+        },
+        "x-examples": {
+          "example-1": [
+            {
+              "timestamp": "2014-07-31T23:05:00",
+              "total": 200,
+              "success": 200
+            },
+            {
+              "timestamp": "2014-07-31T23:10:00",
+              "total": 200,
+              "success": 200
+            },
+            {
+              "timestamp": "2014-07-31T23:15:00",
+              "total": 100,
+              "success": 100
+            },
+            {
+              "timestamp": "2014-07-31T23:20:00",
+              "total": 200,
+              "success": 100
+            },
+            {
+              "timestamp": "2014-07-31T23:25:00",
+              "total": 200,
+              "success": 200
+            },
+            {
+              "timestamp": "2014-07-31T23:30:00",
+              "total": 100,
+              "success": 100
+            }
+          ]
         }
       },
       "report.totalRequestsCount": {
