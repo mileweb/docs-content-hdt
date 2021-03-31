@@ -5228,7 +5228,7 @@
       "transport.useFtp": {
         "title": "useFtp",
         "type": "boolean",
-        "description": "Indicates if to use ftp transport."
+        "description": "Indicates whether to use ftp transport."
       },
       "transport.cName": {
         "type": "string",
