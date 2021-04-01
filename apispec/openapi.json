@@ -2415,7 +2415,7 @@
                       "properties": {
                         "count": {
                           "type": "number",
-                          "description": "Total count of transport history data."
+                          "description": "Total number of transport history data."
                         },
                         "history-data": {
                           "$ref": "#/components/schemas/transport.transportHistoryData"
@@ -3959,7 +3959,7 @@
           }
         },
         "operationId": "get-report-transportId-requests",
-        "description": "Returns the total request count for specified transports. The {transport-id} could be multiple transport IDs separated by commas. If one of the transport IDs doesn't exist, this API returns an error. Transport ID is a unique integer number in the HDT system and is fetched from the API ‘/hdt/transport’. Parameters allow you to specify a time period and an interval type.",
+        "description": "Returns the total request count for specified transports. The {transport-id} could be multiple transport IDs separated by commas. If one of the transport IDs doesn't exist, this API returns an error. Transport ID is a unique integer in the HDT system and is fetched from the API ‘/hdt/transport’. Parameters allow you to specify a time period and an interval type.",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
@@ -4337,7 +4337,7 @@
           }
         },
         "operationId": "get-hdtreport-transportId-log",
-        "description": "Returns transport logs for a specified transport and time period. After getting the response, you can download the raw log from the returned URL.\nSample: \nwget  ‘http://logdl.mileweb.com/hdtlog/1/5067/20180610-1600-1659/35.186.212.62-443_2018-06-10-1600-1659_mproxy_0.log.gz?wskey=a26efbc6e29bdc30f091eb201dbc6236’ -O 1.gz\nThere can be up to two hours delay in log data processing. The log is aggregated \"hourly\" or \"daily\", which is configurable for each transport ID (the configuration item is called log merge granularity). There may be more than one log for the same time slice, including late logs. For example, if a transport’s log merge granularity is \"hourly\", there may be more than one log for each hour.\nWhether the log is sorted depends on the transport’s sorting configuration. Log sorting means that the log is sorted by the datetime in the log lines.\nThe maximum download speed for a single connection is limited to 5MB/s now.\n",
+        "description": "Returns transport logs for a specified transport and time period. After getting the response, you can download the raw log from the returned URL.\nSample: \nwget  ‘http://logdl.mileweb.com/hdtlog/1/5067/20180610-1600-1659/35.186.212.62-443_2018-06-10-1600-1659_mproxy_0.log.gz?wskey=a26efbc6e29bdc30f091eb201dbc6236’ -O 1.gz\nThere can be up to two hours delay in log data processing. The log is aggregated \"hourly\" or \"daily\", which is configurable for each transport ID. There may be more than one log for the same time slice, including late logs. For example, if the log aggregation granularity of a transport is \"hourly\", there may be more than one log for each hour.\nWhether the log is sorted depends on the transport’s sorting configuration. Log sorting means that the log is sorted by the timestamp in the log lines.\nThe maximum download speed for a single connection is limited to 5MB/s now.\n",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
@@ -4370,7 +4370,7 @@
             },
             "in": "query",
             "name": "dateto",
-            "description": "End time, RFC3339-formatted date. Example: 2013-01-01T22:30:00+08:00. You can specify timezone in this parameter, but the result will convert to timezone UTC+00. This time may be adjusted according to the log merge granularity. For example, if the granularity is \"hourly\", \"2018-01-01T22:15:00+00:00\" will be adjusted to \"2018-01-01T22:00:00 +00:00\" and if the granularity is \"daily\", it will be adjusted to \"2018-01-01T00:00:00 +00:00\".",
+            "description": "End time, RFC3339-formatted date. Example: 2013-01-01T22:30:00+08:00. You can specify the timezone in this parameter, but the result will be UTC time. This time may be adjusted according to the log aggregation granularity. For example, if the granularity is \"hourly\", \"2018-01-01T22:15:00+00:00\" will be adjusted to \"2018-01-01T22:00:00 +00:00\" and if the granularity is \"daily\", it will be adjusted to \"2018-01-01T00:00:00 +00:00\".",
             "required": true
           }
         ],
@@ -5195,7 +5195,7 @@
       "transport.id": {
         "title": "transportId",
         "type": "integer",
-        "description": "Transport ID. It is a unique integer number in the HDT system.",
+        "description": "Transport ID. It is a unique integer in the HDT system.",
         "x-examples": {
           "example-1": 0
         }
@@ -5218,7 +5218,7 @@
       "transport.targetDomain": {
         "title": "targetDomain",
         "type": "string",
-        "description": "A domain or IP referring to the destination server of your application. HDT will access this domain/IP to get data from the original server. When transport type is \"ipport\", this parameter is valid and required. It can be a domain name or an IP address. The length must be no more than to 250 characters."
+        "description": "A domain or IP address referring to the origin server of your application. HDT will access this domain/IP address to get data from origin server. When transport type is \"ipport\", this parameter is valid and required. A domain name's length can be up to 250 characters."
       },
       "transport.targetPort": {
         "title": "targetPort",
@@ -5240,7 +5240,7 @@
       "transport.accessPort": {
         "title": "accessPort",
         "type": "integer",
-        "description": "Access port of accelerated application for the public users. When transport type is 'ipport', HDT API server will return an available access port. When useStandardPort is \"http\", this parameter will be 80; when useStandardPort is \"sni\" this parameter will be 443."
+        "description": "Access port of accelerated application for the public users. When transport type is 'ipport', the HDT API server will return an available access port. When useStandardPort is \"http\", this parameter will be 80; when useStandardPort is \"sni\" this parameter will be 443."
       },
       "transport.userAccount": {
         "title": "userAccount",
@@ -5265,7 +5265,7 @@
       "transport.accessDomain": {
         "title": "accessDomain",
         "type": "string",
-        "description": "Access domain of accelerated application for the public users. HDT API supports multiple domains separated by commas and wildcard to match multiple subdomains. For example:\naaa.domain1.com,*.domain2.com,*.domain3.org.cn\n\nNote:\n1. HDT API does not support more than one level subdomains for \"accessDomain\" field;\n2. \"accessDomain\" can't be empty; \n3. When \"useStandardPort\" is not empty, the combination of \"accessDomain\" and \"useStandardPort\" field must be globally unique;\n4. When \"useStandardPort\" is empty, the value of \"accessDomain\" is unique to each customer. Transports belong to the same customer can share \"accessDomain\". ",
+        "description": "Access domain of accelerated application for the public users. The HDT API supports multiple domains separated by commas and wildcard to match multiple subdomains. For example:\naaa.domain1.com,*.domain2.com,*.domain3.org.cn\n\nNote:\n1. The HDT API supports up to one level of subdomains for \"accessDomain\" field;\n2. \"accessDomain\" can't be empty; \n3. When \"useStandardPort\" is not empty, the combination of \"accessDomain\" and \"useStandardPort\" field must be globally unique;\n4. When \"useStandardPort\" is empty, the value of \"accessDomain\" is unique to each customer. Transports belong to the same customer can share \"accessDomain\". ",
         "x-examples": {
           "example-1": {
             "accessDomain": "aaa.domain1.com"
@@ -5286,13 +5286,13 @@
       },
       "transport.speedLimit": {
         "title": "speedLimit",
-        "description": "Speed limit in \"Mbps\".It must be an integer between 0 and 1000, 0 means no limit. Default value is 0 ",
+        "description": "Speed limit in \"Mbps\".It must be an integer between 0 and 1000. 0 means there is no limit. Default value is 0 ",
         "type": "number"
       },
       "transport.concurrentLimit": {
         "title": "concurrentLimit",
         "type": "integer",
-        "description": "Number of concurrent connections allowed for the transport. It must be an integer between 0 and 32768, 0 means no limit. Default value is 0."
+        "description": "Number of concurrent connections allowed for the transport. It must be an integer between 0 and 32768. 0 means there is no limit. Default value is 0."
       },
       "transport.strategy": {
         "title": "transportStrategy",
@@ -5312,12 +5312,12 @@
       "transport.comments": {
         "title": "comments",
         "type": "string",
-        "description": "Comments or description to make some notes."
+        "description": "Enter notes about the transport."
       },
       "transport.transportData": {
         "title": "transport-data",
         "type": "array",
-        "description": "A container contains \"transportId\", \"transportCode\", \"transportType\", \"transportName\" and \"status\" element for describing a transport.",
+        "description": "A container of \"transportId\", \"transportCode\", \"transportType\", \"transportName\", and \"status\" element describing a transport.",
         "items": {
           "type": "object",
           "properties": {
@@ -5342,7 +5342,7 @@
       "transport.transportHistoryData": {
         "title": "history-data",
         "type": "array",
-        "description": "A container contains \"deployId\", \"transportCode\", \"transportName\", \"apiRequestId\" and \"timestamp\" elements for describing a deployment in history.\n",
+        "description": "A container of \"deployId\", \"transportCode\", \"transportName\", \"apiRequestId\", and \"timestamp\" elements describing a deployment in history.\n",
         "items": {
           "type": "object",
           "properties": {
@@ -5369,7 +5369,7 @@
       "transport.deployId": {
         "title": "transport.deployId",
         "type": "integer",
-        "description": "Indicates a transport configuration history ID. The ID is a unique integer number to this transport."
+        "description": "Indicates a transport configuration history ID. The ID is a unique integer to this transport."
       },
       "report.flowReport": {
         "title": "flow-report",
@@ -5447,7 +5447,7 @@
       "report.flowData": {
         "title": "flow-data",
         "type": "array",
-        "description": "A container contains <timestamp>, <upload>, and <download> elements describing the traffic volume in bytes for a specified period of time.",
+        "description": "A container of <timestamp>, <upload>, and <download> elements describing the traffic volume in bytes for a specified period of time.",
         "items": {
           "type": "object",
           "properties": {
@@ -5576,17 +5576,17 @@
       "report.totalRequestsSummary": {
         "title": "total-summary",
         "type": "integer",
-        "description": "Total count of requests for all records."
+        "description": "Total number of requests for all records."
       },
       "report.successRequestsSummary": {
         "title": "success-summary",
         "type": "integer",
-        "description": "Total count of successful requests for all records."
+        "description": "Total number of successful requests for all records."
       },
       "report.requestsData": {
         "title": "requests-data",
         "type": "array",
-        "description": "A container contains <timestamp>, <total>, and <success> elements describing the request data for a specified period of time.",
+        "description": "A container of <timestamp>, <total>, and <success> elements describing the request data for a specified period of time.",
         "items": {
           "type": "object",
           "properties": {
@@ -5639,12 +5639,12 @@
       "report.totalRequestsCount": {
         "title": "total",
         "type": "integer",
-        "description": "Total count of requests at this period time"
+        "description": "Total number of requests during the time period."
       },
       "report.successRequestsCount": {
         "title": "success",
         "type": "integer",
-        "description": "Total count of successful requests for a specified period of time."
+        "description": "Total number of successful requests during the time period."
       },
       "log.log": {
         "title": "log",
@@ -5687,7 +5687,7 @@
       "log.logUrl": {
         "title": "log-url",
         "type": "string",
-        "description": "URL of for downloading log file. The format of log file name are following:\ndomain-port_YYYY-MM-DD-hhmm-hhmm_mproxy_X.log.gz\ndomain-port_YYYY-MM-DD-hhmm-hhmm_mproxy_X.late.log.gz:\n1) domain-port represents the HDT transport;\n2) YYYY-MM-DD-hhmm-hhmm means the time range is from YYYY-MM-DD-hhmm to YYYY-MM-DD-hhmm;\n3) mproxy is a fixed string;\n4) late.log.gz refers to a log delay time is more than 2 hours. Usually, the proportion of the late log is small (no more than 1%).\n5) X is the sequence number. It increases when the uncompressed file size reaches 2GB.\n",
+        "description": "URL for downloading log file. The log file name follows this format:\ndomain-port_YYYY-MM-DD-hhmm-hhmm_mproxy_X.log.gz\ndomain-port_YYYY-MM-DD-hhmm-hhmm_mproxy_X.late.log.gz:\n1) domain-port represents the HDT transport;\n2) YYYY-MM-DD-hhmm-hhmm means the time range is from YYYY-MM-DD-hhmm to YYYY-MM-DD-hhmm;\n3) mproxy is a fixed string;\n4) late.log.gz refers to a log delay time is more than 2 hours. Usually, the proportion of the late log is small (no more than 1%).\n5) X is the sequence number. It increases when the uncompressed file size reaches 2GB.\n",
         "x-examples": {
           "example-1": "http://logdl.mileweb.com/hdtlog/1/5067/20180610-1600-1659/35.186.212.62-443_2018-06-10-1600-1659_mproxy_0.log.gz?wskey=a26efbc6e29bdc30f091eb201dbc6236"
         }
