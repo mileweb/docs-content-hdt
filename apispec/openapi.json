@@ -4370,7 +4370,7 @@
             },
             "in": "query",
             "name": "dateto",
-            "description": "End time, RFC3339-formatted date. Example: 2013-01-01T22:30:00+08:00. You can specify the timezone in this parameter, but the result will be UTC time. This time may be adjusted according to the log aggregation granularity. For example, if the granularity is \"hourly\", \"2018-01-01T22:15:00+00:00\" will be adjusted to \"2018-01-01T22:00:00 +00:00\" and if the granularity is \"daily\", it will be adjusted to \"2018-01-01T00:00:00 +00:00\".",
+            "description": "End time, RFC3339-formatted date. Example: 2013-01-01T22:30:00+08:00. You can specify the timezone in this parameter, but the result will be in UTC time. This time may be adjusted according to the log aggregation granularity. For example, if the granularity is \"hourly\", \"2018-01-01T22:15:00+00:00\" will be adjusted to \"2018-01-01T22:00:00 +00:00\" and if the granularity is \"daily\", it will be adjusted to \"2018-01-01T00:00:00 +00:00\".",
             "required": true
           }
         ],
