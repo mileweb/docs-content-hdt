@@ -5,7 +5,7 @@ To edit a transport, click the "Action" button of the transport entry in the lis
 
 ![null](</docs/resources/images/transports/edit-transport-1.png>)
 
-Edit the items as desired, then click the "Next" button in the top right corner of the page.
+Edit the settings and then click the "Next" button in the top right corner of the page.
 
 ![null](</docs/resources/images/transports/edit-transport-2.png>)
 
