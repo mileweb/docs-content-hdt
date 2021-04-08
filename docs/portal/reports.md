@@ -1,6 +1,6 @@
 # Reports
 
-HDT Reports provide information about traffic to your HDT transports. Reports cover traffic volume, traffic bandwidth, and requests.
+HDT reports provide information about traffic to your HDT transports. Reports cover traffic volume, traffic bandwidth, and requests.
 
 If you are a reseller with child accounts, you can select the accounts that a report will cover (the parent account only, the child account only, or both the parent and child accounts).
 
