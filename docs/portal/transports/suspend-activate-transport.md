@@ -1,7 +1,7 @@
 # Suspend or Activate a transport
 
-To Suspend or Activate a transport, search the transport you want to make the change in the <strong> Transport </strong> page if it was not in the page, then click the "Action" button and select the "Suspend" or "Activate".
-The <strong> Transports </strong> page can be reached simply by clicking "Transports" from the left pane of HDT portal.
+The <strong> Transports </strong> page can be reached by clicking "Transports" from the left pane of the HDT portal.
+To suspend or activate a transport, click the "Action" button  of the transport entry in the list and select "Suspend" or "Activate". If the transport is not in the current page, you can search for it in the search box.
 
 ![null](</docs/resources/images/transports/suspend-activate-1.png>)
 
