@@ -5437,7 +5437,9 @@
       ],
       "get": {
         "summary": "Your GET endpoint",
-        "tags": [],
+        "tags": [
+          "Service Quotas"
+        ],
         "responses": {},
         "operationId": "get-serviceQuotas-serviceQuotaId",
         "description": "Return a service quota by its id."
@@ -5474,7 +5476,9 @@
       ],
       "get": {
         "summary": "Your GET endpoint",
-        "tags": [],
+        "tags": [
+          "Service Quotas"
+        ],
         "responses": {},
         "operationId": "get-serviceQuotas-customer-customerId"
       },
@@ -5636,9 +5640,6 @@
     "/resourceSummary": {
       "get": {
         "summary": "Your GET endpoint",
-        "tags": [
-          "Resource Sumary"
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -5737,6 +5738,9 @@
           {
             "$ref": "#/components/parameters/On-Behalf-Of"
           }
+        ],
+        "tags": [
+          "Resource Summary"
         ]
       },
       "parameters": []
@@ -6437,6 +6441,14 @@
     {
       "name": "Logs",
       "description": "Call the Logs APIs to get logs of your HDT transports."
+    },
+    {
+      "name": "Service Quotas",
+      "description": "Call the Service Quotas APIs to manage service quotas of your HDT transports."
+    },
+    {
+      "name": "Resource Summary",
+      "description": "Call the Resource Summary APIs to get the resource information of your HDT transports."
     }
   ]
 }
