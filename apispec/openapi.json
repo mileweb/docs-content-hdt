@@ -967,7 +967,8 @@
                 "required": [
                   "transport"
                 ]
-              }
+              },
+              "examples": {}
             }
           },
           "description": "Create a transport."
@@ -4033,7 +4034,7 @@
         ]
       }
     },
-    "/hdtreport/{transport-id}/log": {
+    "/hdt/hdtreport/{transport-id}/log": {
       "parameters": [
         {
           "schema": {
@@ -5188,6 +5189,557 @@
           }
         ]
       }
+    },
+    "/serviceQuotas": {
+      "get": {
+        "summary": "Query serviceQuotas list",
+        "tags": [
+          "Service Quotas"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "operationId": "get-serviceQuotas",
+        "description": "Get a list of HDT service quotas that meet the conditions.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Authorization"
+          },
+          {
+            "$ref": "#/components/parameters/Date"
+          },
+          {
+            "$ref": "#/components/parameters/Accept-Encoding"
+          },
+          {
+            "$ref": "#/components/parameters/Accept"
+          },
+          {
+            "$ref": "#/components/parameters/On-Behalf-Of"
+          }
+        ]
+      },
+      "post": {
+        "summary": "Create a service quota",
+        "operationId": "post-serviceQuotas",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              },
+              "location": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "/serviceQuotas/{serviceQuotaId}"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "Invalid %s"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "The value for limit should be a non-negative integer"
+                        }
+                      }
+                    },
+                    {
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "InvalidCustomerId"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "The provided customer ID does not exist or is not a child of the caller."
+                        }
+                      },
+                      "description": ""
+                    },
+                    {
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "DuplicateCustomerId"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "The provided customer ID already has a service quota."
+                        }
+                      }
+                    },
+                    {
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "InvalidTrialStatus"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "‘trialDeadline’ is mandatory for customers with status ‘trial’."
+                        }
+                      }
+                    },
+                    {
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "ResourceLimitExceeded"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "This customer cannot have a higher ‘%s’ limit than the reseller."
+                        }
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "description": "Create a Service Quota. This set of API endpoints are intended to be called by parent API accounts to CRUD the CDN product setting for their child customers. A regular customer should only be able to query its own quota to see the various limits.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Authorization"
+          },
+          {
+            "$ref": "#/components/parameters/Date"
+          },
+          {
+            "$ref": "#/components/parameters/Accept-Encoding"
+          },
+          {
+            "$ref": "#/components/parameters/Accept"
+          },
+          {
+            "$ref": "#/components/parameters/On-Behalf-Of"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "serviceQuota": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "customerId": {
+                          "type": "integer",
+                          "description": "should be a child of the caller."
+                        },
+                        "status": {
+                          "type": "string",
+                          "enum": [
+                            "active",
+                            "suspended",
+                            "trial"
+                          ],
+                          "default": "suspended"
+                        },
+                        "accountManagerEmail": {
+                          "type": "string"
+                        },
+                        "trialDeadline": {
+                          "type": "string",
+                          "description": "Required when status=\"trial\", ignored otherwise. When trialDeadline is past, the customer should be treated as \"suspended\""
+                        },
+                        "allowProduction": {
+                          "type": "boolean"
+                        },
+                        "usageLimitDays": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 366,
+                          "description": "0 turns off all limits"
+                        },
+                        "usageLimitDollar": {
+                          "type": "number"
+                        },
+                        "contractId": {
+                          "type": "integer",
+                          "description": "only required when billUsingStripe is true"
+                        },
+                        "transportNumLimit": {
+                          "type": "integer"
+                        },
+                        "VPLBandwidthLimit": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "customerId"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        }
+      },
+      "patch": {
+        "summary": "Update a service quota",
+        "operationId": "patch-serviceQuotas",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "description": ""
+      },
+      "delete": {
+        "summary": "",
+        "operationId": "delete-serviceQuotas",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/serviceQuotas/{serviceQuotaId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "serviceQuotaId",
+          "in": "path"
+        }
+      ],
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {},
+        "operationId": "get-serviceQuotas-serviceQuotaId",
+        "description": "Return a service quota by its id."
+      },
+      "patch": {
+        "summary": "",
+        "operationId": "patch-serviceQuotas-serviceQuotaId",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "summary": "",
+        "operationId": "delete-serviceQuotas-serviceQuotaId",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/serviceQuotas/customer/{customerId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "customerId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {},
+        "operationId": "get-serviceQuotas-customer-customerId"
+      },
+      "patch": {
+        "summary": "",
+        "operationId": "patch-serviceQuotas-customer-customerId",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "summary": "",
+        "operationId": "delete-serviceQuotas-customer-customerId",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/report/billingData": {
+      "post": {
+        "summary": "Query Billing Data",
+        "operationId": "post-report-billingData",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Api-Request-Id": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "A string automatically generated by the API server to identify each request."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/report.billingData"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "InvalidDate"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Invalid date format of datefrom or dateto"
+                        }
+                      }
+                    },
+                    {
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "InvalidTimeSpan"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Invalid time span (too long or datefrom is after dateto)"
+                        }
+                      }
+                    },
+                    {
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "InvalidBillingItemId"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "At least one billing item id is not recognized. The error message should show the id in question."
+                        }
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            }
+          }
+        },
+        "description": "Return billing data for a customer, for all or part of the services received by this customer.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Authorization"
+          },
+          {
+            "$ref": "#/components/parameters/Date"
+          },
+          {
+            "$ref": "#/components/parameters/Accept-Encoding"
+          },
+          {
+            "$ref": "#/components/parameters/Accept"
+          },
+          {
+            "$ref": "#/components/parameters/On-Behalf-Of"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "in": "query",
+            "name": "datefrom",
+            "description": "RFC3339-formatted date indicating the starting date. Example:  2013-01-01T22:30:00+08:00",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "in": "query",
+            "name": "dateto",
+            "description": "RFC3339-formatted date indicating the ending date. Example:  2013-01-01T22:30:00+08:00.\nIf the time range of datefrom and dateto is more than 366 days, it will return \"TimeRangeTooLarge\" error.\n",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/report.filters"
+                  },
+                  {
+                    "$ref": "#/components/schemas/report.billingItems"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reports"
+        ]
+      }
+    },
+    "/resourceSummary": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [
+          "Resource Sumary"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resourceSummary": {
+                      "type": "array",
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "description": "transport"
+                            },
+                            "count": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "resourceSummary": [
+                        [
+                          {
+                            "name": "transport",
+                            "count": 2
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "description": "InvalidDate"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Invalid date format of datefrom or dateto"
+                        }
+                      }
+                    }
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "headers": {
+              "api-request-id": {
+                "$ref": "#/components/parameters/Api-Request-Id"
+              }
+            }
+          }
+        },
+        "operationId": "get-resourcesummary",
+        "description": "return if the customer still has resources.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Authorization"
+          },
+          {
+            "$ref": "#/components/parameters/Date"
+          },
+          {
+            "$ref": "#/components/parameters/Accept-Encoding"
+          },
+          {
+            "$ref": "#/components/parameters/Accept"
+          },
+          {
+            "$ref": "#/components/parameters/On-Behalf-Of"
+          }
+        ]
+      },
+      "parameters": []
     }
   },
   "components": {
@@ -5709,6 +6261,104 @@
             }
           }
         }
+      },
+      "report.billingData": {
+        "title": "billingData",
+        "description": "",
+        "x-examples": {
+          "example-1": {
+            "billingData": [
+              {
+                "id": "traffic-volume-gb-standard",
+                "amount": "1500"
+              },
+              {
+                "id": "traffic-volume-gb-vpl",
+                "amount": "100"
+              },
+              {
+                "id": "transports-number-limit",
+                "amount": "8"
+              }
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "report.billingItems": {
+        "x-examples": {
+          "example-1": {
+            "billingItems": [
+              {
+                "id": "traffic-volume-gb-standard"
+              },
+              {
+                "id": "traffic-volume-gb-vpl"
+              },
+              {
+                "id": "number-limit-transports"
+              }
+            ]
+          }
+        },
+        "description": "The items for billing.",
+        "title": "billingItems",
+        "type": "object",
+        "properties": {
+          "\"billingItems\"": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "report.filters": {
+        "title": "report.filters",
+        "type": "object",
+        "x-examples": {
+          "example-1": {
+            "filters": {
+              "hostnames": [
+                "steam.apac.qtlglb.com"
+              ]
+            }
+          }
+        },
+        "description": "Filters for billing data report.",
+        "properties": {
+          "\"filters\"": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "serviceQuota.serviceQuotaData": {
+        "title": "serviceQuota",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "x-examples": {
+          "example-1": {
+            "id": "string"
+          }
+        },
+        "description": ""
+      },
+      "serviceQuota.serviceQuotaList": {
+        "title": "serviceQuota.serviceQuotaList",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "x-examples": {}
       }
     },
     "parameters": {
