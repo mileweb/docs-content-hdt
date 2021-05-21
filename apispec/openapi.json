@@ -5422,7 +5422,7 @@
         ]
       },
       "delete": {
-        "summary": "",
+        "summary": "Delete a service quota",
         "operationId": "delete-serviceQuotas",
         "responses": {
           "200": {
@@ -5445,7 +5445,7 @@
         }
       ],
       "get": {
-        "summary": "Your GET endpoint",
+        "summary": "Query service quotas by ID",
         "tags": [
           "Service Quotas"
         ],
@@ -5454,7 +5454,7 @@
         "description": "Return a service quota by its id."
       },
       "patch": {
-        "summary": "",
+        "summary": "Update a service quota by service quota ID",
         "operationId": "patch-serviceQuotas-serviceQuotaId",
         "responses": {
           "200": {
@@ -5466,7 +5466,7 @@
         ]
       },
       "delete": {
-        "summary": "",
+        "summary": "Delete a service quota by service quota ID",
         "operationId": "delete-serviceQuotas-serviceQuotaId",
         "responses": {
           "200": {
@@ -5490,7 +5490,7 @@
         }
       ],
       "get": {
-        "summary": "Your GET endpoint",
+        "summary": "Query service quotas by customer ID",
         "tags": [
           "Service Quotas"
         ],
@@ -5498,7 +5498,7 @@
         "operationId": "get-serviceQuotas-customer-customerId"
       },
       "patch": {
-        "summary": "",
+        "summary": "Update a service quota by customer ID",
         "operationId": "patch-serviceQuotas-customer-customerId",
         "responses": {
           "200": {
@@ -5510,7 +5510,7 @@
         ]
       },
       "delete": {
-        "summary": "",
+        "summary": "Delete a service quota by customer ID",
         "operationId": "delete-serviceQuotas-customer-customerId",
         "responses": {
           "200": {
@@ -5519,7 +5519,8 @@
         },
         "tags": [
           "Service Quotas"
-        ]
+        ],
+        "description": ""
       }
     },
     "/report/billingData": {
@@ -5660,7 +5661,7 @@
     },
     "/resourceSummary": {
       "get": {
-        "summary": "Your GET endpoint",
+        "summary": "Query resource summary",
         "responses": {
           "200": {
             "description": "OK",
