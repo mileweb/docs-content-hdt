@@ -5408,19 +5408,6 @@
           "Service Quotas"
         ]
       },
-      "patch": {
-        "summary": "Update a service quota",
-        "operationId": "patch-serviceQuotas",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "description": "",
-        "tags": [
-          "Service Quotas"
-        ]
-      },
       "delete": {
         "summary": "Delete a service quota",
         "operationId": "delete-serviceQuotas",
