@@ -1081,72 +1081,7 @@
                       "$ref": "#/components/schemas/response.code"
                     },
                     "content": {
-                      "type": "object",
-                      "properties": {
-                        "transportId": {
-                          "$ref": "#/components/schemas/transport.id"
-                        },
-                        "transportCode": {
-                          "$ref": "#/components/schemas/transport.code"
-                        },
-                        "transportType": {
-                          "$ref": "#/components/schemas/transport.type"
-                        },
-                        "transportName": {
-                          "$ref": "#/components/schemas/transport.name"
-                        },
-                        "targetDomain": {
-                          "$ref": "#/components/schemas/transport.targetDomain"
-                        },
-                        "targetPort": {
-                          "$ref": "#/components/schemas/transport.targetPort"
-                        },
-                        "useFtp": {
-                          "$ref": "#/components/schemas/transport.useFtp"
-                        },
-                        "cName": {
-                          "$ref": "#/components/schemas/transport.cName"
-                        },
-                        "accessPort": {
-                          "$ref": "#/components/schemas/transport.accessPort"
-                        },
-                        "userAccount": {
-                          "$ref": "#/components/schemas/transport.userAccount"
-                        },
-                        "userPwd": {
-                          "$ref": "#/components/schemas/transport.userPwd"
-                        },
-                        "useUdp": {
-                          "$ref": "#/components/schemas/transport.useUdp"
-                        },
-                        "useStandardPort": {
-                          "$ref": "#/components/schemas/transport.useStandardPort"
-                        },
-                        "accessDomain": {
-                          "$ref": "#/components/schemas/transport.accessDomain"
-                        },
-                        "status": {
-                          "$ref": "#/components/schemas/transport.status"
-                        },
-                        "speedLimit": {
-                          "$ref": "#/components/schemas/transport.speedLimit"
-                        },
-                        "concurrentLimit": {
-                          "$ref": "#/components/schemas/transport.concurrentLimit"
-                        },
-                        "transportStrategy": {
-                          "$ref": "#/components/schemas/transport.strategy"
-                        },
-                        "ipWhiteList": {
-                          "$ref": "#/components/schemas/transport.ipWhiteList"
-                        },
-                        "comments": {
-                          "$ref": "#/components/schemas/transport.comments"
-                        },
-                        "carryClientIp": {
-                          "$ref": "#/components/schemas/transport.carryClientIp"
-                        }
-                      }
+                      "$ref": "#/components/schemas/transport.transportData"
                     }
                   }
                 },
@@ -2466,9 +2401,6 @@
                               "deployId": {
                                 "$ref": "#/components/schemas/transport.deployId"
                               },
-                              "apiRequestId": {
-                                "type": "string"
-                              },
                               "deployDt": {
                                 "type": "integer"
                               },
@@ -2522,6 +2454,27 @@
                               },
                               "ipWhiteList": {
                                 "$ref": "#/components/schemas/transport.ipWhiteList"
+                              },
+                              "verifyIcp": {
+                                "$ref": "#/components/schemas/transport.verifyIcp"
+                              },
+                              "verifyPsb": {
+                                "$ref": "#/components/schemas/transport.verifyPsb"
+                              },
+                              "vip": {
+                                "$ref": "#/components/schemas/transport.vip"
+                              },
+                              "ipVersion": {
+                                "$ref": "#/components/schemas/transport.ipVersion"
+                              },
+                              "exitIp": {
+                                "$ref": "#/components/schemas/transport.exitIp"
+                              },
+                              "carryClientIp": {
+                                "$ref": "#/components/schemas/transport.carryClientIp"
+                              },
+                              "comments": {
+                                "$ref": "#/components/schemas/transport.comments"
                               }
                             }
                           }
