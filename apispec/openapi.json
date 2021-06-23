@@ -3,12 +3,12 @@
   "info": {
     "title": "HDT API",
     "version": "1.0",
-    "description": "The CDNetworks HDT API is a RESTful API that allows you to manage transports, retrieve reports and download logs.\n\n# Authentication\n\n<!-- ReDoc-Inject: <security-definitions> -->",
+    "description": "The CDNetworks HDT API is a RESTful API that allows you to manage transports, retrieve reports, and download logs.",
     "contact": {}
   },
   "servers": [
     {
-      "url": "https://hdt.quantil.com:8082/hdt/v1"
+      "url": "https://ngapi.cdnetworks.com/hdt/v1"
     }
   ],
   "paths": {
@@ -39,7 +39,7 @@
             },
             "in": "query",
             "name": "limit",
-            "description": "Maximum number of items to return, the default value is 10."
+            "description": "Maximum number of items to return. The default value is 10."
           },
           {
             "schema": {
@@ -63,7 +63,7 @@
             },
             "in": "query",
             "name": "transportName",
-            "description": "Search transports by name, supports fuzzy search."
+            "description": "Search transports by name. Support fuzzy search."
           },
           {
             "$ref": "#/components/parameters/Content-Type"
@@ -88,15 +88,12 @@
                     "status": {
                       "$ref": "#/components/schemas/response.status"
                     },
-                    "message": {
-                      "$ref": "#/components/schemas/response.message"
-                    },
                     "content": {
                       "type": "object",
                       "properties": {
                         "count": {
                           "type": "integer",
-                          "description": "The total count of matched transports"
+                          "description": "Total transports"
                         },
                         "data": {
                           "type": "array",
@@ -105,6 +102,9 @@
                           }
                         }
                       }
+                    },
+                    "message": {
+                      "$ref": "#/components/schemas/response.message"
                     },
                     "code": {
                       "$ref": "#/components/schemas/response.code"
@@ -1000,6 +1000,12 @@
                   },
                   "ipVersion": {
                     "$ref": "#/components/schemas/transport.ipVersion"
+                  },
+                  "userAccount": {
+                    "$ref": "#/components/schemas/transport.userAccount"
+                  },
+                  "userPwd": {
+                    "$ref": "#/components/schemas/transport.userPwd"
                   }
                 },
                 "required": [
@@ -4374,10 +4380,6 @@
     {
       "name": "Reports",
       "description": "Call the Reports APIs to get information about the usage of your HDT transports."
-    },
-    {
-      "name": "Logs",
-      "description": "Call the Logs APIs to get logs of your HDT transports."
     }
   ]
 }
