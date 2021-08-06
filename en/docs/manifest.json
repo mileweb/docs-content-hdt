@@ -1,0 +1,91 @@
+{
+    "metadata": {
+      "id": "hdt",
+      "title": "HDT",
+      "description": "High-speed Data Transmission (HDT) is designed to optimize TCP/UDP application acceleration with superior performance and benefits.",
+      "showOnMainPage": true,
+      "links": [
+        {
+          "title": "Quick Start",
+          "caption": "Getting started with HDT",
+          "icon": "bolt",
+          "path": "docs/intro"
+        },
+        {
+          "title": "Portal Reference",
+          "caption": "HDT Portal reference",
+          "icon": "book",
+          "path": "docs/portal/accessing-portal/logging-in"
+        },
+        {
+          "title": "API Reference",
+          "caption": "HDT API reference",
+          "icon": "gear",
+          "path": "apidocs"
+        }
+      ]
+    },
+    "routes": [
+      { "title": "Introduction", "path": "/docs/intro.md" },
+      { "title": "Getting Started", "path": "/docs/getting-started.md" },
+      {
+        "title": "Portal",
+        "heading": true,
+        "routes": [
+          {
+            "title": "Accessing Portal",
+            "routes": [
+              {
+                "title": "Logging-In",
+                "path": "/docs/portal/accessing-portal/logging-in.md"
+              },
+              {
+                "title": "Forgot Password",
+                "path": "/docs/portal/accessing-portal/forgot-password.md"
+              },
+              {
+                "title": "Navigating UI",
+                "path": "/docs/portal/accessing-portal/navigating-ui.md"
+              }
+            ]
+          },
+          { "title": "Dashboard", "path": "/docs/portal/dashboard.md" },
+          {
+            "title": "Transports",
+            "routes": [
+              {
+                "title": "Manage Transports",
+                "path": "/docs/portal/transports/manage-transport.md"
+              },
+              {
+                "title": "Add New Transport",
+                "path": "/docs/portal/transports/add-transport.md"
+              },
+              {
+                "title": "View a Transport",
+                "path": "/docs/portal/transports/view-transport.md"
+              },
+              {
+                "title": "Edit a Transport",
+                "path": "/docs/portal/transports/edit-transport.md"
+              },
+              {
+                "title": "Show History of a Transport",
+                "path": "/docs/portal/transports/show-history.md"
+              },
+              {
+                "title": "Suspend/Active a Transport",
+                "path": "/docs/portal/transports/suspend-activate-transport.md"
+              },
+              {
+                "title": "Delete a Transport",
+                "path": "/docs/portal/transports/delete-transport.md"
+              }
+            ]
+          },
+          { "title": "Reports", "path": "/docs/portal/reports.md" },
+          { "title": "Global Presence", "path": "/docs/portal/global-presence.md" }
+        ]
+      }
+    ]
+  }
