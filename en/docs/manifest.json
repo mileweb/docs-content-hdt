@@ -22,6 +22,12 @@
           "caption": "HDT API reference",
           "icon": "gear",
           "path": "apidocs"
+        },
+        {
+          "title": "Release Notes",
+          "caption": "Learn About Our Releases",
+          "icon": "notes",
+          "path": "docs/release-notes"
         }
       ]
     },
@@ -85,6 +91,16 @@
           },
           { "title": "Reports", "path": "/docs/portal/reports.md" },
           { "title": "Global Presence", "path": "/docs/portal/global-presence.md" }
+        ]
+      },
+      {
+        "title": "Release Notes",
+        "heading": true,
+        "routes": [
+          {
+            "title": "Release Notes",
+            "path": "/docs/release-notes.md"
+          }
         ]
       }
     ]
