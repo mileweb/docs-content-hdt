@@ -16,7 +16,7 @@
       "get": {
         "summary": "Query transport list",
         "operationId": "get-transport",
-        "description": "Returns the transport list according to transport name or transport type.",
+        "description": "Returns the transport list.",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
@@ -54,19 +54,51 @@
               "type": "string"
             },
             "in": "query",
-            "name": "transportType",
-            "description": "Search transports according to this specified transport type, valid values are 'ipport', 'vpn' and 'socks5'."
+            "name": "transportName",
+            "description": "Search transports by name. Support fuzzy search."
+          },
+          {
+            "$ref": "#/components/parameters/Content-Type"
           },
           {
             "schema": {
               "type": "string"
             },
             "in": "query",
-            "name": "transportName",
-            "description": "Search transports by name. Support fuzzy search."
+            "name": "cName",
+            "description": "Search by cName."
           },
           {
-            "$ref": "#/components/parameters/Content-Type"
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "accessDomain",
+            "description": "Search by access domain."
+          },
+          {
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "accessPort",
+            "description": "Search by access port, an integer between 1 and 65535"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "targetDomain",
+            "description": "Search by target domain."
+          },
+          {
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "targetPort",
+            "description": "Search by target port, an integer between 1 and 65535"
           }
         ],
         "responses": {
@@ -114,38 +146,58 @@
                 "examples": {
                   "example-1": {
                     "value": {
-                      "code": "0",
+                      "status": 1,
                       "content": {
+                        "count": 2,
                         "data": [
                           {
+                            "transportId": 1,
+                            "transportCode": "www.test.com:1029",
+                            "transportName": "www.test.com:1029",
+                            "transportStatus": 1,
+                            "targetDomain": "www.test.com",
+                            "targetPort": 80,
                             "accessDomain": "www.test1029.com",
                             "accessPort": 80,
                             "cName": "www.test1029.com.506459.shland.com",
-                            "status": 1,
-                            "targetDomain": "www.test.com",
-                            "targetPort": 1029,
-                            "transportCode": "www.test.com:1029",
-                            "transportId": 506459,
-                            "transportName": "www.test.com:1029",
-                            "transportType": "ipport"
+                            "useFtp": 0,
+                            "applicationProtocol": "http",
+                            "useUdp": 0,
+                            "speedLimit": 0,
+                            "concurrentLimit": 0,
+                            "transportStrategy": "default",
+                            "carryClientIp": 0,
+                            "ipVersion": 0,
+                            "hasPsb": 0,
+                            "hasIcp": 0,
+                            "dedicatedIpService": 0
                           },
                           {
-                            "accessDomain": "www.test1042.com",
-                            "accessPort": 80,
-                            "cName": "www.test1042.com.506460.shland.com",
-                            "status": 1,
-                            "targetDomain": "www.test.com",
-                            "targetPort": 1042,
-                            "transportCode": "www.test.com:1042",
-                            "transportId": 506460,
-                            "transportName": "www.test.com:1042",
-                            "transportType": "ipport"
+                            "transportId": 2,
+                            "transportCode": "www.test2.com:1029",
+                            "transportName": "www.test2.com:1029",
+                            "transportStatus": 1,
+                            "targetDomain": "www.test2.com",
+                            "targetPort": 443,
+                            "accessDomain": "www.test2.access.com",
+                            "accessPort": 443,
+                            "cName": "www.test2.access.com.shland.com",
+                            "useFtp": 0,
+                            "applicationProtocol": "sni",
+                            "useUdp": 0,
+                            "speedLimit": 0,
+                            "concurrentLimit": 0,
+                            "transportStrategy": "default",
+                            "carryClientIp": 0,
+                            "ipVersion": 0,
+                            "hasPsb": 0,
+                            "hasIcp": 0,
+                            "dedicatedIpService": 0
                           }
-                        ],
-                        "count": 2
+                        ]
                       },
                       "message": "Success",
-                      "status": 1
+                      "code": "0"
                     }
                   }
                 }
@@ -677,15 +729,15 @@
                       }
                     },
                     {
-                      "title": "InvalidUseStandardPort",
+                      "title": "InvalidApplicationProtocol",
                       "properties": {
                         "code": {
                           "type": "string",
-                          "description": "InvalidUseStandardPort"
+                          "description": "InvalidApplicationProtocol"
                         },
                         "message": {
                           "type": "string",
-                          "description": "The value of field ‘useStandardPort’ is invalid."
+                          "description": "The value of field ‘applicationProtocol’ is invalid."
                         },
                         "status": {
                           "$ref": "#/components/schemas/response.status"
@@ -735,10 +787,10 @@
                       "status": 1
                     }
                   },
-                  "InvalidUseStandardPort": {
+                  "InvalidApplicationProtocol": {
                     "value": {
-                      "code": "InvalidUseStandardPort",
-                      "message": "The value of field ‘useStandardPort’ is invalid.",
+                      "code": "InvalidApplicationProtocol",
+                      "message": "The value of field ‘applicationProtocol’ is invalid.",
                       "status": 1
                     }
                   }
@@ -986,26 +1038,50 @@
                   "accessPort": {
                     "$ref": "#/components/schemas/transport.accessPort"
                   },
-                  "useStandardPort": {
-                    "$ref": "#/components/schemas/transport.useStandardPort"
+                  "applicationProtocol": {
+                    "$ref": "#/components/schemas/transport.applicationProtocol"
                   },
                   "cName": {
                     "$ref": "#/components/schemas/transport.cName"
                   },
-                  "verifyPsb": {
-                    "$ref": "#/components/schemas/transport.verifyPsb"
+                  "useFtp": {
+                    "$ref": "#/components/schemas/transport.useFtp"
                   },
-                  "transportType": {
-                    "$ref": "#/components/schemas/transport.type"
+                  "useUdp": {
+                    "$ref": "#/components/schemas/transport.useUdp"
+                  },
+                  "hasPsb": {
+                    "$ref": "#/components/schemas/transport.hasPsb"
+                  },
+                  "transportStatus": {
+                    "$ref": "#/components/schemas/transport.status"
                   },
                   "ipVersion": {
                     "$ref": "#/components/schemas/transport.ipVersion"
                   },
-                  "userAccount": {
-                    "$ref": "#/components/schemas/transport.userAccount"
+                  "speedLimit": {
+                    "$ref": "#/components/schemas/transport.speedLimit"
                   },
-                  "userPwd": {
-                    "$ref": "#/components/schemas/transport.userPwd"
+                  "concurrentLimit": {
+                    "$ref": "#/components/schemas/transport.concurrentLimit"
+                  },
+                  "transportStrategy": {
+                    "$ref": "#/components/schemas/transport.transportStrategy"
+                  },
+                  "carryClientIp": {
+                    "$ref": "#/components/schemas/transport.carryClientIp"
+                  },
+                  "ipWhiteList": {
+                    "$ref": "#/components/schemas/transport.ipWhiteList"
+                  },
+                  "ipBlackList": {
+                    "$ref": "#/components/schemas/transport.ipBlackList"
+                  },
+                  "dedicatedIpService": {
+                    "$ref": "#/components/schemas/transport.dedicatedIpService"
+                  },
+                  "comments": {
+                    "$ref": "#/components/schemas/transport.comments"
                   }
                 },
                 "required": [
@@ -1013,8 +1089,7 @@
                   "targetPort",
                   "accessDomain",
                   "accessPort",
-                  "useStandardPort",
-                  "transportType"
+                  "applicationProtocol"
                 ]
               },
               "examples": {
@@ -1025,17 +1100,18 @@
                     "targetPort": 80,
                     "accessDomain": "example.access.com",
                     "accessPort": 80,
-                    "useStandardPort": "http",
+                    "applicationProtocol": "http",
                     "cName": "example.com",
-                    "verifyPsb": 0,
-                    "transportType": "ipport",
+                    "useFtp": 0,
+                    "useUdp": 0,
+                    "hasPsb": 0,
                     "ipVersion": 1
                   }
                 }
               }
             }
           },
-          "description": "Create a transport."
+          "description": "Create an ip-port transport."
         },
         "tags": [
           "Transports"
@@ -1086,7 +1162,7 @@
                   }
                 },
                 "examples": {
-                  "Ipport with empty useStandardPort": {
+                  "Ipport with empty applicationProtocol": {
                     "value": {
                       "code": "0",
                       "content": {
@@ -1100,7 +1176,7 @@
                         "cName": "access.domain.com",
                         "accessPort": 19999,
                         "useUdp": 0,
-                        "useStandardPort": "",
+                        "applicationProtocol": "",
                         "accessDomain": "test.domain.com",
                         "status": 1,
                         "speedLimit": 0,
@@ -1114,7 +1190,7 @@
                       "status": 1
                     }
                   },
-                  "Ipport with non-empty useStandardPort": {
+                  "Ipport with non-empty applicationProtocol": {
                     "value": {
                       "code": "0",
                       "content": {
@@ -1128,36 +1204,13 @@
                         "cName": "access.cname.com",
                         "accessPort": 80,
                         "useUdp": 0,
-                        "useStandardPort": "http",
+                        "applicationProtocol": "http",
                         "accessDomain": "access.domain.com,access1.domain.com",
                         "status": 1,
                         "speedLimit": 0,
                         "concurrentLimit": 0,
                         "transportStrategy": "topspeed",
                         "ipWhiteList": "192.168.1.0/26;192.168.10.1-192.168.10.100",
-                        "comments": ""
-                      },
-                      "message": "Success",
-                      "status": 1
-                    }
-                  },
-                  "vpn or socks5": {
-                    "value": {
-                      "code": "0",
-                      "content": {
-                        "transportId": 2,
-                        "transportCode": "user1",
-                        "transportType": "vpn",
-                        "transportName": "user1",
-                        "useFtp": 0,
-                        "cName": "access.domain.com",
-                        "userAccount": "user1",
-                        "userPwd": "123456",
-                        "status": 1,
-                        "speedLimit": 0,
-                        "concurrentLimit": 0,
-                        "transportStrategy": "topspeed",
-                        "ipWhiteList": "192.168.1.0/26;192.168.10.1-100",
                         "comments": ""
                       },
                       "message": "Success",
@@ -1853,7 +1906,7 @@
             }
           }
         },
-        "description": "Modify a transport according to transport ID. If the transport type is \"ipport\", then \"targetDomain\", \"targetPort\", \"transportName\", \"useFtp\", \"useUdp\", \"useStandardPort\", \"accessDomain\", \"status\", \"comments\", and \"ipWhiteList\" can be modified. If transport type of this transport is \"vpn\" or \"socks5\", then \"transportName\", \"useFtp\", \"userPwd\", \"status\", \"comments\", and \"ipWhiteList\" can be modified.",
+        "description": "Modify a transport according to transport ID. ",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
@@ -1880,9 +1933,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "transportType": {
-                    "$ref": "#/components/schemas/transport.type"
-                  },
                   "transportName": {
                     "$ref": "#/components/schemas/transport.name"
                   },
@@ -1898,34 +1948,49 @@
                   "cName    ": {
                     "$ref": "#/components/schemas/transport.cName"
                   },
-                  "userAccount": {
-                    "$ref": "#/components/schemas/transport.userAccount"
-                  },
-                  "userPwd": {
-                    "$ref": "#/components/schemas/transport.userPwd"
-                  },
                   "accessDomain": {
                     "$ref": "#/components/schemas/transport.accessDomain"
                   },
-                  "useStandardPort": {
-                    "$ref": "#/components/schemas/transport.useStandardPort"
+                  "accessPort": {
+                    "$ref": "#/components/schemas/transport.accessPort"
+                  },
+                  "applicationProtocol": {
+                    "$ref": "#/components/schemas/transport.applicationProtocol"
                   },
                   "ipWhiteList": {
                     "$ref": "#/components/schemas/transport.ipWhiteList"
                   },
+                  "ipBlackList": {
+                    "$ref": "#/components/schemas/transport.ipBlackList"
+                  },
                   "useUdp": {
                     "$ref": "#/components/schemas/transport.useUdp"
                   },
-                  "status": {
+                  "transportStatus": {
                     "$ref": "#/components/schemas/transport.status"
                   },
                   "comments": {
                     "$ref": "#/components/schemas/transport.comments"
+                  },
+                  "speedLimit": {
+                    "$ref": "#/components/schemas/transport.speedLimit"
+                  },
+                  "concurrentLimit": {
+                    "$ref": "#/components/schemas/transport.concurrentLimit"
+                  },
+                  "transportStrategy": {
+                    "$ref": "#/components/schemas/transport.transportStrategy"
+                  },
+                  "carryClientIp": {
+                    "$ref": "#/components/schemas/transport.carryClientIp"
+                  },
+                  "ipVersion": {
+                    "$ref": "#/components/schemas/transport.ipVersion"
                   }
                 }
               },
               "examples": {
-                "Ipport with empty useStandardPort": {
+                "Ipport with empty applicationProtocol": {
                   "value": {
                     "transportId": 1,
                     "transportCode": "test.domain.com:18888",
@@ -1937,14 +2002,14 @@
                     "cName": "access.domain.com",
                     "accessPort": 19999,
                     "useUdp": 0,
-                    "useStandardPort": "",
+                    "applicationProtocol": "",
                     "accessDomain": "test.domain.com",
                     "status": 1,
                     "ipWhiteList": "192.168.1.0/26;192.168.10.1-192.168.10.100",
                     "comments": ""
                   }
                 },
-                "Ipport with non-empty useStandardPort": {
+                "Ipport with non-empty applicationProtocol": {
                   "value": {
                     "transportId": 3,
                     "transportCode": "test-2.domain.com:80",
@@ -1956,7 +2021,7 @@
                     "cName": "access.cname.com",
                     "accessPort": 80,
                     "useUdp": 0,
-                    "useStandardPort": "http",
+                    "applicationProtocol": "http",
                     "accessDomain": "access.domain.com",
                     "status": 1,
                     "speedLimit": 0,
@@ -1964,21 +2029,6 @@
                     "transportStrategy": "topspeed",
                     "ipWhiteList": "192.168.1.0/26;192.168.10.1-192.168.10.100",
                     "comments": ""
-                  }
-                },
-                "vpn or socks5": {
-                  "value": {
-                    "transportId": 2,
-                    "transportCode": "user1",
-                    "transportType": "vpn",
-                    "transportName": "user1",
-                    "useFtp": 0,
-                    "cName": "access.domain.com",
-                    "userAccount": "user1",
-                    "userPwd": "123456",
-                    "status": 1,
-                    "ipWhiteList": "192.168.10/26;192.168.10.1-100",
-                    "comments": " "
                   }
                 }
               }
@@ -2401,8 +2451,8 @@
                               "deployId": {
                                 "$ref": "#/components/schemas/transport.deployId"
                               },
-                              "deployDt": {
-                                "type": "integer"
+                              "deployDate": {
+                                "type": "string"
                               },
                               "transportCode": {
                                 "$ref": "#/components/schemas/transport.code"
@@ -2437,8 +2487,8 @@
                               "useUdp": {
                                 "$ref": "#/components/schemas/transport.useUdp"
                               },
-                              "useStandardPort": {
-                                "$ref": "#/components/schemas/transport.useStandardPort"
+                              "applicationProtocol": {
+                                "$ref": "#/components/schemas/transport.applicationProtocol"
                               },
                               "accessDomain": {
                                 "$ref": "#/components/schemas/transport.accessDomain"
@@ -2455,20 +2505,20 @@
                               "ipWhiteList": {
                                 "$ref": "#/components/schemas/transport.ipWhiteList"
                               },
-                              "verifyIcp": {
-                                "$ref": "#/components/schemas/transport.verifyIcp"
+                              "hasIcp": {
+                                "$ref": "#/components/schemas/transport.hasIcp"
                               },
-                              "verifyPsb": {
-                                "$ref": "#/components/schemas/transport.verifyPsb"
+                              "hasPsb": {
+                                "$ref": "#/components/schemas/transport.hasPsb"
                               },
-                              "vip": {
-                                "$ref": "#/components/schemas/transport.vip"
+                              "dedicatedIpService": {
+                                "$ref": "#/components/schemas/transport.dedicatedIpService"
                               },
                               "ipVersion": {
                                 "$ref": "#/components/schemas/transport.ipVersion"
                               },
-                              "exitIp": {
-                                "$ref": "#/components/schemas/transport.exitIp"
+                              "shieldHost": {
+                                "$ref": "#/components/schemas/transport.shieldHost"
                               },
                               "carryClientIp": {
                                 "$ref": "#/components/schemas/transport.carryClientIp"
@@ -2497,7 +2547,7 @@
                             "cName": "0202-1.access.com.506561.shland.com",
                             "carryClientIp": 0,
                             "concurrentLimit": 0,
-                            "deployDt": 1612254378000,
+                            "deployDate": "2020-01-01 12:01:23",
                             "ipBlackList": "",
                             "ipVersion": 1,
                             "ipWhiteList": "",
@@ -2511,10 +2561,10 @@
                             "transportStrategy": "topspeed",
                             "transportStrategyNam": "Default",
                             "useFtp": 0,
-                            "useStandardPort": "http",
+                            "applicationProtocol": "http",
                             "useUdp": 0,
-                            "verifyIcp": 0,
-                            "verifyPsb": 0
+                            "hasIcp": 0,
+                            "hasPsb": 0
                           }
                         ],
                         "count": 1
@@ -3771,7 +3821,8 @@
       "transport.type": {
         "title": "transportType",
         "type": "string",
-        "description": "Transport type, i.e., \"ipport\", \"vpn\", or \"socks5\"."
+        "description": "Transport type, i.e., \"ipport\", \"vpn\" or \"socks5\".\nFor NG API, we only support ip-port transport.\nThis field is for internal use. For public, it is invisible and will be set to default value \"ipport\".",
+        "x-internal": true
       },
       "transport.name": {
         "title": "transportName",
@@ -3807,7 +3858,7 @@
       "transport.accessPort": {
         "title": "accessPort",
         "type": "integer",
-        "description": "Access port of accelerated application for the public users. When transport type is 'ipport', the HDT API server will return an available access port. When useStandardPort is \"http\", this parameter will be 80; when useStandardPort is \"sni\" this parameter will be 443."
+        "description": "Access port of accelerated application for the public users. When transport type is 'ipport', the HDT API server will return an available access port. When applicationProtocol is \"http\", this parameter will be 80; when applicationProtocol is \"sni\" this parameter will be 443."
       },
       "transport.userAccount": {
         "title": "userAccount",
@@ -3830,15 +3881,15 @@
         ],
         "default": 0
       },
-      "transport.useStandardPort": {
-        "title": "useStandardPort",
+      "transport.applicationProtocol": {
+        "title": "applicationProtocol",
         "type": "string",
-        "description": "Type of protocol that supports the port-sharing feature, such as \"http\", \"sni\". It is valid only for transport type \"ipport\". The valid values are fetched from the API \"hdt/transport-protocol-types\" and default value is empty string."
+        "description": "Type of protocol that supports the port-sharing feature, such as \"http\", \"sni\". It is valid only for transport type \"ipport\"."
       },
       "transport.accessDomain": {
         "title": "accessDomain",
         "type": "string",
-        "description": "Access domain of accelerated application for the public users. The HDT API supports multiple domains separated by commas and wildcard to match multiple subdomains. For example:\naaa.domain1.com,*.domain2.com,*.domain3.org.cn\n\nNote:\n1. The HDT API supports up to one level of subdomains for \"accessDomain\" field;\n2. \"accessDomain\" can't be empty; \n3. When \"useStandardPort\" is not empty, the combination of \"accessDomain\" and \"useStandardPort\" field must be globally unique;\n4. When \"useStandardPort\" is empty, the value of \"accessDomain\" is unique to each customer. Transports belong to the same customer can share \"accessDomain\". ",
+        "description": "Access domain of accelerated application for the public users. The HDT API supports multiple domains separated by commas and wildcard to match multiple subdomains. For example:\naaa.domain1.com,*.domain2.com,*.domain3.org.cn\n\nNote:\n1. The HDT API supports up to one level of subdomains for \"accessDomain\" field;\n2. \"accessDomain\" can't be empty; \n3. When \"applicationProtocol\" is not empty, the combination of \"accessDomain\" and \"applicationProtocol\" field must be globally unique;\n4. When \"applicationProtocol\" is empty, the value of \"accessDomain\" is unique to each customer. Transports belong to the same customer can share \"accessDomain\". ",
         "x-examples": {
           "example-1": {
             "accessDomain": "aaa.domain1.com"
@@ -3941,11 +3992,11 @@
           "useFtp": {
             "$ref": "#/components/schemas/transport.useFtp"
           },
-          "useStandardPort": {
-            "$ref": "#/components/schemas/transport.useStandardPort"
+          "applicationProtocol": {
+            "$ref": "#/components/schemas/transport.applicationProtocol"
           },
-          "exitIp": {
-            "$ref": "#/components/schemas/transport.exitIp"
+          "shieldHost": {
+            "$ref": "#/components/schemas/transport.shieldHost"
           },
           "useUdp": {
             "$ref": "#/components/schemas/transport.useUdp"
@@ -3962,23 +4013,23 @@
           "carryClientIp": {
             "$ref": "#/components/schemas/transport.carryClientIp"
           },
-          "userAccount": {
-            "$ref": "#/components/schemas/transport.userAccount"
-          },
-          "userPwd": {
-            "$ref": "#/components/schemas/transport.userPwd"
-          },
           "ipVersion": {
             "$ref": "#/components/schemas/transport.ipVersion"
           },
-          "verifyPsb": {
-            "$ref": "#/components/schemas/transport.verifyPsb"
+          "hasPsb": {
+            "$ref": "#/components/schemas/transport.hasPsb"
           },
-          "verifyIcp": {
-            "$ref": "#/components/schemas/transport.verifyIcp"
+          "hasIcp": {
+            "$ref": "#/components/schemas/transport.hasIcp"
           },
-          "vip": {
-            "$ref": "#/components/schemas/transport.vip"
+          "dedicatedIpService": {
+            "$ref": "#/components/schemas/transport.dedicatedIpService"
+          },
+          "ipWhiteList": {
+            "$ref": "#/components/schemas/transport.ipWhiteList"
+          },
+          "ipBlackList": {
+            "$ref": "#/components/schemas/transport.ipBlackList"
           },
           "comments": {
             "$ref": "#/components/schemas/transport.comments"
@@ -4217,9 +4268,9 @@
         ],
         "default": 0
       },
-      "transport.verifyPsb": {
+      "transport.hasPsb": {
         "type": "integer",
-        "title": "verifyPsb",
+        "title": "hasPsb",
         "description": "Indicates whether the access domain has PSB Beian in China. 0: false, 1: true.",
         "enum": [
           0,
@@ -4232,8 +4283,8 @@
         "type": "integer",
         "description": "Shows what IP version will be supported. 1: IPv4, 2: IPv6, 3: IPv4+IPv6."
       },
-      "transport.exitIp": {
-        "title": "exitIp",
+      "transport.shieldHost": {
+        "title": "shieldHost",
         "type": "string",
         "description": "Shield ip or domain"
       },
@@ -4242,15 +4293,20 @@
         "description": "Transport strategy.\n\nDefault: Low cost and high efficiency. Interactive: For applications requiring better response times, HDT internal routing is enabled in this mode. High Concurrency：Suitable for small data transfers and high concurrency. Normally, concurrency is considered to be high when its value exceeds 1,000 connections and low when its value is below 100 connections. High Real-time: Suitable for applications delivering small data with low concurrency (fewer than 100 connections) and requiring optimized response times.",
         "type": "string"
       },
-      "transport.vip": {
-        "title": "vip",
+      "transport.dedicatedIpService": {
+        "title": "dedicatedIpService",
         "type": "integer",
         "description": "Dedicated IP Service. 0: no, 1: yes."
       },
-      "transport.verifyIcp": {
-        "title": "verifyIcp",
+      "transport.hasIcp": {
+        "title": "hasIcp",
         "description": "Indicates whether the access domain has ICP Beian in China. 0: false, 1: true.",
         "type": "integer"
+      },
+      "transport.ipBlackList": {
+        "title": "ipBlackList",
+        "description": "IP address black-list. Valid values are IP address, IP address segment, IP address range, or the combination of them separated by semicolons. Spaces, tabs or line breaks can only appear in front of or behind IP address. The default value is a blank string.\n\nFor example:\nvalid:\n 11.11.12.3/20; 2.3.4.5-2.3.4.10;\n21.12.45.18\n\nInvalid:\n 11.11. 12.3/20;  2.3.4.5-2.3.\n4.10;\n21.12.45.18",
+        "type": "string"
       }
     },
     "parameters": {
