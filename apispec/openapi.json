@@ -167,7 +167,7 @@
                             "concurrentLimit": 0,
                             "transportStrategy": "default",
                             "carryClientIp": 0,
-                            "ipVersion": 0,
+                            "ipVersion": 1,
                             "hasPsb": 0,
                             "hasIcp": 0,
                             "dedicatedIpService": 0
@@ -189,7 +189,7 @@
                             "concurrentLimit": 0,
                             "transportStrategy": "default",
                             "carryClientIp": 0,
-                            "ipVersion": 0,
+                            "ipVersion": 1,
                             "hasPsb": 0,
                             "hasIcp": 0,
                             "dedicatedIpService": 0
@@ -391,43 +391,6 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
-            "headers": {
-              "Qtl-Request-Id": {
-                "$ref": "#/components/parameters/Qtl-Request-Id"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "string",
-                      "description": "NoSuchTransportType"
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "The specified transport type does not exist."
-                    },
-                    "status": {
-                      "$ref": "#/components/schemas/response.status"
-                    }
-                  }
-                },
-                "examples": {
-                  "NoSuchTransportType": {
-                    "value": {
-                      "code": "NoSuchTransportType",
-                      "message": "The specified transport type does not exist.",
-                      "status": 1
-                    }
-                  }
-                }
-              }
-            }
-          },
           "500": {
             "description": "Internal Server Error",
             "headers": {
@@ -488,7 +451,7 @@
             "description": "OK",
             "headers": {
               "Qtl-Request-Id": {
-                "$ref": "#/components/parameters/Qtl-Request-Id"
+                "in": "header"
               }
             },
             "content": {
@@ -556,6 +519,9 @@
                 }
               }
             }
+          },
+          "201": {
+            "description": "Created"
           },
           "400": {
             "description": "Bad Request",
@@ -681,22 +647,6 @@
                       }
                     },
                     {
-                      "title": "UserAccountAlreadyExists",
-                      "properties": {
-                        "code": {
-                          "type": "string",
-                          "description": "UserAccountAlreadyExists"
-                        },
-                        "message": {
-                          "type": "string",
-                          "description": "User account already exists."
-                        },
-                        "status": {
-                          "$ref": "#/components/schemas/response.status"
-                        }
-                      }
-                    },
-                    {
                       "title": "InvalidCNameSuffix",
                       "properties": {
                         "code": {
@@ -738,6 +688,22 @@
                         "message": {
                           "type": "string",
                           "description": "The value of field ‘applicationProtocol’ is invalid."
+                        },
+                        "status": {
+                          "$ref": "#/components/schemas/response.status"
+                        }
+                      }
+                    },
+                    {
+                      "title": "ApplicationProtocolIsRequired",
+                      "properties": {
+                        "code": {
+                          "type": "string",
+                          "description": "ApplicationProtocolIsRequired"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "The value of field 'applicationProtocol' is required."
                         },
                         "status": {
                           "$ref": "#/components/schemas/response.status"
@@ -798,43 +764,6 @@
               }
             }
           },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "string",
-                      "description": "UnAuthorized"
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Invalid authentication / authorization credentials."
-                    },
-                    "status": {
-                      "$ref": "#/components/schemas/response.status"
-                    }
-                  }
-                },
-                "examples": {
-                  "UnAuthorized": {
-                    "value": {
-                      "code": "UnAuthorized",
-                      "message": "Invalid authentication / authorization credentials.",
-                      "status": 1
-                    }
-                  }
-                }
-              }
-            },
-            "headers": {
-              "Qtl-Request-Id": {
-                "$ref": "#/components/parameters/Qtl-Request-Id"
-              }
-            }
-          },
           "403": {
             "description": "Forbidden",
             "headers": {
@@ -855,26 +784,7 @@
                         },
                         "message": {
                           "type": "string",
-                          "description": "This user is not allowed to perform this request."
-                        },
-                        "status": {
-                          "$ref": "#/components/schemas/response.status"
-                        }
-                      }
-                    },
-                    {
-                      "title": "ResourceNoAccess",
-                      "properties": {
-                        "code": {
-                          "type": "string",
-                          "description": "ResourceNoAccess"
-                        },
-                        "message": {
-                          "type": "string",
-                          "description": "Read only customer can not modify resources."
-                        },
-                        "status": {
-                          "$ref": "#/components/schemas/response.status"
+                          "description": "Please enter valid credentials."
                         }
                       }
                     }
@@ -904,22 +814,6 @@
               "application/json": {
                 "schema": {
                   "oneOf": [
-                    {
-                      "title": "NoSuchTransportType",
-                      "properties": {
-                        "code": {
-                          "type": "string",
-                          "description": "NoSuchTransportType"
-                        },
-                        "message": {
-                          "type": "string",
-                          "description": "The specified transport type does not exist."
-                        },
-                        "status": {
-                          "$ref": "#/components/schemas/response.status"
-                        }
-                      }
-                    },
                     {
                       "title": "DistributeConfigFailed",
                       "properties": {
@@ -1038,11 +932,11 @@
                   "accessPort": {
                     "$ref": "#/components/schemas/transport.accessPort"
                   },
-                  "applicationProtocol": {
-                    "$ref": "#/components/schemas/transport.applicationProtocol"
-                  },
                   "cName": {
                     "$ref": "#/components/schemas/transport.cName"
+                  },
+                  "applicationProtocol": {
+                    "$ref": "#/components/schemas/transport.applicationProtocol"
                   },
                   "useFtp": {
                     "$ref": "#/components/schemas/transport.useFtp"
@@ -1050,7 +944,7 @@
                   "useUdp": {
                     "$ref": "#/components/schemas/transport.useUdp"
                   },
-                  "hasPsb": {
+                  "hasPSB": {
                     "$ref": "#/components/schemas/transport.hasPsb"
                   },
                   "transportStatus": {
@@ -2478,12 +2372,6 @@
                               "accessPort": {
                                 "$ref": "#/components/schemas/transport.accessPort"
                               },
-                              "userAccount": {
-                                "$ref": "#/components/schemas/transport.userAccount"
-                              },
-                              "userPwd": {
-                                "$ref": "#/components/schemas/transport.userPwd"
-                              },
                               "useUdp": {
                                 "$ref": "#/components/schemas/transport.useUdp"
                               },
@@ -2500,15 +2388,15 @@
                                 "$ref": "#/components/schemas/transport.concurrentLimit"
                               },
                               "transportStrategy": {
-                                "$ref": "#/components/schemas/transport.strategy"
+                                "$ref": "#/components/schemas/transport.transportStrategy"
                               },
                               "ipWhiteList": {
                                 "$ref": "#/components/schemas/transport.ipWhiteList"
                               },
-                              "hasIcp": {
+                              "hasICP": {
                                 "$ref": "#/components/schemas/transport.hasIcp"
                               },
-                              "hasPsb": {
+                              "hasPSB": {
                                 "$ref": "#/components/schemas/transport.hasPsb"
                               },
                               "dedicatedIpService": {
@@ -3804,6 +3692,112 @@
           }
         ]
       }
+    },
+    "/info": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Qtl-Request-Id": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "A string automatically generated by the API server to identify each request."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "$ref": "#/components/schemas/response.code"
+                    },
+                    "status": {
+                      "$ref": "#/components/schemas/response.status"
+                    },
+                    "message": {
+                      "$ref": "#/components/schemas/response.message"
+                    },
+                    "content": {
+                      "type": "object",
+                      "properties": {
+                        "version": {
+                          "type": "string",
+                          "description": "The version of the current API build. It’s format is ‘release-{yyyymmdd}’"
+                        },
+                        "artifact": {
+                          "type": "string",
+                          "description": "The artifact of the current build."
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "The name of the API artifact."
+                        },
+                        "group": {
+                          "type": "string",
+                          "description": "The group name of current API build."
+                        },
+                        "time": {
+                          "type": "string",
+                          "description": "The date time when the current version is built."
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "status": 1,
+                      "message": "Success",
+                      "code": "0",
+                      "content": {
+                        "version": "release-20211108",
+                        "artifact": "service",
+                        "name": "HDTApi-Service",
+                        "group": "com.quantil.hdt",
+                        "time": "2021-11-08 16:34:40 GMT"
+                      }
+                    }
+                  }
+                }
+              },
+              "text/html": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-info",
+        "description": "To get the current api version, including detailed build information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Authorization"
+          },
+          {
+            "$ref": "#/components/parameters/Date"
+          },
+          {
+            "$ref": "#/components/parameters/Content-Type"
+          },
+          {
+            "$ref": "#/components/parameters/Accept-Encoding"
+          },
+          {
+            "$ref": "#/components/parameters/Accept"
+          },
+          {
+            "$ref": "#/components/parameters/On-Behalf-Of"
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -3832,7 +3826,7 @@
       "transport.targetDomain": {
         "title": "targetDomain",
         "type": "string",
-        "description": "A domain or IP address referring to the origin server of your application. HDT will access this domain/IP address to get data from origin server. When transport type is \"ipport\", this parameter is valid and required. A domain name's length can be up to 250 characters."
+        "description": "A domain or IP address referring to the origin server of your application. HDT will access this domain/IP address to get data from origin server. When transport type is \"ipport\", this parameter is valid and required. A domain name's length can be up to 256 characters."
       },
       "transport.targetPort": {
         "title": "targetPort",
@@ -3860,17 +3854,6 @@
         "type": "integer",
         "description": "Access port of accelerated application for the public users. When transport type is 'ipport', the HDT API server will return an available access port. When applicationProtocol is \"http\", this parameter will be 80; when applicationProtocol is \"sni\" this parameter will be 443."
       },
-      "transport.userAccount": {
-        "title": "userAccount",
-        "type": "string",
-        "description": "User account for accessing the HDT system when transport type is \"vpn\" or \"socks5\".",
-        "x-examples": {}
-      },
-      "transport.userPwd": {
-        "title": "userPwd",
-        "type": "string",
-        "description": "User password for accessing the HDT system when transport type is \"vpn\" or \"socks5\"."
-      },
       "transport.useUdp": {
         "type": "integer",
         "title": "useUdp",
@@ -3882,9 +3865,13 @@
         "default": 0
       },
       "transport.applicationProtocol": {
-        "title": "applicationProtocol",
         "type": "string",
-        "description": "Type of protocol that supports the port-sharing feature, such as \"http\", \"sni\". It is valid only for transport type \"ipport\"."
+        "title": "applicationProtocol",
+        "description": "Type of protocol that supports the port-sharing feature, such as \"http\", \"sni\". It is valid only for transport type \"ipport\".",
+        "enum": [
+          "http",
+          "sni"
+        ]
       },
       "transport.accessDomain": {
         "title": "accessDomain",
@@ -3921,15 +3908,10 @@
         "type": "integer",
         "description": "Number of concurrent connections allowed for the transport. It must be an integer between 0 and 32768. 0 means there is no limit. Default value is 0."
       },
-      "transport.strategy": {
-        "title": "transportStrategy",
-        "type": "string",
-        "description": "Transport strategy.\n\nDefault: Low cost and high efficiency.\nInteractive: For applications requiring better response times, HDT internal routing is enabled in this mode.\nHigh Concurrency：Suitable for small data transfers and high concurrency. Normally, concurrency is considered to be high when its value exceeds 1,000 connections and low when its value is below 100 connections.\nHigh Real-time: Suitable for applications delivering small data with low concurrency (fewer than 100 connections) and requiring optimized response times."
-      },
       "transport.ipWhiteList": {
         "type": "string",
         "title": "ipWhiteList",
-        "description": "IP address white-list. Valid values are IP address, IP address segment, IP address range, or the combination of them separated by semicolons. Spaces, tabs or line breaks can only appear in front of or behind IP address. The default value is a blank string.\n\nFor example:\nvalid:\n 11.11.12.3/20; 2.3.4.5-2.3.4.10;\n21.12.45.18\n\nInvalid:\n 11.11. 12.3/20;  2.3.4.5-2.3.\n4.10;\n21.12.45.18",
+        "description": "IP address white-list. Valid values are IP address, IP address segment, IP address range, or the combination of them separated by semicolons. Spaces, tabs or line breaks can only appear in front of or behind IP address. The default value is a blank string.\nThe version of IP in this list should keep the same with the one specified in field 'ipVersion'. If the field 'ipVersion' is empty, then IPv4 should be used by default.\n\nFor example:\nvalid:\n 11.11.12.3/20; 2.3.4.5-2.3.4.10;\n21.12.45.18\n\nInvalid:\n 11.11. 12.3/20;  2.3.4.5-2.3.\n4.10;\n21.12.45.18",
         "x-examples": {
           "example-1": {
             "ipWhiteList": "11.11.12.3/20;  2.3.4.5-2.3.4.10; 21.12.45.18"
@@ -4016,10 +3998,10 @@
           "ipVersion": {
             "$ref": "#/components/schemas/transport.ipVersion"
           },
-          "hasPsb": {
+          "hasPSB": {
             "$ref": "#/components/schemas/transport.hasPsb"
           },
-          "hasIcp": {
+          "hasICP": {
             "$ref": "#/components/schemas/transport.hasIcp"
           },
           "dedicatedIpService": {
@@ -4244,7 +4226,7 @@
         "x-examples": {
           "example-1": {}
         },
-        "description": "0 or 1 to indicate whether response contains error or not. If 0, the request is handled successfully, and the expected result will be contained in 'content' field. Else the 'message' field will show the error details."
+        "description": "0 or 1 to indicate whether response contains error or not. If 1, the request is handled successfully, and the expected result will be contained in 'content' field. Else the 'message' field will show the error details."
       },
       "response.message": {
         "title": "message",
@@ -4270,7 +4252,7 @@
       },
       "transport.hasPsb": {
         "type": "integer",
-        "title": "hasPsb",
+        "title": "hasPSB",
         "description": "Indicates whether the access domain has PSB Beian in China. 0: false, 1: true.",
         "enum": [
           0,
@@ -4279,9 +4261,14 @@
         "default": 0
       },
       "transport.ipVersion": {
-        "title": "ipVersion",
         "type": "integer",
-        "description": "Shows what IP version will be supported. 1: IPv4, 2: IPv6, 3: IPv4+IPv6."
+        "title": "ipVersion",
+        "description": "Shows what IP version will be supported. 1: IPv4, 2: IPv6, 3: IPv4+IPv6.",
+        "enum": [
+          1,
+          2,
+          3
+        ]
       },
       "transport.shieldHost": {
         "title": "shieldHost",
@@ -4289,23 +4276,34 @@
         "description": "Shield ip or domain"
       },
       "transport.transportStrategy": {
+        "type": "string",
         "title": "transportStrategy",
-        "description": "Transport strategy.\n\nDefault: Low cost and high efficiency. Interactive: For applications requiring better response times, HDT internal routing is enabled in this mode. High Concurrency：Suitable for small data transfers and high concurrency. Normally, concurrency is considered to be high when its value exceeds 1,000 connections and low when its value is below 100 connections. High Real-time: Suitable for applications delivering small data with low concurrency (fewer than 100 connections) and requiring optimized response times.",
-        "type": "string"
+        "description": "Transport strategy.\n\nIts value enumerations:\ntopspeed: Default,\ninteract: Interactive,\nhugeslow: High Concurrency,\ntopquick: High Real-time,\nuniform: Big File.\n\nDefault: Low cost and high efficiency.\nInteractive: For applications requiring better response times, HDT internal routing is enabled in this mode.\nHigh Concurrency: Suitable for small data transfers and high concurrency. Normally, concurrency is considered to be high when its value exceeds 1,000 connections and low when its value is below 100 connections.\nHigh Real-time: Suitable for applications delivering small data with low concurrency (fewer than 100 connections) and requiring optimized response times.\nBig File: For big file tranfer.",
+        "enum": [
+          "topspeed",
+          "interact",
+          "hugeslow",
+          "topquick",
+          "uniform"
+        ]
       },
       "transport.dedicatedIpService": {
-        "title": "dedicatedIpService",
         "type": "integer",
-        "description": "Dedicated IP Service. 0: no, 1: yes."
+        "title": "dedicatedIpService",
+        "description": "Indicates whether to use dedicated IP Service, 1 means true while 0 means false. It can be set as true only when the application protocol of transport is other than 'http' or 'sni'.",
+        "enum": [
+          0,
+          1
+        ]
       },
       "transport.hasIcp": {
-        "title": "hasIcp",
-        "description": "Indicates whether the access domain has ICP Beian in China. 0: false, 1: true.",
-        "type": "integer"
+        "type": "integer",
+        "title": "hasICP",
+        "description": "Indicates whether the access domain has ICP Beian in China. 0: false, 1: true."
       },
       "transport.ipBlackList": {
         "title": "ipBlackList",
-        "description": "IP address black-list. Valid values are IP address, IP address segment, IP address range, or the combination of them separated by semicolons. Spaces, tabs or line breaks can only appear in front of or behind IP address. The default value is a blank string.\n\nFor example:\nvalid:\n 11.11.12.3/20; 2.3.4.5-2.3.4.10;\n21.12.45.18\n\nInvalid:\n 11.11. 12.3/20;  2.3.4.5-2.3.\n4.10;\n21.12.45.18",
+        "description": "IP address black-list. Valid values are IP address, IP address segment, IP address range, or the combination of them separated by semicolons. Spaces, tabs or line breaks can only appear in front of or behind IP address. The default value is a blank string.\nThe version of IP in this list should keep the same with the one specified in field 'ipVersion'. If the field 'ipVersion' is empty, then IPv4 should be used by default.\n\nFor example:\nvalid:\n 11.11.12.3/20; 2.3.4.5-2.3.4.10;\n21.12.45.18\n\nInvalid:\n 11.11. 12.3/20;  2.3.4.5-2.3.\n4.10;\n21.12.45.18",
         "type": "string"
       }
     },
