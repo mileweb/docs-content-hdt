@@ -15,15 +15,14 @@ To add a new transport, click the **Add New Transport** button at the top right 
 
 ## Settings
 ![null](</docs/resources/images/transports/add-transport-settings-1.png>)
-![null](</docs/resources/images/transports/add-transport-settings-2.png>)
 
 | Fields               | Description   |
 | -------------------- | ------------- |
-| Fixed Shields        | The shield servers (the HDT servers that connection to your origin servers) will be fixed. |
-| Dedicated IP Service | The IP addresses for serving the transport is dedicated to the CNAME only. The option will NOT be applicable if you select HTTP or HTTPS as the Application Protocol. To use <strong> Dedicated IP Service </strong> for your HTTP/HTTPS applications, select Others as the Application Protocol.|
+| Fixed Shields        | If select Yes, The shield servers (the HDT servers that connection to your origin servers) will be fixed, and you can choose the region of shield servers to be fixed in the drop-down list. |
+| Dedicated IP Service | If select Yes, The IP addresses for serving the transport will be dedicated to the CNAME only. The service will NOT be applicable if Application Protocol is HTTP or HTTPS. To use Dedicated IP Service for your HTTP/HTTPS applications, select Others as Application Protocol in Basic Info step.|
 
 
-![null](</docs/resources/images/transports/add-transport-settings-3.png>)
+![null](</docs/resources/images/transports/add-transport-settings-2.png>)
 
 | Fields               | Description   |
 | -------------------- | ------------- |
