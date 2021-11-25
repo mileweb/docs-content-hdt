@@ -165,7 +165,7 @@
                             "useUdp": 0,
                             "speedLimit": 0,
                             "concurrentLimit": 0,
-                            "transportStrategy": "default",
+                            "transportStrategy": "interact",
                             "carryClientIp": 0,
                             "ipVersion": 1,
                             "hasPsb": 0,
@@ -187,7 +187,7 @@
                             "useUdp": 0,
                             "speedLimit": 0,
                             "concurrentLimit": 0,
-                            "transportStrategy": "default",
+                            "transportStrategy": "uniform",
                             "carryClientIp": 0,
                             "ipVersion": 1,
                             "hasPsb": 0,
@@ -317,43 +317,6 @@
               }
             }
           },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "string",
-                      "description": "AccessDenied"
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "This user is not allowed to perform this request."
-                    },
-                    "status": {
-                      "$ref": "#/components/schemas/response.status"
-                    }
-                  }
-                },
-                "examples": {
-                  "AccessDenied": {
-                    "value": {
-                      "code": "AccessDenied",
-                      "message": "This user is not allowed to perform this request.",
-                      "status": 1
-                    }
-                  }
-                }
-              }
-            },
-            "headers": {
-              "Qtl-Request-Id": {
-                "$ref": "#/components/parameters/Qtl-Request-Id"
-              }
-            }
-          },
           "403": {
             "description": "Forbidden",
             "headers": {
@@ -372,10 +335,7 @@
                     },
                     "message": {
                       "type": "string",
-                      "description": "This user is not allowed to perform this request."
-                    },
-                    "status": {
-                      "$ref": "#/components/schemas/response.status"
+                      "description": "Please enter valid credentials."
                     }
                   }
                 },
@@ -383,8 +343,7 @@
                   "AccessDenied": {
                     "value": {
                       "code": "AccessDenied",
-                      "message": "This user is not allowed to perform this request.",
-                      "status": 1
+                      "message": "Please enter valid credentials."
                     }
                   }
                 }
@@ -795,8 +754,7 @@
                   "AccessDenied": {
                     "value": {
                       "code": "AccessDenied",
-                      "message": "This user is not allowed to perform this request.",
-                      "status": 1
+                      "message": "Please enter valid credentials."
                     }
                   }
                 }
@@ -1056,35 +1014,7 @@
                   }
                 },
                 "examples": {
-                  "Ipport with empty applicationProtocol": {
-                    "value": {
-                      "code": "0",
-                      "content": {
-                        "transportId": 1,
-                        "transportCode": "test.domain.com:18888",
-                        "transportType": "ipport",
-                        "transportName": "test.domain.com:18888",
-                        "targetDomain": "test.domain.com",
-                        "targetPort": 18888,
-                        "useFtp": 0,
-                        "cName": "access.domain.com",
-                        "accessPort": 19999,
-                        "useUdp": 0,
-                        "applicationProtocol": "",
-                        "accessDomain": "test.domain.com",
-                        "status": 1,
-                        "speedLimit": 0,
-                        "concurrentLimit": 0,
-                        "transportStrategy": "topspeed",
-                        "ipWhiteList": "192.168.1.0/26;192.168.10.1-192.168.10.100",
-                        "carryClientIp": 0,
-                        "comments": ""
-                      },
-                      "message": "Success",
-                      "status": 1
-                    }
-                  },
-                  "Ipport with non-empty applicationProtocol": {
+                  "http application": {
                     "value": {
                       "code": "0",
                       "content": {
@@ -1212,43 +1142,6 @@
               }
             }
           },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "string",
-                      "description": "UnAuthorized"
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Invalid authentication / authorization credentials."
-                    },
-                    "status": {
-                      "$ref": "#/components/schemas/response.status"
-                    }
-                  }
-                },
-                "examples": {
-                  "Unauthorized": {
-                    "value": {
-                      "code": "Unauthorized",
-                      "message": "Invalid authentication / authorization credentials.",
-                      "status": 1
-                    }
-                  }
-                }
-              }
-            },
-            "headers": {
-              "Qtl-Request-Id": {
-                "$ref": "#/components/parameters/Qtl-Request-Id"
-              }
-            }
-          },
           "403": {
             "description": "Forbidden",
             "headers": {
@@ -1267,10 +1160,7 @@
                     },
                     "message": {
                       "type": "string",
-                      "description": "This user is not allowed to perform this request."
-                    },
-                    "status": {
-                      "$ref": "#/components/schemas/response.status"
+                      "description": "Please enter valid credentials."
                     }
                   }
                 },
@@ -1278,8 +1168,7 @@
                   "AccessDenied": {
                     "value": {
                       "code": "AccessDenied",
-                      "message": "This user is not allowed to perform this request.",
-                      "status": 1
+                      "message": "Please enter valid credentials."
                     }
                   }
                 }
@@ -1602,43 +1491,6 @@
               }
             }
           },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "string",
-                      "description": "UnAuthorized"
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Invalid authentication / authorization credentials."
-                    },
-                    "status": {
-                      "$ref": "#/components/schemas/response.status"
-                    }
-                  }
-                },
-                "examples": {
-                  "UnAuthorized": {
-                    "value": {
-                      "code": "UnAuthorized",
-                      "message": "Invalid authentication / authorization credentials.",
-                      "status": 1
-                    }
-                  }
-                }
-              }
-            },
-            "headers": {
-              "Qtl-Request-Id": {
-                "$ref": "#/components/parameters/Qtl-Request-Id"
-              }
-            }
-          },
           "403": {
             "description": "Forbidden",
             "headers": {
@@ -1659,10 +1511,7 @@
                         },
                         "message": {
                           "type": "string",
-                          "description": "This user is not allowed to perform this request."
-                        },
-                        "status": {
-                          "$ref": "#/components/schemas/response.status"
+                          "description": "Please enter valid credentials."
                         }
                       }
                     },
@@ -1689,8 +1538,7 @@
                   "AccessDenied": {
                     "value": {
                       "code": "AccessDenied",
-                      "message": "This user is not allowed to perform this request.",
-                      "status": 1
+                      "message": "Please enter valid credentials."
                     }
                   }
                 }
@@ -1884,26 +1732,7 @@
                 }
               },
               "examples": {
-                "Ipport with empty applicationProtocol": {
-                  "value": {
-                    "transportId": 1,
-                    "transportCode": "test.domain.com:18888",
-                    "transportType": "ipport",
-                    "transportName": "test.domain.com:18888",
-                    "targetDomain": "test.domain.com",
-                    "targetPort": 18888,
-                    "useFtp": 0,
-                    "cName": "access.domain.com",
-                    "accessPort": 19999,
-                    "useUdp": 0,
-                    "applicationProtocol": "",
-                    "accessDomain": "test.domain.com",
-                    "status": 1,
-                    "ipWhiteList": "192.168.1.0/26;192.168.10.1-192.168.10.100",
-                    "comments": ""
-                  }
-                },
-                "Ipport with non-empty applicationProtocol": {
+                "http application": {
                   "value": {
                     "transportId": 3,
                     "transportCode": "test-2.domain.com:80",
@@ -2066,43 +1895,6 @@
               }
             }
           },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "string",
-                      "description": "Unauthorized"
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Invalid authentication / authorization credentials."
-                    },
-                    "status": {
-                      "$ref": "#/components/schemas/response.status"
-                    }
-                  }
-                },
-                "examples": {
-                  "AccessDenied": {
-                    "value": {
-                      "code": "Unauthorized",
-                      "message": "Invalid authentication / authorization credentials.",
-                      "status": 1
-                    }
-                  }
-                }
-              }
-            },
-            "headers": {
-              "Qtl-Request-Id": {
-                "$ref": "#/components/parameters/Qtl-Request-Id"
-              }
-            }
-          },
           "403": {
             "description": "Forbidden",
             "headers": {
@@ -2123,7 +1915,7 @@
                         },
                         "message": {
                           "type": "string",
-                          "description": "This user is not allowed to perform this request."
+                          "description": "Please enter valid credentials."
                         },
                         "status": {
                           "$ref": "#/components/schemas/response.status"
@@ -2153,8 +1945,7 @@
                   "AccessDenied": {
                     "value": {
                       "code": "AccessDenied",
-                      "message": "This user is not allowed to perform this request.",
-                      "status": 1
+                      "message": "Please enter valid credentials."
                     }
                   },
                   "ResourceNoAccess": {
@@ -2562,43 +2353,6 @@
               }
             }
           },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "string",
-                      "description": "Unauthorized"
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "This user is not allowed to perform this request."
-                    },
-                    "status": {
-                      "$ref": "#/components/schemas/response.status"
-                    }
-                  }
-                },
-                "examples": {
-                  "Unauthorized": {
-                    "value": {
-                      "code": "Unauthorized",
-                      "message": "This user is not allowed to perform this request.",
-                      "status": 1
-                    }
-                  }
-                }
-              }
-            },
-            "headers": {
-              "Qtl-Request-Id": {
-                "$ref": "#/components/parameters/Qtl-Request-Id"
-              }
-            }
-          },
           "403": {
             "description": "Forbidden",
             "headers": {
@@ -2617,10 +2371,7 @@
                     },
                     "message": {
                       "type": "string",
-                      "description": "This user is not allowed to perform this request."
-                    },
-                    "status": {
-                      "$ref": "#/components/schemas/response.status"
+                      "description": "Please enter valid credentials."
                     }
                   }
                 },
@@ -2628,8 +2379,7 @@
                   "AccessDenied": {
                     "value": {
                       "code": "AccessDenied",
-                      "message": "This user is not allowed to perform this request.",
-                      "status": 1
+                      "message": "Please enter valid credentials."
                     }
                   }
                 }
@@ -3090,43 +2840,6 @@
               }
             }
           },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "string",
-                      "description": "Unauthorized"
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "This user is not allowed to perform this request."
-                    },
-                    "status": {
-                      "$ref": "#/components/schemas/response.status"
-                    }
-                  }
-                },
-                "examples": {
-                  "Unauthorized": {
-                    "value": {
-                      "code": "Unauthorized",
-                      "message": "This user is not allowed to perform this request.",
-                      "status": 1
-                    }
-                  }
-                }
-              }
-            },
-            "headers": {
-              "Qtl-Request-Id": {
-                "$ref": "#/components/parameters/Qtl-Request-Id"
-              }
-            }
-          },
           "403": {
             "description": "Forbidden",
             "headers": {
@@ -3145,10 +2858,7 @@
                     },
                     "message": {
                       "type": "string",
-                      "description": "This user is not allowed to perform this request."
-                    },
-                    "status": {
-                      "$ref": "#/components/schemas/response.status"
+                      "description": "Please enter valid credentials."
                     }
                   }
                 },
@@ -3156,8 +2866,7 @@
                   "AccessDenied": {
                     "value": {
                       "code": "AccessDenied",
-                      "message": "This user is not allowed to perform this request.",
-                      "status": 1
+                      "message": "Please enter valid credentials."
                     }
                   }
                 }
@@ -3505,43 +3214,6 @@
               }
             }
           },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "string",
-                      "description": "Unauthorized"
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "This user is not allowed to perform this request."
-                    },
-                    "status": {
-                      "$ref": "#/components/schemas/response.status"
-                    }
-                  }
-                },
-                "examples": {
-                  "Unauthorized": {
-                    "value": {
-                      "code": "Unauthorized",
-                      "message": "This user is not allowed to perform this request.",
-                      "status": 1
-                    }
-                  }
-                }
-              }
-            },
-            "headers": {
-              "Qtl-Request-Id": {
-                "$ref": "#/components/parameters/Qtl-Request-Id"
-              }
-            }
-          },
           "403": {
             "description": "Forbidden",
             "headers": {
@@ -3560,10 +3232,7 @@
                     },
                     "message": {
                       "type": "string",
-                      "description": "This user is not allowed to perform this request."
-                    },
-                    "status": {
-                      "$ref": "#/components/schemas/response.status"
+                      "description": "Please enter valid credentials."
                     }
                   }
                 },
@@ -3571,8 +3240,7 @@
                   "AccessDenied": {
                     "value": {
                       "code": "AccessDenied",
-                      "message": "This user is not allowed to perform this request.",
-                      "status": 1
+                      "message": "Please enter valid credentials."
                     }
                   }
                 }
@@ -3695,8 +3363,7 @@
     },
     "/info": {
       "get": {
-        "summary": "Your GET endpoint",
-        "tags": [],
+        "summary": "Get API version infomation",
         "responses": {
           "200": {
             "description": "OK",
@@ -3796,6 +3463,9 @@
           {
             "$ref": "#/components/parameters/On-Behalf-Of"
           }
+        ],
+        "tags": [
+          "Info"
         ]
       }
     }
@@ -4387,6 +4057,10 @@
     {
       "name": "Reports",
       "description": "Call the Reports APIs to get information about the usage of your HDT transports."
+    },
+    {
+      "name": "Info",
+      "description": "Call the APIs to get information about current API version."
     }
   ]
 }
