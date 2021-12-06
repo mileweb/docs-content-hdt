@@ -1,5 +1,17 @@
 # Release Notes
 
+## Dec 6, 2021
+### API updates
+1. Supported modifying acceleration regions of exiting transports.
+2. Supported managing transport shield by specifying regions.
+3. Added APIs to get service quotas, billing data, and resource summary.
+
+### Portal updates
+1. Supported selection of acceleration regions.
+2. Supported managing fixed shields.
+3. Added validations for access domain, including ICP Beian check and cross check with target domain.
+4. Improved download performance by using local storage for fonts.
+
 ## May 27, 2021
 ### API updates
 1. Supported selection of acceleration region for HTTP and HTTPS applications.
