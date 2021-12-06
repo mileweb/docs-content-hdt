@@ -8,7 +8,7 @@ To add a new transport, click the **Add New Transport** button at the top right 
 
 | Fields               | Description   |
 | -------------------- | ------------- |
-| Transport Name       | Enter a name to identify this transport. If you omit this parameter, HDT portal will generate a default name in "Target Domain:Target Port" format|
+| Transport Name       | Enter a name to identify this transport. If you omit this parameter, HDT portal will generate a default name in "Target Domain:Target Port" format. |
 | Version Number       | Version number of the transport configuration in history. |
 | Application Protocol | <strong> HTTP </strong>: For HTTP protocol. <br> <strong> HTTPS </strong>: For HTTPS protocol with SNI (Server Name Indication). |
 | IP Version           | IP version supported by your application, IPv4, IPv6, or both. |
