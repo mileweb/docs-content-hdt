@@ -8,7 +8,7 @@ To add a new transport, click the **Add New Transport** button at the top right 
 
 | Fields               | Description   |
 | -------------------- | ------------- |
-| Transport Name       | Enter a name to identify this transport. If you omit this parameter, HDT portal will generate a default name in "Target Domain:Target Port" format. |
+| Transport Name       | Enter a name to identify this transport. If you omit this parameter, the HDT portal will generate a default name in "Target Domain:Target Port" format. |
 | Version Number       | Version number of the transport configuration in history. |
 | Application Protocol | <strong> HTTP </strong>: For HTTP protocol. <br> <strong> HTTPS </strong>: For HTTPS protocol with SNI (Server Name Indication). |
 | IP Version           | IP version supported by your application, IPv4, IPv6, or both. |
@@ -18,8 +18,7 @@ To add a new transport, click the **Add New Transport** button at the top right 
 
 | Fields               | Description   |
 | -------------------- | ------------- |
-| Fixed Shields        | If select Yes, the shield servers (HDT servers that connect to your origin servers) will be fixed, and you can choose the region of shield servers to be fixed in the drop-down list. |
-| Dedicated IP Service | If select Yes, the IP addresses for serving the transport will be dedicated to the CNAME only. The service will NOT be applicable if Application Protocol is HTTP or HTTPS. To use Dedicated IP Service for your HTTP/HTTPS applications, select "Others" as Application Protocol in Basic Info configuration.|
+| Fixed Shields        | If you select Yes, the shield servers (HDT servers that connect to your origin servers) will be fixed, and you can choose the region of shield servers to be fixed in the drop-down list. |
 
 
 ![null](</docs/resources/images/transports/add-transport-settings-2.png>)
