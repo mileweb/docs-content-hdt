@@ -1,15 +1,14 @@
 # Manage Transport
 
-To display this page, click **Transports** in the left pane.
+Clicking **Transports** in the left pane displays the Transports page.
 
 ![null](</docs/resources/images/transports/manage-transports.png>)
 
+- To filter transports, type characters in the search box and then press the Enter key or click magnifier icon, the filtering is case insensitive. To remove the filter, click the **Reset** button.
 
-- To **filter transports**, type characters in the search box and then press the Enter key or click Magnifier icon. All transports that do not contain the typed characters will be hidden. Filtering is not case-sensitive. To remove the filter, click the "Reset" button.
+- To view detailed configurationis of a transport, click the transport name.
 
-- To **view transport**, click the transport name to display detailed configuration information about the transport.
+- To edit, show history, delete, active, or suspend a transport, click the **Action** drop-down box, and select the action you want to perform.
 
-- To **Edit**, **Show History**, **Delete**, **Active**, or **Suspend** a transport, click the "Action" drop-down box, and select the action to perform.
-
-- To **Add New Transport**, click the "Add New Transport" button in the top right corner.
+- To add a new transport, click the **+ Add New Transport** button in the top right corner.
 
