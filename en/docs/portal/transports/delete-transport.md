@@ -8,4 +8,4 @@
 
 ![null](</docs/resources/images/transports/delete-transport-2.png>)
 
-**Note:** Deleting a transport will remove all resources created for the transport.
+**Note:** Deleting a transport will remove all resources associated with the transport.

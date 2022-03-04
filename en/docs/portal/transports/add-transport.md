@@ -17,8 +17,8 @@
 
 | Fields                       | Description   |
 | ---------------------------- | ------------- |
-| Preserve Client IP Addresses | **NO**: Disable the function.<br>**TCP Option 0x4e**: By using TCP Option 0x4e in TCP messages, HDT sends the client's real IP address to the origin server.<br>**Proxy Protocol v1**: By using Proxy Protocol v1, HDT sends the client's real IP address to the origin server in the first packet.<br>**proxy protocol v2**: By using Proxy Protocol v2, HDT sends the client's real IP address to the origin server in the first packet.|
-| Transfer Strategy            | **Default**: For most of applications.<br>**High Real-time**: For applications deliver small data with low concurrency (<100 connections).<br>**Big-File**: For applications transfer big files (>100M).<br>**High Concurrency**：For applications with high concurrency (>1000 connections).<br>**Interactive**: For applications with interactive scenarios.|
+| Preserve Client IP Addresses | **NO**: Disable the function.<br>**TCP Option 0x4e**: By using TCP Option 0x4e, HDT sends the client's real IP address to the origin server.<br>**Proxy Protocol v1**: By using Proxy Protocol v1, HDT sends the client's real IP address to the origin server in the first packet.<br>**proxy protocol v2**: By using Proxy Protocol v2, HDT sends the client's real IP address to the origin server in the first packet.|
+| Transfer Strategy            | **Default**: For most of applications.<br>**High Real-time**: For applications deliver small data with low concurrency (<100 connections).<br>**Big-File**: For applications transfer big files (>100M).<br>**High Concurrency**：For applications with high concurrency (>1000 connections).<br>**Interactive**: For applications in interactive scenarios.|
 
 5. Fill in the fields of the Security configurations. When completed, click **\> Next** at the top right of the wizard.
 ![null](</docs/resources/images/transports/add-transport-security.png>)
@@ -28,4 +28,5 @@
 
 10. When you are satisfied with your inputs, click **Save**.
 
+# Direct the Traffic to HDT platform
 After the transport is successfully created, add a CNAME record on your DNS server to point your service hostname(s) to the newly created HDT CNAME.

@@ -7,7 +7,7 @@
 1. In the prompt Change History window, select the versions you would like to compare and click **Compare Selected Versions**.
 ![null](</docs/resources/images/transports/show-history-2.png>)
 
-2. In the prompt Compare window, you can view the highlighted differences or switch between the versions you selected by clicking the versions drop-down box. 
+2. In the prompt Compare window, you can compare the configurations between the versions you picked from the versions drop-down box. The differences are highlighted in color.
 ![null](</docs/resources/images/transports/show-history-3.png>)
 
 ## Roll back
