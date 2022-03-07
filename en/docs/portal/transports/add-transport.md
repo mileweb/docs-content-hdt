@@ -1,36 +1,32 @@
 # Add New Transport
+1. In the left pane of the HDT portal, click **Transports**.
+2. At the top right of the Transports page, click the **+ Add New Transport** button. 
+3. Fill in the fields of the Basic Info configurations. Required fields are denoted by an asterisk (\*). When completed, click **\> Next** at the top right of the wizard.
 
-The <strong> Transports </strong> page can be reached by clicking "Transports" from the left pane of the HDT portal.
-To add a new transport, click the **Add New Transport** button at the top right of the <strong> Transports </strong> page to display the wizard instructions.
-
-## Basic Info
 ![null](</docs/resources/images/transports/add-transport-basic-info.png>)
 
-| Fields               | Description   |
-| -------------------- | ------------- |
-| Transport Name       | Enter a name to identify this transport. If you omit this parameter, the HDT portal will generate a default name in "Target Domain:Target Port" format. |
-| Version Number       | Version number of the transport configuration in history. |
-| Application Protocol | <strong> HTTP </strong>: For HTTP protocol. <br> <strong> HTTPS </strong>: For HTTPS protocol with SNI (Server Name Indication). |
-| IP Version           | IP version supported by your application, IPv4, IPv6, or both. |
+4. Fill in the fields of the Settings configurations. Required fields are denoted by an asterisk (\*). When completed, click **\> Next** at the top right of the wizard.
 
-## Settings
 ![null](</docs/resources/images/transports/add-transport-settings-1.png>)
 
 | Fields               | Description   |
 | -------------------- | ------------- |
-| Fixed Shields        | If you select Yes, the shield servers (HDT servers that connect to your origin servers) will be fixed, and you can choose the region of shield servers to be fixed in the drop-down list. |
-
+| Fixed Shields        | If you select Yes, the shield servers (HDT servers that connect to your origin servers) will be static, and you need to choose the region of shield servers in the drop-down list. |
 
 ![null](</docs/resources/images/transports/add-transport-settings-2.png>)
 
-| Fields               | Description   |
-| -------------------- | ------------- |
-| Carry Client IP      | <strong> NO </strong>: Disable the function. By default, HDT will try to add the X-Forwarded-For header into the request to carry the client’s real IP address for HTTP and HTTPS applications. (For HTTPS applications, the client certificate must be deployed on the HDT servers. Please contact the HDT support team if you need to deploy a client certificate.) <br> <strong> TCP Option 0x4e </strong>: HDT establishes a TCP connection with the origin server and sends the client's real IP address to the origin server through the tcp-option 0x4e in the TCP message; the origin server can obtain the client's real IP address through the F5 device or the Linux kernel module provided by HDT. <br> <strong>proxy protocol v1</strong>: By using proxy protocol v1, HDT establishes a TCP connection with the origin server and sends the client's real IP address to the origin server in the first packet; the origin server obtains the client's real IP address by parsing the proxy protocol v1 message. <br> <strong>proxy protocol v2 </strong>: By using proxy protocol v2, HDT establishes a TCP connection with the origin server and sends the client's real IP address to the origin server in the first packet; the origin server obtains the client's real IP address by parsing the proxy protocol v2 message.|
-|Transfer Strategy     | <strong> Default </strong>: Low cost and high efficiency. <br> <strong> Interactive </strong>: For applications requiring better response times, HDT internal routing is enabled in this mode. <br> <strong> High Concurrency </strong>：Suitable for small data transfers and high concurrency. Normally, concurrency is considered to be high when its value exceeds 1,000 connections and low when its value is below 100 connections. <br> <strong> High Real-time </strong>: Suitable for applications delivering small data with low concurrency (fewer than 100 connections) and requiring optimized response times. |
+| Fields                       | Description   |
+| ---------------------------- | ------------- |
+| Preserve Client IP Addresses | **NO**: Disable the function.<br>**TCP Option 0x4e**: By using TCP Option 0x4e, HDT sends the client's real IP address to the origin server.<br>**Proxy Protocol v1**: By using Proxy Protocol v1, HDT sends the client's real IP address to the origin server in the first packet.<br>**proxy protocol v2**: By using Proxy Protocol v2, HDT sends the client's real IP address to the origin server in the first packet.|
+| Transfer Strategy            | **Default**: For most of applications.<br>**High Real-time**: For applications deliver small data with low concurrency (<100 connections).<br>**Big-File**: For applications transfer big files (>100M).<br>**High Concurrency**：For applications with high concurrency (>1000 connections).<br>**Interactive**: For applications in interactive scenarios.|
 
-## Security
+5. Fill in the fields of the Security configurations. When completed, click **\> Next** at the top right of the wizard.
 ![null](</docs/resources/images/transports/add-transport-security.png>)
 
-## Review
+6. Review your inputs from the previous steps. If you need to change them, click **Previous** to return to the appropriate step, make your changes, and then click **Next** until you return to the Review step.
 ![null](</docs/resources/images/transports/add-transport-review.png>)
 
+10. When you are satisfied with your inputs, click **Save**.
+
+# Direct the Traffic to HDT platform
+After the transport is successfully created, add a CNAME record on your DNS server to point your service hostname(s) to the newly created HDT CNAME.
