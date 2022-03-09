@@ -15,7 +15,7 @@
 ## May 27, 2021
 ### API updates
 1. Supported selection of acceleration region for HTTP and HTTPS applications.
-2. Added PoPs management APIs.
+2. Added PoP management APIs.
 
 ### Portal updates
 1. Improved page displays.
