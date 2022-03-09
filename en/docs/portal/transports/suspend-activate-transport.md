@@ -1,6 +1,6 @@
 # Suspend or Activate a transport
-1. Click **Transport** in the left pane to display the Transport page.
-2. Click **Action** button on the transport you want to change status and select **Suspend** or **Activate**. If the transport is not in the current page, you can search for it in the search box.
+1. Click **Transports** in the left pane to display the Transports page.
+2. Click the **Action** button on the transport you want to change status and select **Suspend** or **Activate**. If the transport is not in the current page, you can search for it in the search box.
 
 ![null](</docs/resources/images/transports/suspend-activate-1.png>)
 
