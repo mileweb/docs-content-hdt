@@ -1,26 +1,21 @@
 # Dashboard
+The Dashboard page is the default page that appears when you log in to the HDT portal. You can return to the page by clicking **Dashboard** in the left pane.
 
-The HDT Dashboard shows the traffic associated with your HDT transfers.
+The Dashboard contains charts that show a snapshot of your account traffic over a recent period of time including "Traffic Volume", "Traffic Bandwidth" and "Requests" respectively.
 
-If you are a reseller with child accounts, you can select the accounts that the dashboards cover (the parent account only, the child account only, or both the parent and child accounts).
-
-## Understanding the Dashboard
-
-The Dashboard appears when you first log into the {{title}} portal. Charts provide a snapshot of your account traffic and cover "Traffic Volume", "Traffic Bandwidth" and "Requests".
-
-If you are a paid customer of **Virtual Private Line** usage, you can also switch between the “Total” and “Virtual Private Line” dashboard by clicking the selection button at the top right corner.
+If you are a paid customer for Virtual Private Line usage, you can also switch between the **Total** and **Virtual Private Line** dashboard by clicking the selection button at the top-right corner.
 
 ![null](</docs/resources/images/dashboard/selectTotalOrVpl.png>)
 
-To view detailed report information, mouse over the data points in the report.
+Hovering your cursor over the data points in a chart displays detailed information. For example:
 
 ![null](</docs/resources/images/dashboard/dashboard.png>)
 
-The default time zone shown in the tooltips is based on the local browser time. To change the time zone, use the "My Info" page.
+The default time zone in the tooltips is from the local browser time. You can overwrite it by changing the timezone in **User Info** settings.
 
 ![null](</docs/resources/images/dashboard/myInfo.png>)
 
-Clicking **View Full Report** in the top right corner of the chart displays a chart on the [Reports page](</docs/portal/reports.md>), where you can define report parameters, and then view the results on the selected chart.
+Clicking **View Full Report** at the top-right corner of a chart will display the [Reports page](</docs/portal/reports.md>), where you can define the parameters and generate reports.
 
 ![null](</docs/resources/images/dashboard/viewFullReport.png>)
 
