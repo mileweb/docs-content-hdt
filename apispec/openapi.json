@@ -4841,7 +4841,7 @@
         }
       ],
       "get": {
-        "summary": "Your GET endpoint",
+        "summary": "Query Service Quota Usage by ID",
         "tags": [
           "ServiceQuotas"
         ],
@@ -4936,7 +4936,7 @@
         }
       ],
       "get": {
-        "summary": "Your GET endpoint",
+        "summary": "Query Service Quota Usage by customer ID",
         "tags": [
           "ServiceQuotas"
         ],
