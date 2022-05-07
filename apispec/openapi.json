@@ -5796,7 +5796,7 @@
   },
   "tags": [
     {
-      "name": "Info"
+      "name": "Transports"
     },
     {
       "name": "Reports"
@@ -5805,10 +5805,10 @@
       "name": "ServiceQuotas"
     },
     {
-      "name": "Transports"
+      "name": "ResourceSummary"
     },
     {
-      "name": "ResourceSummary"
+      "name": "Info"
     }
   ]
 }
