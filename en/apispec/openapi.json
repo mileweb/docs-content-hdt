@@ -2457,6 +2457,9 @@
           },
           {
             "$ref": "#/components/parameters/scope"
+          },
+          {
+            "$ref": "#/components/parameters/reportRange"
           }
         ]
       }
@@ -2736,6 +2739,9 @@
           },
           {
             "$ref": "#/components/parameters/scope"
+          },
+          {
+            "$ref": "#/components/parameters/reportRange"
           }
         ]
       }
@@ -2785,7 +2791,7 @@
                     "value": {
                       "billingData": [
                         {
-                          "id": "domains-base",
+                          "id": "domains",
                           "amount": 2
                         },
                         {
@@ -2805,8 +2811,8 @@
                           "amount": 1500
                         },
                         {
-                          "id": "vpl-bandwidth-mbps",
-                          "amount": 5
+                          "id": "traffic-gb-vpl",
+                          "amount": 50
                         },
                         {
                           "id": "domains-dedicated-ips",
@@ -2966,7 +2972,7 @@
             }
           }
         },
-        "description": "Returns billing report for an HDT customer. Unlike other report APIs in this spec, this is a special API which accepts a list of billing items and then returns the billing amounts against those items for billing purpose. This API will be primarily integrated by a billing module to generate invoices for customers. But we do not restrict customers from calling this API to get billing data by themselves. \nBy default, the API returns billing data for the calling customer itself. To get the billing data for a child customer, use a parent account to make the API call and pass the ID of the child customer in the \"On-Behalf-Of\" header. To specify the range of billing data returned, pass the “Report-Range” header and specify one of \"self-only\", \"children-only\" and \"self+children\". \nThe input of this endpoint should be a list of predefined billing item IDs and the output should be the amount of usage of each billing item, each billing item ID should be well-defined and recorded in CDNW SAP system. HDT backend team will need to be aware of changes in SAP, otherwise billing items might not be recognized.\nAnd different customers might have a different set of billing items, which is also maintained in SAP system according to contracts. The above-mentioned billing module will interact with the SAP system to get the list of billing items for a specific HDT customer, pass the list to this HDT billingData API, and then generate invoices for that customer. \n The set of available billing items is subject to future changes, here are the possible billing items:\n Billing Item ID | Description | Unit\n--- | --- | --- \ndomains | The number of domains  the user has. | EA\nservice-regions | The number of service regions of all domains. | EA\nports-80-443 | The number of 80 or 443 ports of all domains. | EA\nports-non-80-443 | The number of non 80 and non 443 ports of all domains. | EA\ntraffic-gb | Volume of traffic in GB transmitted through the HDT platform. | GB\ntraffic-gb-vpl | Volume of traffic in GB transmitted through the HDT virtual private line. | GB\ndomains-dedicated-ip | The number of domains that enable dedicated IP services. | EA\nraw-log-download-mb | Volume of raw log downloaded in MB. | MB\n\n",
+        "description": "Returns billing report for an HDT customer. Unlike other report APIs in this spec, this is a special API which accepts a list of billing items and then returns the billing amounts against those items for billing purpose. This API will be primarily integrated by a billing module to generate invoices for customers. But we do not restrict customers from calling this API to get billing data by themselves.\nBy default, the API returns billing data for the calling customer itself. To get the billing data for a child customer, use a parent account to make the API call and pass the ID of the child customer in the \"On-Behalf-Of\" header. To specify the range of billing data returned, pass the “Report-Range” header and specify one of \"self-only\", \"children-only\" and \"self+children\". \nThe input of this endpoint should be a list of predefined billing item IDs and the output should be the amount of usage of each billing item, each billing item ID should be well-defined and recorded in CDNW SAP system. HDT backend team will need to be aware of changes in SAP, otherwise billing items might not be recognized.\nAnd different customers might have a different set of billing items, which is also maintained in SAP system according to contracts. The above-mentioned billing module will interact with the SAP system to get the list of billing items for a specific HDT customer, pass the list to this HDT billingData API, and then generate invoices for that customer. \n The set of available billing items is subject to future changes, here are the possible billing items:\n<table><tr><th>Billing Item ID</th><th>Description</th><th>Unit</th></tr><tr><td>domains</td><td>The number of domains the user has.</td><td>EA</td></tr><tr><td>service-regions</td><td>The number of service regions of all domains.</td><td>EA</td></tr><tr><td>ports-80-443</td><td>The number of 80 or 443 ports of all domains.</td><td>EA</td></tr><tr><td>ports-non-80-443</td><td>The number of non 80 and non 443 ports of all domains.</td><td>EA</td></tr><tr><td>traffic-gb</td><td>Volume of traffic in GB transmitted through the HDT platform.</td><td>GB</td></tr><tr><td>traffic-gb-vpl</td><td>Volume of traffic in GB transmitted through the HDT virtual private line.</td><td>GB</td></tr><tr><td>domains-dedicated-ip</td><td>The number of domains which enable dedicated IP ervices.</td><td>EA</td></tr><tr><td>raw-log-download-mb</td><td>Volume of raw log download in MB.</td><td>MB</td></tr></table>",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
@@ -3029,7 +3035,7 @@
                   "value": {
                     "billingItems": [
                       {
-                        "id": "domains-base"
+                        "id": "domains"
                       },
                       {
                         "id": "service-regions"
@@ -3044,10 +3050,10 @@
                         "id": "traffic-gb"
                       },
                       {
-                        "id": "vpl-bandwidth-mbps"
+                        "id": "traffic-gb-vpl"
                       },
                       {
-                        "id": "dedicated-ip-domains"
+                        "id": "domains-dedicated-ip"
                       },
                       {
                         "id": "raw-log-download-mb"
@@ -3115,7 +3121,7 @@
                         "domains-dedicated-ip-service-summary": 0,
                         "domains": "0724-1.access.com.shland.com,1001.shland.com,1012-fromnet-inner1.com.shland.com,1022.shland.com",
                         "domains-dedicated-ip-service": "",
-                        "domains-summary": 5
+                        "domains-summary": 4
                       }
                     }
                   }
@@ -6353,7 +6359,8 @@
             "vpl",
             "vpl-jp",
             "vpl-hk"
-          ]
+          ],
+          "default": "all"
         },
         "description": "Indicates the report scope, can be \"all\", \"vpl\", “vpl-jp”, or \"vpl-hk\". If the parameter is unspecified, the report scope will be “all”."
       },
@@ -6401,6 +6408,15 @@
           "type": "string"
         },
         "description": "A transport id or a list of transport ids separated by comma"
+      },
+      "reportRange": {
+        "name": "reportRange",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "An optional header that resellers can use to specify whether to include data from children customers. <table><tr><th>Value</th><th>Behavior</th></tr><tr><td>self-only</td><td>Include accounts of the caller.</td></tr><tr><td>children-only</td><td>Include  accounts of children customers only.</td></tr><tr><td>self+children</td><td>Include accounts of both the caller and children customers.</td></tr></table>"
       }
     },
     "securitySchemes": {
