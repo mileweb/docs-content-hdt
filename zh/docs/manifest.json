@@ -2,89 +2,105 @@
     "metadata": {
       "id": "hdt",
       "title": "HDT",
-      "description": "High-speed Data Transmission (HDT) is designed to optimize TCP/UDP application acceleration with superior performance and benefits.",
+      "description": "High-speed Data Transmission (HDT) 是一款卓越的TCP/UDP应用加速产品，可为企业应用在世界各地的终端用户提供安全，快速，稳定的接入服务和流畅的体验。",
       "showOnMainPage": true,
       "links": [
         {
-          "title": "Quick Start",
-          "caption": "Getting started with HDT",
+          "title": "快速开始",
+          "caption": "开始使用HDT",
           "icon": "bolt",
           "path": "docs/intro"
         },
         {
-          "title": "Portal Reference",
-          "caption": "HDT Portal reference",
+          "title": "Portal参考文档",
+          "caption": "HDT Portal参考文档",
           "icon": "book",
           "path": "docs/portal/accessing-portal/logging-in"
         },
         {
-          "title": "API Reference",
-          "caption": "HDT API reference",
+          "title": "API参考文档",
+          "caption": "HDT API参考文档",
           "icon": "gear",
           "path": "apidocs"
+        },
+        {
+          "title": "版本发布信息",
+          "caption": "了解新版本的功能和变化",
+          "icon": "notes",
+          "path": "docs/release-notes"
         }
       ]
     },
     "routes": [
-      { "title": "Introduction", "path": "/docs/intro.md" },
-      { "title": "Getting Started", "path": "/docs/getting-started.md" },
+      { "title": "概览", "path": "/docs/intro.md" },
+      { "title": "如何开始", "path": "/docs/getting-started.md" },
       {
         "title": "Portal",
         "heading": true,
         "routes": [
           {
-            "title": "Accessing Portal",
+            "title": "开始使用Portal",
             "routes": [
               {
-                "title": "Logging-In",
+                "title": "如何登陆",
                 "path": "/docs/portal/accessing-portal/logging-in.md"
               },
               {
-                "title": "Forgot Password",
+                "title": "忘记密码",
                 "path": "/docs/portal/accessing-portal/forgot-password.md"
               },
               {
-                "title": "Navigating UI",
+                "title": "页面切换",
                 "path": "/docs/portal/accessing-portal/navigating-ui.md"
               }
             ]
           },
-          { "title": "Dashboard", "path": "/docs/portal/dashboard.md" },
+          { "title": "仪表板", "path": "/docs/portal/dashboard.md" },
           {
-            "title": "Transports",
+            "title": "加速项",
             "routes": [
               {
-                "title": "Manage Transports",
+                "title": "加速项管理",
                 "path": "/docs/portal/transports/manage-transport.md"
               },
               {
-                "title": "Add New Transport",
+                "title": "创建加速项",
                 "path": "/docs/portal/transports/add-transport.md"
               },
               {
-                "title": "View a Transport",
+                "title": "查看加速项",
                 "path": "/docs/portal/transports/view-transport.md"
               },
               {
-                "title": "Edit a Transport",
+                "title": "修改加速项",
                 "path": "/docs/portal/transports/edit-transport.md"
               },
               {
-                "title": "Show History of a Transport",
+                "title": "加速项历史",
                 "path": "/docs/portal/transports/show-history.md"
               },
               {
-                "title": "Suspend/Active a Transport",
+                "title": "暂停/启用加速项",
                 "path": "/docs/portal/transports/suspend-activate-transport.md"
               },
               {
-                "title": "Delete a Transport",
+                "title": "删除加速项",
                 "path": "/docs/portal/transports/delete-transport.md"
               }
             ]
           },
-          { "title": "Reports", "path": "/docs/portal/reports.md" },
-          { "title": "Global Presence", "path": "/docs/portal/global-presence.md" }
+          { "title": "报表", "path": "/docs/portal/reports.md" },
+          { "title": "全球节点分布", "path": "/docs/portal/global-presence.md" }
+        ]
+      },
+      {
+        "title": "版本发布信息",
+        "heading": true,
+        "routes": [
+          {
+            "title": "版本发布信息",
+            "path": "/docs/release-notes.md"
+          }
         ]
       }
     ]

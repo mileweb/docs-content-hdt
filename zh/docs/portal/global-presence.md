@@ -1,6 +1,6 @@
-# Global Presence
+# 全球节点
 
-Clicking **Global Presence** in the left pane displays the Global Presence page. This page shows a worldwide map of {{title}}' PoP locations and the status of the PoPs.
+“全球节点” 页面展示HDT平台节点的位置和状态信息, 您也可以在此页面检索您想了解的节点信息。
 
 ![null](</docs/resources/images/global-presence-w-numbers.png>)
 

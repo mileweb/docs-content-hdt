@@ -1,29 +1,18 @@
-# Navigating the HDT User Interface
+# 用户界面导航
 
-When you first log in to the HDT portal, menus and submenus appear in the left pane and the dashboard appears in the workspace to the right.
-
-The default menu lists the HDT activities you can perform.
+左侧的导航菜单列出了您在HDT portal上可以进行的操作选项。对应的详细信息和配置内容出现在导航菜单右侧的工作区中。
 
 <p align=center><img src="/docs/resources/images/accessing-portal/side-menu.png" alt="navigation menu" width="300"></p>
 
-## Dashboard
+## 仪表板
+[仪表板](</docs/portal/dashboard.md>)页面展示您近期通过HDT进行加速的带宽，流量和请求数信息。
 
-The [Dashboard](</docs/portal/dashboard.md>) is the landing page after you log in to the HDT. It contains charts that show a snapshot of your account traffic over a recent period of time.
+## 报表
+[报表](</docs/portal/reports.md>)页面可以为您按需生成关于带宽，流量，和请求数的详细报表, 并提供下载。
 
-## Reports
+## 加速项
+[加速项](</docs/portal/transports/manage-transport.md>) 是您创建和管理已有加速项的页面。
 
-The [Reports page](</docs/portal/reports.md>) allows you to view and generate reports about Bandwidth, Traffic Volume, and Requests with your specified filters.
+## 全球节点
+[全球节点](</docs/portal/global-presence.md>)页面展示了HDT平台节点的位置和状态信息。
 
-## Transports
-
-The [Transports page](</docs/portal/transports/manage-transport.md>) allows you to manage your transports.
-
-## Global Presence Page
-
-The [Global Presence page](</docs/portal/global-presence.md>) shows the worldwide locations of {{title}}' PoPs. Controls allow you to filter PoPs by region, service zone, and status.
-
-## User Info
-
-Clicking the blue circle at the top of the page displays the user information. It also provides a **Logout** link to exit the HDT portal.
-
-<p align=center><img src="/docs/resources/images/accessing-portal/user-info.png" alt="user information" width="400"></p>
