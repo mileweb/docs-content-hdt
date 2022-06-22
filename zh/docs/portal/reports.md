@@ -1,39 +1,17 @@
-# Reports
+# 报表
 
-HDT reports provide information about traffic to your HDT transports. Reports cover traffic volume, traffic bandwidth, and requests.
-
-If you are a reseller with child accounts, you can select the accounts that a report will cover (the parent account only, the child account only, or both the parent and child accounts).
-
-## Reports Page
-
-Reports are generated from the Reports page. To display this page, click **Reports** in the left pane.
-
-The following figure shows the key elements on the page.
+报表页面可以为您按需生成关于带宽，流量，和请求数的详细报表, 并提供下载。您可以通过点击左侧导航界面中的“报表”选项访问该页面。
+如果您是HDT虚机专线（Virtual Private Line）的付费用户，您可以通过点击图表上方右上角的“总计数据”和“虚拟专线”切换展示数据的范围。
 
 ![null](</docs/resources/images/reports/reports.png>)
 
-If you are a paid customer of **Virtual Private Line** usage, you can also switch between the “Total” and “Virtual Private Line” dashboard by clicking the selection button at the top right corner.
-
-## Understanding Report Types
-
-| **HDT Report Options**   | **Description**                               |
-| -------------------------|-----------------------------------------------|
-| Bandwidth                | Shows the total peak incoming and outgoing bandwidth, peak total bandwidth, average total bandwidth (in bps), and how the values change over time.|
-| Traffic                  | Shows the total amount of incoming and outgoing traffic, the total traffic value (in bytes), and how the values change over time.|
-| Requests                 | Shows the total number of requests and how the values change over time.|
-
-
-
-
-## Generating Reports
-
-1. In the left pane, click **Reports**.
-2. Complete the fields in the Reports form. Required fields are denoted by an asterisk (\*).
-3. Click the **Generate Report** button to generate the report.
-4. With a generated report (similar to the one below) displayed at the bottom of the form, you can:
+## 生成报表
+1. 点击左侧导航界面中的“报表”进入报表页面。
+2. 填写报告表单中的字段, 星号表示必填字段。
+3. 点击“生成报表”按钮。
 
 ![null](</docs/resources/images/reports/reports-generated.png>)
 
-  - Hold your cursor over data points in the report to view detailed information. The default time zone in the tooltips is from the local browser time. You can also overwrite it by changing the timezone in the "My Info".
-  - Use the <strong>Download</strong> button at the top right of the report to download the report in JPEG, PNG, and PDF formats.
+- 报表生成后，您可以将鼠标悬停在各个数据点上以获取更详细的信息。
+- 您可以点击报表右上角的“下载”按钮，在下列选项中选择所需的格式下载报表。
 
