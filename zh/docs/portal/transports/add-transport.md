@@ -17,7 +17,7 @@
 
 ![null](</docs/resources/images/transports/add-transport-security.png>)
 
-6. 在预览页面查看您所录入的加速项配置信息。如果您需要修改一些内容，可以点击之前步骤的图标回到前面的页面进行修改。完成后点击**\>下一步**按钮或直接点击预览步骤图标回到预览页面。确认无误后点击**提交**按钮。
+6. 在预览页面查看您所录入的加速项配置信息。如果您需要修改一些内容，可以点击之前步骤的图标回到前面的页面进行修改。完成后点击**\>下一步**按钮或直接点击预览步骤图标回到预览页面。确认无误后点击**&check; 提交**按钮。
 
 ![null](</docs/resources/images/transports/add-transport-review.png>)
 

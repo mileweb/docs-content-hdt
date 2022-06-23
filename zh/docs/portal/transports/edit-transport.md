@@ -8,6 +8,6 @@
 
 ![null](</docs/resources/images/transports/edit-transport-2.png>)
 
-4. 通过对比页面检查配置改动，确认无误后点击**提交**按钮。
+4. 通过对比页面检查配置改动，确认无误后点击**&check; 提交**按钮。
 
 ![null](</docs/resources/images/transports/edit-transport-3.png>)
