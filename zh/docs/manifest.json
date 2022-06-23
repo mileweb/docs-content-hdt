@@ -2,7 +2,7 @@
     "metadata": {
       "id": "hdt",
       "title": "HDT",
-      "description": "High-speed Data Transmission (HDT) 是一款卓越的TCP/UDP应用加速产品，可为企业应用在世界各地的终端用户提供安全，快速，稳定的接入服务和流畅的体验。",
+      "description": "HDT(High-speed Data Transmission)是一款卓越的TCP/UDP应用加速产品，可为企业应用在世界各地的终端用户提供安全，快速，稳定的接入服务和流畅的体验。",
       "showOnMainPage": true,
       "links": [
         {
@@ -80,7 +80,7 @@
                 "path": "/docs/portal/transports/show-history.md"
               },
               {
-                "title": "暂停/启用加速项",
+                "title": "停用/启用加速项",
                 "path": "/docs/portal/transports/suspend-activate-transport.md"
               },
               {
