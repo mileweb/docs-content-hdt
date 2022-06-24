@@ -1,15 +1,15 @@
-# Logging In
+# 如何登陆
 
-1. Visit our login page at [https://console.{{siteDomain}}.com/hdt](<https://console.{{siteDomain}}.com/hdt>).
+1. 访问HDT登录页面 [https://console.{{siteDomain}}/hdt](<https://console.{{siteDomain}}/hdt>)。
 
-![null](</docs/resources/images/accessing-portal/portal-login.png>)
+<p align=center><img src="/docs/resources/images/accessing-portal/portal-login.png" alt="login page" width="900"></p>
 
-2. Enter your username in the top field and your password in the bottom field. For security, each typed password character is masked with a dot (●). To unmask the password, click the ![null](</docs/resources/images/accessing-portal/eye-icon.png>) icon.
+2. 在登录页面顶部输入框中输入您的用户名，在底部输入框中输入您的密码。为安全起见，每个键入的密码字符都用点 (●) 屏蔽。如果您要取消屏蔽密码，请单击 ![null](</docs/resources/images/accessing-portal/eye-icon.png>) icon。
 
-**Note**: If you forgot your password, click [here](</docs/portal/accessing-portal/forgot-password.md>).
+<strong>注意：</strong> 如果您遗忘了登录密码，您可以查阅 [密码重置](</docs/portal/accessing-portal/forgot-password.md>)。
 
-3. Click the **Sign In** button.
+3. 点击 **Sign In** 按钮。
 
-### Where to Go from Here
+## 登录后操作
+在您顺利登录HDT Portal后, 您可以参阅 [HDT用户界面导航](</docs/portal/accessing-portal/navigating-ui.md>) 来进行下一步操作。
 
-After you log in to the portal, review the [HDT interface](</docs/portal/accessing-portal/navigating-ui.md>).

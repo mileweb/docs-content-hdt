@@ -1,10 +1,17 @@
-# Show History of a Transport
-
-The <strong> Transports </strong> page can be reached by clicking "Transports" from the left pane of the HDT portal.
-To view the history of a transport, click the "Action" button of the transport entry in the list and select "Show History". If the transport is not in the current page, you can search for it in the search box.
-
+# 加速项历史
+1. 点击左侧导航界面中的**加速项**进入加速项页面。
+2. 在要查看历史的加速项上点击**操作**按钮，在下拉选项中点击**历史**。如果该加速项不在当前显示页面中，您可以通过加速项表单上方的搜索框工具查找。
 ![null](</docs/resources/images/transports/show-history-1.png>)
 
-You can then compare the selected versions and roll back to a previous version.
-
+3. 弹出的修改历史窗口列出了该加速项的修改历史，您可以选择不同的历史版本进行对比，或回滚到某个历史版本。
 ![null](</docs/resources/images/transports/show-history-2.png>)
+
+4. 勾选多个版本并点击**比较选择的版本**按钮将弹出对比页面。在对比窗口中，版本差异会高亮显示。
+![null](</docs/resources/images/transports/show-history-3.png>)
+
+## 版本回滚
+1. 在加速项历史页面，勾选要回滚的版本，点击**回滚**按钮。
+![null](</docs/resources/images/transports/show-history-4.png>)
+
+2. 弹出的对比页面会高亮显示与当前版本的差异，确认无误后，点击**&check; 回滚**按钮。
+![null](</docs/resources/images/transports/show-history-5.png>)

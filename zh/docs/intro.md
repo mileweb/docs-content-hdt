@@ -1,19 +1,14 @@
-# Welcome to the High-Speed Data Transmission Customer Portal
+# 欢迎使用HDT高速数据传输
 
-The High-Speed Data Transmission (HDT) Portal is a web-based user interface for the HDT platform where you can add, view, and manage your transports and retrieve detailed reports about the usage.
+HDT高速数据传输为您提供了一个功能强大且使用友好的界面，在此您可以创建和管理加速项，以及查阅和生成服务报告。
 
+## HDT 的主要特点
+- HDT平台遍布全球的100余PoP节点可以让您的用户就近接入平台，享受加速服务。
+- 先进的智能路由和多路传输技术自适应网络变化，实时优选路径，避开拥塞、故障节点，平滑跨网。
+- 专属私有协议大幅提升数据传输效率，保障安全稳定的传输通道。
+- 传输加密和源站IP隐藏技术使您的用户数据远离各种安全隐患。
+- HDT虚拟专线让没有在中国大陆取得ICP备案的企业应用也能享受到如本地接入般的加速服务。
+- 支持RESTful API, 方便整合在您的自动化程序中。
 
-## HDT Features
-
-
-- Web and application data travels the fastest path with our over 1,000 Points of Presence in the global regions.
-- Smart routing keeps the best performance in case of network congestion.
-- Multiple paths are used to transmit and merge data, significantly improving performance.
-- High-efficiency service is delivered with our bandwidth-estimation, rapid-retransmission, and fast-recovery technologies.
-- Data encryption and origin IP masking protect content from known and emerging threats.
-- Transport services can be enabled in seconds.
-
-
-## Where to Go from Here
-
-Perform the steps in the [HDT Quick Start](</docs/getting-started.md>).
+## 从这里出发
+[HDT快速入门](</docs/getting-started.md>).
