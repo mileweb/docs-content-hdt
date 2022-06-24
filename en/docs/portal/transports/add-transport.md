@@ -11,7 +11,7 @@
 
 | Fields               | Description   |
 | -------------------- | ------------- |
-| Fixed Shields        | If you select Yes, the shield servers (HDT servers that connect to your origin servers) will be static, and you need to choose the region of shield servers in the drop-down list. |
+| Fixed Shields        | If you select "Yes", the shield servers (HDT servers that connect to your origin servers) will be only from the region you select, and you can view the shield servers IP list after the transport is successfully created. |
 
 5. Fill in the fields of the Security configurations. When completed, click **\> Next** at the top-right of the wizard.
 ![null](</docs/resources/images/transports/add-transport-security.png>)
