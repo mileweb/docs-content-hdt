@@ -10,14 +10,14 @@
 6. Made API query parameters case-insensitive for easy use.
 
 ### Portal updates
-1. Added a notification module.
+1. Added a notification module for pushing news about service updates and marketing promotions.
 2. Added reminders for trial date and traffic usage when trial customers log in in the portal.
 3. Reorganized the acceleration regions.
 4. Display query filters when downloading the billing reports.
-5. Set 'All' as the default value of access domain in Reports page, limited the number of transport and access domain.
+5. In Reports page, set 'All' as the default value for access domain selection and limited the number of access domains and transports that can be selected.
 6. Adjusted the buttons in the transport query page.
 7. Updated message information text when viewing or managing transports.
-8. Improved timeout control.
+8. Improved session timeout control.
  
 ## Dec 6, 2021
 ### API updates
