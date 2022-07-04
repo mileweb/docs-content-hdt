@@ -5,13 +5,13 @@
 1. Added query parameter 'scope' for GET /report/flow and GET /report/requests.
 2. Updated APIs of service quota to meet the requirements of trial customers.
 3. Added a scheduler to check trial deadline and traffic usage of trial customers, and send out notifications.
-4. Added a scheduler to disable transport service when meets trial deadline or traffic limit.
+4. Added a scheduler to disable transport service when a trial deadline or traffic limit has been reached.
 5. Reorganized the acceleration regions of existing transports.
-6. Made API query parameters case insensitive for easy use.
+6. Made API query parameters case-insensitive for easy use.
 
 ### Portal updates
 1. Added a notification module.
-2. Added reminders for trial date and traffic usage when trial customers login in the portal.
+2. Added reminders for trial date and traffic usage when trial customers log in in the portal.
 3. Reorganized the acceleration regions.
 4. Display query filters when downloading the billing reports.
 5. Set 'All' as the default value of access domain in Reports page, limited the number of transport and access domain.
