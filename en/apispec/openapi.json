@@ -5759,7 +5759,7 @@
       "report.timestamp": {
         "title": "timestamp",
         "type": "string",
-        "description": "The timestamp is in RFC3339 format and includes the offset from UTC.\nIf interval from request is \"oneminute\" or \"fiveminutes\", the format will be \"YYYY-MM-DD hh:mm:00\", which indicates the end time of an interval.\nIf interval from request is \"hourly\", “daily”, or “monthly”, the format will be \"YYYY-MM-DD'T'hh:mm:00\", which indicates the start time of an interval.",
+        "description": "The timestamp is in RFC3339 format and includes the offset from UTC.\nIf interval from request is \"oneminute\" or \"fiveminutes\", the format will be \"YYYY-MM-DD hh:mm:00\", which indicates the end time of the interval.\nIf interval from request is \"hourly\", “daily”, or “monthly”, the format will be \"YYYY-MM-DD'T'hh:mm:00\", which indicates the start time of the interval.",
         "x-examples": {
           "example-1": "2014-07-31T23:05:00"
         }
