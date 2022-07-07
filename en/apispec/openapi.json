@@ -66,7 +66,7 @@
             },
             "in": "query",
             "name": "cName",
-            "description": "Search by cName."
+            "description": "Search by CNAME."
           },
           {
             "schema": {
@@ -98,7 +98,7 @@
             },
             "in": "query",
             "name": "targetPort",
-            "description": "Search by target port, an integer between 1 and 65535"
+            "description": "Search by target port, an integer between 1 and 65535."
           }
         ],
         "responses": {
@@ -504,7 +504,7 @@
                   "InvalidCNameSuffix": {
                     "value": {
                       "code": "InvalidCNameSuffix",
-                      "message": "Invalid CName suffix.",
+                      "message": "Invalid CNAME suffix.",
                       "status": 0
                     }
                   },
@@ -2853,7 +2853,7 @@
                   "InvalidDateFormat": {
                     "value": {
                       "code": "InvalidDateFormat",
-                      "message": "Invalid parameter {startdate/enddate}. {startdate/enddate} is not a valid RFC3339 timestamp. The timestamp should be in \"yyyy-MM-dd'T'HH:mm:ss'Z'\" format.",
+                      "message": "Invalid parameter {startdate/enddate}. {startdate/enddate} is not a valid RFC 3339 timestamp. The timestamp should be in \"yyyy-MM-dd'T'HH:mm:ss'Z'\" format.",
                       "status": 0
                     }
                   },
@@ -2992,7 +2992,7 @@
             },
             "in": "query",
             "name": "datefrom",
-            "description": "RFC3339 formatted date indicating the starting date . Example: 2013-01-01T22:30:00+08:00"
+            "description": "RFC 3339 formatted date indicating the starting date. Example: 2013-01-01T22:30:00+08:00"
           },
           {
             "schema": {
@@ -3000,7 +3000,7 @@
             },
             "in": "query",
             "name": "dateto",
-            "description": "RFC3339 formatted date indicating the ending date . Example: 2013-01-01T22:30:00+08:00. If the time range of datefrom and dateto is more than 366 days, it will return 'TimeRangeTooLarge' error."
+            "description": "RFC 3339 formatted date indicating the ending date. Example: 2013-01-01T22:30:00+08:00. If the time range of datefrom and dateto is more than 366 days, it will return 'TimeRangeTooLarge' error."
           }
         ],
         "requestBody": {
@@ -4042,7 +4042,7 @@
                   "InvalidTrialDeadline": {
                     "value": {
                       "code": "InvalidTrialDeadline",
-                      "message": "Invalid trialDeadline. {trialDeadline} is not a valid RFC3339 timestamp. The timestamp should be in \"yyyy-MM-dd'T'HH:mm:ss'Z'\" format",
+                      "message": "Invalid trialDeadline. {trialDeadline} is not a valid RFC 3339 timestamp. The timestamp should be in \"yyyy-MM-dd'T'HH:mm:ss'Z'\" format",
                       "status": 0
                     }
                   },
@@ -4451,7 +4451,7 @@
                   "InvalidTrialDeadline": {
                     "value": {
                       "code": "InvalidTrialDeadline",
-                      "message": "Invalid parameter {trialDeadline}. {trialDeadline} is not a valid RFC3339 timestamp. The timestamp should be in \"yyyy-MM-dd'T'HH:mm:ss'Z'\" format."
+                      "message": "Invalid parameter {trialDeadline}. {trialDeadline} is not a valid RFC 3339 timestamp. The timestamp should be in \"yyyy-MM-dd'T'HH:mm:ss'Z'\" format."
                     }
                   },
                   "InvalidTrialDeadline-1": {
@@ -4953,7 +4953,7 @@
                   "InvalidTrialDeadline": {
                     "value": {
                       "code": "InvalidTrialDeadline",
-                      "message": "Invalid parameter {trialDeadline}. {trialDeadline} is not a valid RFC3339 timestamp. The timestamp should be in \"yyyy-MM-dd'T'HH:mm:ss'Z'\" format."
+                      "message": "Invalid parameter {trialDeadline}. {trialDeadline} is not a valid RFC 3339 timestamp. The timestamp should be in \"yyyy-MM-dd'T'HH:mm:ss'Z'\" format."
                     }
                   },
                   "InvalidTrialDeadline-1": {
@@ -5289,11 +5289,11 @@
                       "properties": {
                         "transports": {
                           "type": "integer",
-                          "description": "The number of available transports a customer used"
+                          "description": "The number of available transports a customer has used."
                         },
                         "trafficVolume": {
                           "type": "number",
-                          "description": "Unit GB, the traffic volume a customer transported.\nNote: This item shall only be available for self-signup users, as the calculation of the total traffic volume of a customer ever used will be very time consuming. "
+                          "description": "The traffic volume in GB that a customer has transported, and this item is only available for self-signup users."
                         }
                       }
                     }
@@ -5384,11 +5384,11 @@
                       "properties": {
                         "transports": {
                           "type": "integer",
-                          "description": "The number of available transports a customer used"
+                          "description": "The number of available transports a customer has used."
                         },
                         "trafficVolume": {
                           "type": "number",
-                          "description": "Unit GB, the traffic volume a customer transported.\nNote: This item shall only be available for self-signup users, as the calculation of the total traffic volume of a customer ever used will be very time consuming. "
+                          "description": "The traffic volume in GB that a customer has transported, and this item is only available for self-signup users."
                         }
                       }
                     }
@@ -5472,7 +5472,7 @@
       "transport.targetDomain": {
         "title": "targetDomain",
         "type": "string",
-        "description": "A domain or IP address referring to the origin server of your application. HDT will access this domain/IP address to get data from origin server. When transport type is \"ipport\", this parameter is valid and required. A domain name's length can be up to 250 characters."
+        "description": "A domain or IP address referring to the origin server of your application. HDT will access this domain/IP address to get data from the origin server. When transport type is \"ipport\", this parameter is valid and required. A domain name's length can be up to 250 characters."
       },
       "transport.targetPort": {
         "title": "targetPort",
@@ -5546,7 +5546,7 @@
       },
       "transport.speedLimit": {
         "title": "speedLimit",
-        "description": "Speed limit in \"Mbps\".It must be an integer between 0 and 1000. 0 means there is no limit. Default value is 0 ",
+        "description": "Speed limit in \"Mbps\". It must be an integer between 0 and 1000. 0 means there is no limit. Default value is 0 ",
         "type": "number"
       },
       "transport.concurrentLimit": {
@@ -5759,7 +5759,7 @@
       "report.timestamp": {
         "title": "timestamp",
         "type": "string",
-        "description": "The timestamp is in RFC3339 format and includes the offset from UTC.\nIf interval from request is \"oneminute\" or \"fiveminutes\", the format will be \"YYYY-MM-DD hh:mm:00\", which indicates the end time of the interval.\nIf interval from request is \"hourly\", “daily”, or “monthly”, the format will be \"YYYY-MM-DD'T'hh:mm:00\", which indicates the start time of the interval.",
+        "description": "The timestamp is in RFC 3339 format and includes the offset from UTC.\nIf interval from request is \"oneminute\" or \"fiveminutes\", the format will be \"YYYY-MM-DD hh:mm:00\", which indicates the end time of the interval.\nIf interval from request is \"hourly\", “daily”, or “monthly”, the format will be \"YYYY-MM-DD'T'hh:mm:00\", which indicates the start time of the interval.",
         "x-examples": {
           "example-1": "2014-07-31T23:05:00"
         }
@@ -6028,7 +6028,7 @@
           },
           "trafficVolumeLimit": {
             "type": "integer",
-            "description": "Unit GB, the maximum traffic volume a customer can transport. 0 means no limit."
+            "description": "The maximum traffic volume in GB that a customer can transport. 0 means no limit."
           },
           "allowVirtualPrivateLine": {
             "type": "integer",
@@ -6125,7 +6125,7 @@
         "schema": {
           "type": "string"
         },
-        "description": "RFC3339 formatted date indicating the starting date . Example:  2013-01-01T22:30:00+08:00"
+        "description": "RFC 3339 formatted date indicating the starting date. Example:  2013-01-01T22:30:00+08:00"
       },
       "dateto": {
         "name": "dateto",
@@ -6134,7 +6134,7 @@
         "schema": {
           "type": "string"
         },
-        "description": "RFC3339 formatted date indicating the ending date . Example:  2013-01-01T22:30:00+08:00.If the time range of datefrom and dateto is more than 366 days, it will return 'TimeRangeTooLarge' error."
+        "description": "RFC 3339 formatted date indicating the ending date. Example:  2013-01-01T22:30:00+08:00. If the time range of datefrom and dateto is more than 366 days, it will return 'TimeRangeTooLarge' error."
       },
       "timezone": {
         "name": "timezone",
@@ -6152,7 +6152,7 @@
         "schema": {
           "type": "string"
         },
-        "description": "An access domain or a list of access domains separated by comma."
+        "description": "An access domain or a list of access domains separated by commas."
       },
       "transport": {
         "name": "transport",
