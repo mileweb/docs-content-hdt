@@ -5844,19 +5844,13 @@
   },
   "tags": [
     {
-      "name": "Transports"
-    },
-    {
       "name": "Reports"
     },
     {
       "name": "ServiceQuotas"
     },
     {
-      "name": "ResourceSummary"
-    },
-    {
-      "name": "Info"
+      "name": "Transports"
     }
   ]
 }
