@@ -1,12 +1,9 @@
-# Delete a Transport
-
-The <strong> Transports </strong> page can be reached by clicking "Transports" from the left pane of the HDT portal.
-To delete a transport, click the "Action" button of the transport entry in the list and select "Delete". If the transport is not in the current page, you can search for it in the search box.
+# 删除加速项
+1. 点击左侧导航界面中的**加速项**进入加速项页面。
+2. 在要删除的加速项上点击**操作**按钮，在下拉选项中点击**删除**。如果该加速项不在当前显示页面中，您可以通过加速项表单上方的搜索框工具查找。
 
 ![null](</docs/resources/images/transports/delete-transport-1.png>)
 
-When prompted to confirm the deletion, click "Yes, delete!" to delete the transport.
+3. 在弹出的确认窗口中，点击**是的, 删除!**。
 
 ![null](</docs/resources/images/transports/delete-transport-2.png>)
-
-Note: Deleting a transport will delete all objects created for the transport.

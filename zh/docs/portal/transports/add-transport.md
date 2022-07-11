@@ -1,38 +1,25 @@
-# Add New Transport
+# 新增加速项
+1. 点击左侧导航界面中的**加速项**进入加速项页面。
+2. 在加速项页面的右上角点击**+ 新增加速项** 按钮进入加速项配置页面。 
+3. 填写基本信息, 标注(\*)的为必填项。完成后点击右上角的**\>下一步**。
 
-The <strong> Transports </strong> page can be reached by clicking "Transports" from the left pane of the HDT portal.
-To add a new transport, click the **Add New Transport** button at the top right of the <strong> Transports </strong> page to display the wizard instructions.
-
-## Basic Info
 ![null](</docs/resources/images/transports/add-transport-basic-info.png>)
 
-| Fields               | Description   |
+4. 填写设置页面信息，标注(\*)的为必填项。完成后点击右上角的**\>下一步**。
+
+![null](</docs/resources/images/transports/add-transport-settings.png>)
+
+| 选项                 | 描述          |
 | -------------------- | ------------- |
-| Transport Name       | Enter a name to identify this transport. If you omit this parameter, the HDT portal will generate a default name in the format of "Target Domain:Target Port|
-| Version Number       | Version number of the transport configuration in history. |
-| Application Protocol | <li><strong> HTTP </strong>: For HTTP protocol.</li> <li><strong> HTTPS </strong>: For HTTPS protocol with SNI (Server Name Indication). |
-| IP Version           | IP version supported by your application, IPv4, IPv6, or both. |
+| 固定接出             | 如果您选择了“是”, HDT接出服务器 (HDT连接源站的服务器) 将固定使用您所选区域的服务器, 加速项创建成功后, 您可以查看接出服务器IP列表。 |
 
-## Settings
-![null](</docs/resources/images/transports/add-transport-settings-1.png>)
-![null](</docs/resources/images/transports/add-transport-settings-2.png>)
+5. 填写安全页面信息，标注(\*)的为必填项。完成后点击右上角的**\>下一步**。
 
-| Fields               | Description   |
-| -------------------- | ------------- |
-| Fixed Shields        | The shield servers (the HDT servers that connection to your origin servers) will be fixed. |
-| Dedicated IP Service | The IP addresses for serving the transport is dedicated to the CNAME only. The option will NOT be applicable if you select HTTP or HTTPS as the Application Protocol. To use <strong> Dedicated IP Service </strong> for your HTTP/HTTPS applications, select Others as the Application Protocol.|
-
-
-![null](</docs/resources/images/transports/add-transport-settings-3.png>)
-
-| Fields               | Description   |
-| -------------------- | ------------- |
-| Carry Client IP      | <li><strong> NO </strong>: Disable the function. By default, HDT will try to add the X-Forwarded-For header into the request to carry the client’s real IP address for HTTP and HTTPS applications. (For HTTPS applications, the client certificate must be deployed on the HDT servers. Please contact the HDT support team if you need to deploy a client certificate.) </li> <li><strong> TCP Option 0x4e </strong>: HDT establishes a TCP connection with the origin server and sends the client's real IP address to the origin server through the tcp-option 0x4e in the TCP message; the origin server can obtain the client's real IP address through the F5 device or the Linux kernel module provided by HDT.</li> <li><strong>proxy protocol v1</strong>: By using proxy protocol v1, HDT establishes a TCP connection with the origin server and sends the client's real IP address to the origin server in the first packet; the origin server obtains the client's real IP address by parsing the proxy protocol v1 message.</li><li><strong>proxy protocol v2 </strong>: By using proxy protocol v2, HDT establishes a TCP connection with the origin server and sends the client's real IP address to the origin server in the first packet; the origin server obtains the client's real IP address by parsing the proxy protocol v2 message.</li>|
-|Transfer Strategy     |<li><strong> Default </strong>: Low cost and high efficiency. </li> <li><strong> Interactive </strong>: For applications requiring better response times, HDT internal routing is enabled in this mode. </li> <li><strong> High Concurrency </strong>：Suitable for small data transfers and high concurrency. Normally, concurrency is considered to be high when its value exceeds 1,000 connections and low when its value is below 100 connections. </li> <li><strong> High Real-time </strong>: Suitable for applications delivering small data with low concurrency (fewer than 100 connections) and requiring optimized response times. </li> |
-
-## Security
 ![null](</docs/resources/images/transports/add-transport-security.png>)
 
-## Review
+6. 在预览页面查看您所录入的加速项配置信息。如果您需要修改一些内容，可以点击之前步骤的图标回到前面的页面进行修改。完成后点击**\>下一步**按钮或直接点击预览步骤图标回到预览页面。确认无误后点击**&check; 提交**按钮。
+
 ![null](</docs/resources/images/transports/add-transport-review.png>)
 
+# 接入HDT平台
+加速项成功创建后，在您的DNS配置中加入一个CNAME记录将您企业应用的服务域名指向新生成的HDT CNAME。

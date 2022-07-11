@@ -1,15 +1,13 @@
-# Edit a Transport
-
-The <strong> Transports </strong> page can be reached by clicking "Transports" from the left pane of the HDT portal.
-To edit a transport, click the "Action" button of the transport entry in the list and select "Edit". If the transport is not in the current page, you can search for it in the search box.
+# 编辑加速项
+1. 点击左侧导航界面中的**加速项**进入加速项页面。
+2. 在要编辑的加速项上点击**操作**按钮，在下拉选项中点击“编辑”。如果该加速项不在当前显示页面中，您可以通过加速项表单上方的搜索框工具查找。
 
 ![null](</docs/resources/images/transports/edit-transport-1.png>)
 
-Edit the settings and then click the "Next" button in the top right corner of the page.
+3. 编辑加速项配置，完成后点击在右上角的**\>下一步**按钮。
 
 ![null](</docs/resources/images/transports/edit-transport-2.png>)
 
-The comparison page will appear. Confirm the changes by clicking the "Save" button.
+4. 通过对比页面检查配置改动，确认无误后点击**&check; 提交**按钮。
 
 ![null](</docs/resources/images/transports/edit-transport-3.png>)
-
