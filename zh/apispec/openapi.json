@@ -738,7 +738,6 @@
                   "targetDomain",
                   "targetPort",
                   "accessDomain",
-                  "accessPort",
                   "applicationProtocol"
                 ]
               },
@@ -3424,7 +3423,7 @@
                       "serviceQuotas": [
                         {
                           "serviceQuotaID": "123456",
-                          "customerID": "123456",
+                          "customerID": 123456,
                           "status": "active",
                           "trialDeadline": "2020-11-02T15:00:00Z",
                           "billUsingStripe": 1,
@@ -3725,7 +3724,7 @@
                   "InvalidTrialDeadline-2": {
                     "value": {
                       "code": "InvalidTrialDeadline",
-                      "message": "The trial period cannot be longer than 90 days.",
+                      "message": "The trial period cannot be longer than 30 days.",
                       "status": 0
                     }
                   },
@@ -3866,8 +3865,8 @@
                 "type": "object",
                 "properties": {
                   "customerID": {
-                    "type": "string",
-                    "description": "ID of the customer in ngAdmin DB. The customer must be a child of the caller. Each customer is allowed to have one serviceQuota only. The customer must have “HDT” in its products list before a service quota can be created for the customer."
+                    "description": "ID of the customer in ngAdmin DB. The customer must be a child of the caller. Each customer is allowed to have one serviceQuota only. The customer must have “HDT” in its products list before a service quota can be created for the customer.",
+                    "type": "integer"
                   },
                   "status": {
                     "type": "string",
@@ -3903,7 +3902,7 @@
               "examples": {
                 "example-1": {
                   "value": {
-                    "customerID": "123456",
+                    "customerID": 123456,
                     "status": "trial",
                     "trialDeadline": "2020-11-02T15:00:00Z",
                     "billUsingStripe": 0,
@@ -3999,8 +3998,8 @@
                 "examples": {
                   "example-1": {
                     "value": {
-                      "serviceQuotaID": "abcdef",
-                      "customerID": "123456",
+                      "serviceQuotaID": "123",
+                      "customerID": 123456,
                       "status": "active",
                       "trialDeadline": "2020-11-02T15:00:00Z",
                       "billUsingStripe": 1,
@@ -4494,8 +4493,8 @@
                 "examples": {
                   "example-1": {
                     "value": {
-                      "serviceQuotaID": "abcdef",
-                      "customerID": "123456",
+                      "serviceQuotaID": "123",
+                      "customerID": 123456,
                       "status": "active",
                       "trialDeadline": "2020-11-02T15:00:00Z",
                       "billUsingStripe": 1,
@@ -5215,7 +5214,7 @@
       },
       "transport.speedLimit": {
         "title": "speedLimit",
-        "description": "Speed limit in \"Mbps\". It must be an integer between 0 and 1000. 0 means there is no limit. Default value is 0 ",
+        "description": "Speed limit in \"Mbps\". It must be an integer between 0 and 10000. 0 means there is no limit. Default value is 0 ",
         "type": "number"
       },
       "transport.concurrentLimit": {
@@ -5428,7 +5427,7 @@
       "report.timestamp": {
         "title": "timestamp",
         "type": "string",
-        "description": "The timestamp is in RFC 3339 format and includes the offset from UTC.\nIf interval from request is \"oneminute\" or \"fiveminutes\", the format will be \"YYYY-MM-DD hh:mm:00\", which indicates the end time of the interval.\nIf interval from request is \"hourly\", “daily”, or “monthly”, the format will be \"YYYY-MM-DD'T'hh:mm:00\", which indicates the start time of the interval.",
+        "description": "The timestamp is in RFC 3339 format and includes the offset from UTC.\nIf interval from request is \"oneminute\" or \"fiveminutes\", the format will be \"YYYY-MM-DD'T'hh:mm:00\", which indicates the end time of the interval.\nIf interval from request is \"hourly\", “daily”, or “monthly”, the format will be \"YYYY-MM-DD'T'hh:mm:00\", which indicates the start time of the interval.",
         "x-examples": {
           "example-1": "2014-07-31T23:05:00"
         }
@@ -5629,7 +5628,7 @@
       "serviceQuota.customerID": {
         "title": "serviceQuota.customerID",
         "description": "ID of customer that the service quota is created for.",
-        "type": "string"
+        "type": "integer"
       },
       "serviceQuota.status": {
         "title": "serviceQuota.status",
@@ -5664,7 +5663,7 @@
       "serviceQuota.description": {
         "title": "serviceQuota.description",
         "type": "string",
-        "description": "Arbitrary text about the service quota."
+        "description": "Arbitrary text about the service quota. Its maximum length is 3000."
       },
       "serviceQuota.creationTime": {
         "title": "serviceQuota.creationTime",
