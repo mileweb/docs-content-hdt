@@ -5663,7 +5663,7 @@
       "serviceQuota.description": {
         "title": "serviceQuota.description",
         "type": "string",
-        "description": "Arbitrary text about the service quota. Its maximum length is 3000."
+        "description": "Any text about service quotas with a maximum length of 3000 characters."
       },
       "serviceQuota.creationTime": {
         "title": "serviceQuota.creationTime",
