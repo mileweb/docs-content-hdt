@@ -3710,7 +3710,7 @@
                   "InvalidTrialDeadline": {
                     "value": {
                       "code": "InvalidTrialDeadline",
-                      "message": "Invalid trialDeadline. {trialDeadline} is not a valid RFC 3339 timestamp. The timestamp should be in \"yyyy-MM-dd'T'HH:mm:ss'Z'\" format",
+                      "message": "The trial deadline is not a valid RFC3339 timestamp. It should be in \"yyyy-MM-dd'T'HH:mm:ss'Z'\" format.",
                       "status": 0
                     }
                   },
