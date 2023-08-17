@@ -9,7 +9,7 @@ For transport with range ports, the users can perform copy operation to create a
 
 3. In the prompt window, you can make changes on the copied configurations, and a new ports range is required.
 
-**Note:** The new ports range cannot exceed 200; Port **2012, 2013, 2014, 2018, 2098, 2500, 4101, 14101, 57891** are occupied by the HDT platform and cannot be used.
+**Note:** The new ports range cannot exceed 200; Port **2012, 2013, 2014, 2018, 2098, 2500, 4101, 14101, 57891** are occupied by the HDT platform and can be included, but will not take effort.
 ![null](</docs/resources/images/transports/copy-transport-2.png>)
 
 4. Confirm the changes by clicking the **Submit** button, a new transport with specified configuration will be created.
