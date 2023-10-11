@@ -1,9 +1,12 @@
 {
   "openapi": "3.0.0",
+  "x-stoplight": {
+    "id": "lcck37opnp6ql"
+  },
   "info": {
     "title": "HDT API",
     "version": "1.0",
-    "description": "The CDNetworks HDT API is a RESTful API that allows you to manage transports, retrieve reports, and download logs.",
+    "description": "The CDNetworks HDT API is a RESTful API that allows you to manage transports and retrieve reports.",
     "contact": {}
   },
   "servers": [
@@ -16,7 +19,7 @@
       "get": {
         "summary": "Query transport list",
         "operationId": "get-transport",
-        "description": "Returns the transport list.",
+        "description": "Returns the existing transport list.",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
@@ -1022,7 +1025,7 @@
           }
         },
         "operationId": "get-transport-transportId",
-        "description": "Returns the information of a transport by transport-Id.",
+        "description": "Returns the details of a transport by its ID.",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
@@ -2034,7 +2037,7 @@
           }
         },
         "operationId": "get-transport-history-by-transportId",
-        "description": "Returns a transport’s history configuration information.",
+        "description": "Returns the configuration history of a transport.",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
@@ -2075,7 +2078,7 @@
     },
     "/report/flow": {
       "get": {
-        "summary": "Query flow report",
+        "summary": "Query traffic volume",
         "tags": [
           "Reports"
         ],
@@ -2411,7 +2414,7 @@
           }
         },
         "operationId": "get-report-flow",
-        "description": "Returns the total traffic volume in bytes for all of the transports. Parameters allow you to specify a time period and an interval type.",
+        "description": "Returns the traffic volume in bytes in a specified time period.",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
@@ -2462,7 +2465,7 @@
     },
     "/report/requests": {
       "get": {
-        "summary": "Query requests report",
+        "summary": "Query requests",
         "tags": [
           "Reports"
         ],
@@ -2690,7 +2693,7 @@
           }
         },
         "operationId": "get-report-requests",
-        "description": "This API returns the total number of requests for all of a customer's transports. Parameters allow you to specify a time period and an interval type.",
+        "description": "Returns the number of requests in a specified time period. ",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
@@ -2741,7 +2744,7 @@
     },
     "/report/domains": {
       "get": {
-        "summary": "Query Domains",
+        "summary": "Query domains",
         "tags": [
           "Reports"
         ],
@@ -2752,25 +2755,51 @@
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "domainsReport": {
+                        "domainMetrics": [
+                          "domain",
+                          "accessDomain",
+                          "accessPorts",
+                          "regions",
+                          "dedicatedIPService"
+                        ],
+                        "domainData": [
+                          [
+                            "test1.cc.qtlcname.com",
+                            "test1.cc",
+                            "80,443",
+                            "MiddleEast",
+                            "No"
+                          ],
+                          [
+                            "test2.cn.qtlcname.com",
+                            "test2.cn",
+                            "80,11",
+                            "MainlandChina,NorthAmerica,Europe,Asian-Pacific1,Asian-Pacific2,Asian-Pacific3,MiddleEast,SouthAmerica,Africa",
+                            "No"
+                          ]
+                        ]
+                      }
+                    }
+                  },
                   "properties": {
-                    "domains-report": {
+                    "domainsReport": {
                       "type": "object",
                       "properties": {
-                        "domains-summary": {
-                          "type": "integer",
-                          "description": "The total count of access domains."
+                        "domainMetrics": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
                         },
-                        "domains-dedicated-ip-service-summary": {
-                          "type": "integer",
-                          "description": "The total count of access domains which enable dedicated IP services."
-                        },
-                        "domains": {
-                          "type": "string",
-                          "description": "List the hdt domains."
-                        },
-                        "domains-dedicated-ip-service": {
-                          "type": "string",
-                          "description": "List of HDT domains which have enabled dedicated IP services."
+                        "domainData": {
+                          "type": "array",
+                          "items": {
+                            "type": "array",
+                            "items": {}
+                          }
                         }
                       }
                     }
@@ -2779,11 +2808,85 @@
                 "examples": {
                   "example-1": {
                     "value": {
-                      "domains-report": {
-                        "domains-dedicated-ip-service-summary": 0,
-                        "domains": "0724-1.access.com.shland.com,1001.shland.com,1012-fromnet-inner1.com.shland.com,1022.shland.com",
-                        "domains-dedicated-ip-service": "",
-                        "domains-summary": 5
+                      "domainsReport": {
+                        "domainMetrics": [
+                          "domain",
+                          "accessDomain",
+                          "accessPorts",
+                          "regions",
+                          "dedicatedIPService"
+                        ],
+                        "domainData": [
+                          [
+                            "test1.cc.qtlcname.com",
+                            "test1.cc",
+                            "80,443",
+                            "MiddleEast",
+                            "No"
+                          ],
+                          [
+                            "test2.cn.qtlcname.com",
+                            "test2.cn",
+                            "80,11",
+                            "MainlandChina,NorthAmerica,Europe,Asian-Pacific1,Asian-Pacific2,Asian-Pacific3,MiddleEast,SouthAmerica,Africa",
+                            "No"
+                          ]
+                        ]
+                      }
+                    }
+                  },
+                  "example-2": {
+                    "value": {
+                      "domainsReport": {
+                        "groups": [
+                          {
+                            "domainData": [
+                              [
+                                "a1.com.qtlcname.com",
+                                "a1.com",
+                                "443",
+                                "MainlandChina,NorthAmerica,Europe,Asian-Pacific1,Asian-Pacific2,Asian-Pacific3,MiddleEast,SouthAmerica,Africa",
+                                "No"
+                              ],
+                              [
+                                "a2.com.qtlcname.com",
+                                "a2.com",
+                                "443",
+                                "MainlandChina,NorthAmerica,Europe,Asian-Pacific1,Asian-Pacific2,Asian-Pacific3,MiddleEast,SouthAmerica,Africa",
+                                "No"
+                              ]
+                            ],
+                            "group": "A company"
+                          },
+                          {
+                            "domainData": [
+                              [
+                                "b1.cc.qtlcname.com",
+                                "b1.cc",
+                                "MiddleEast",
+                                "80,443",
+                                "",
+                                "No"
+                              ],
+                              [
+                                "b2.cn.qtlcname.com",
+                                "b2.cn",
+                                "80,11",
+                                "MainlandChina,NorthAmerica,Europe,Asian-Pacific1,Asian-Pacific2,Asian-Pacific3,MiddleEast,SouthAmerica,Africa",
+                                "No"
+                              ]
+                            ],
+                            "group": "B company"
+                          }
+                        ],
+                        "domainMetrics": [
+                          "domain",
+                          "accessDomain",
+                          "accessPorts",
+                          "regions",
+                          "dedicatedIPService"
+                        ],
+                        "groupBy": "customerName"
                       }
                     }
                   }
@@ -2889,7 +2992,7 @@
           }
         },
         "operationId": "get-report-domains",
-        "description": "Returns the summary of HDT domains used. Parameters allow you to specify a time period.",
+        "description": "Returns the domain information in a specified time period.",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
@@ -2916,79 +3019,450 @@
             "$ref": "#/components/parameters/dateto"
           },
           {
-            "$ref": "#/components/parameters/timezone"
-          },
-          {
-            "$ref": "#/components/parameters/accessDomain"
-          },
-          {
-            "$ref": "#/components/parameters/transport"
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "groupby",
+            "description": "Group the response by specified metrics, possible options are “customerName” and “customerId”. "
           }
         ]
       }
     },
-    "/report/regions": {
+    "/report/summary/requests": {
       "get": {
-        "summary": "Query Regions",
+        "summary": "Query summary of requests",
         "tags": [
           "Reports"
         ],
         "responses": {
           "200": {
             "description": "OK",
+            "headers": {
+              "Qtl-Request-Id": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "A string automatically generated by the API server to identify each request."
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "regions-report": {
+                    "requestsSummary": {
                       "type": "object",
                       "properties": {
-                        "records-count": {
-                          "type": "integer",
-                          "description": "Indicates total number of records."
-                        },
-                        "regions-summary": {
-                          "type": "integer",
-                          "description": "Indicates total count of service regions of all access domains."
-                        },
-                        "regions-data": {
+                        "data": {
                           "type": "array",
-                          "description": "A container of elements describing the service regions usage.",
                           "items": {
-                            "type": "object",
-                            "properties": {
-                              "domain": {
-                                "type": "string",
-                                "description": "Indicates the HDT domains."
-                              },
-                              "regions": {
-                                "type": "string",
-                                "description": "Indicates the service regions of the HDT domains."
-                              }
-                            }
+                            "type": "integer"
                           }
+                        },
+                        "startTime": {
+                          "type": "string"
+                        },
+                        "dataName": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "endTime": {
+                          "type": "string"
+                        },
+                        "dataUnit": {
+                          "type": "string"
                         }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "requestsSummary": {
+                        "data": [
+                          3576,
+                          3575
+                        ],
+                        "startTime": "2023-09-15T00:00:00Z",
+                        "dataName": [
+                          "totalRequests",
+                          "succRequests"
+                        ],
+                        "endTime": "2023-09-15T00:15:00Z",
+                        "dataUnit": "count"
                       }
                     }
                   }
                 },
                 "examples": {
-                  "example-1": {
+                  "Example 1": {
                     "value": {
-                      "regions-report": {
-                        "records-count": 2,
-                        "regions-data": [
+                      "requestsSummary": {
+                        "data": [
+                          3576,
+                          3575
+                        ],
+                        "startTime": "2023-09-15T00:00:00Z",
+                        "dataName": [
+                          "totalRequests",
+                          "succRequests"
+                        ],
+                        "endTime": "2023-09-15T00:15:00Z",
+                        "dataUnit": "count"
+                      }
+                    }
+                  },
+                  "Example 2": {
+                    "value": {
+                      "requestsSummary": {
+                        "data": [
+                          0
+                        ],
+                        "startTime": "string",
+                        "dataName": [
+                          "string"
+                        ],
+                        "endTime": "string",
+                        "dataUnit": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {
+              "Qtl-Request-Id": {
+                "description": "A string automatically generated by the API server to identify each request.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "$ref": "#/components/schemas/response.code"
+                    },
+                    "message": {
+                      "$ref": "#/components/schemas/response.message"
+                    },
+                    "status": {
+                      "$ref": "#/components/schemas/response.status"
+                    }
+                  }
+                },
+                "examples": {
+                  "MissingAuthHeader": {
+                    "value": {
+                      "code": "MissingAuthHeader",
+                      "message": "The HTTP authorization header is missing.",
+                      "status": 0
+                    }
+                  },
+                  "MissingDateHeader": {
+                    "value": {
+                      "code": "MissingDateHeader",
+                      "message": "Authorized request must have a Date header.",
+                      "status": 0
+                    }
+                  },
+                  "RequestExpired": {
+                    "value": {
+                      "code": "RequestExpired",
+                      "message": "Request has expired. Timestamp date is xxx.",
+                      "status": 0
+                    }
+                  },
+                  "InvalidURI": {
+                    "value": {
+                      "code": "InvalidURI",
+                      "message": "Could not parse the specified URI.",
+                      "status": 0
+                    }
+                  },
+                  "InvalidDatePeriod": {
+                    "value": {
+                      "code": "InvalidDatePeriod",
+                      "message": "The date specified is invalid.",
+                      "status": 0
+                    }
+                  },
+                  "MissingArgument": {
+                    "value": {
+                      "code": "MissingArgument",
+                      "message": "Required parameter is missing.",
+                      "status": 0
+                    }
+                  },
+                  "TimeRangeTooLarge": {
+                    "value": {
+                      "code": "TimeRangeTooLarge",
+                      "message": "The date range should be no more than 7 days when querying 1 minute intervals.\nThe date range should be no more than one month when querying 5 minute intervals.\nThe date range should be no more than one year when querying hourly, daily, or monthly intervals.",
+                      "status": 0
+                    }
+                  },
+                  "InvalidArgument": {
+                    "value": {
+                      "code": "InvalidArgument",
+                      "message": "There is a problem with a parameter name or value.",
+                      "status": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "headers": {
+              "Qtl-Request-Id": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "A string automatically generated by the API server to identify each request."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "description": "AccessDenied"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Please enter valid credentials."
+                    }
+                  }
+                },
+                "examples": {
+                  "AccessDenied": {
+                    "value": {
+                      "code": "AccessDenied",
+                      "message": "Please enter valid credentials."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "headers": {
+              "Qtl-Request-Id": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "A string automatically generated by the API server to identify each request."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "$ref": "#/components/schemas/response.code"
+                    },
+                    "message": {
+                      "$ref": "#/components/schemas/response.message"
+                    },
+                    "status": {
+                      "$ref": "#/components/schemas/response.status"
+                    }
+                  }
+                },
+                "examples": {
+                  "InternalError": {
+                    "value": {
+                      "code": "InternalError",
+                      "message": "We encountered an internal error. Please try again.",
+                      "status": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-report-summary-requests",
+        "description": "Returns the requests summary in a specified time period. ",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Authorization"
+          },
+          {
+            "$ref": "#/components/parameters/Date"
+          },
+          {
+            "$ref": "#/components/parameters/Accept-Encoding"
+          },
+          {
+            "$ref": "#/components/parameters/Accept"
+          },
+          {
+            "$ref": "#/components/parameters/On-Behalf-Of"
+          },
+          {
+            "$ref": "#/components/parameters/datefrom"
+          },
+          {
+            "$ref": "#/components/parameters/dateto"
+          },
+          {
+            "$ref": "#/components/parameters/accessDomain"
+          },
+          {
+            "$ref": "#/components/parameters/transport"
+          },
+          {
+            "$ref": "#/components/parameters/Content-Type"
+          },
+          {
+            "$ref": "#/components/parameters/country"
+          },
+          {
+            "$ref": "#/components/parameters/customerId"
+          },
+          {
+            "$ref": "#/components/parameters/customerName"
+          },
+          {
+            "$ref": "#/components/parameters/scope"
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/report/summary/volume": {
+      "get": {
+        "summary": "Query summary of traffic volume",
+        "tags": [
+          "Reports"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Qtl-Request-Id": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "A string automatically generated by the API server to identify each request."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "volumeSummary": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "integer"
+                          }
+                        },
+                        "startTime": {
+                          "type": "string"
+                        },
+                        "dataName": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "endTime": {
+                          "type": "string"
+                        },
+                        "dataUnit": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "volumeSummary": {
+                        "data": [
+                          140102786,
+                          11738478,
+                          128364308
+                        ],
+                        "startTime": "2023-09-15T00:00:00Z",
+                        "dataName": [
+                          "totalVolume",
+                          "uploadVolume",
+                          "downloadVolume"
+                        ],
+                        "endTime": "2023-09-15T00:15:00Z",
+                        "dataUnit": "byte"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "volumeSummary": {
+                        "data": [
+                          140102786,
+                          11738478,
+                          128364308
+                        ],
+                        "startTime": "2023-09-15T00:00:00Z",
+                        "dataName": [
+                          "totalVolume",
+                          "uploadVolume",
+                          "downloadVolume"
+                        ],
+                        "endTime": "2023-09-15T00:15:00Z",
+                        "dataUnit": "byte"
+                      }
+                    }
+                  },
+                  "Example 2": {
+                    "value": {
+                      "volumeSummary": {
+                        "groups": [
                           {
-                            "domain": "0724-1.access.com.shland.com",
-                            "regions": "MainlandChina,NorthAmerica,Europe,Asian-Pacific1,Asian-Pacific2,Asian-Pacific3,MiddleEast,SouthAmerica,Africa"
+                            "data": [
+                              1906834,
+                              479743,
+                              1427091
+                            ],
+                            "group": "a1.com"
                           },
                           {
-                            "domain": "1001.shland.com",
-                            "regions": "Asian-Pacific1,MainlandChina"
+                            "data": [
+                              851,
+                              851,
+                              0
+                            ],
+                            "group": "a1.cn"
                           }
                         ],
-                        "regions-summary": 11
+                        "startTime": "2023-09-15T00:00:00Z",
+                        "dataName": [
+                          "totalVolume",
+                          "uploadVolume",
+                          "downloadVolume"
+                        ],
+                        "endTime": "2023-09-15T00:15:00Z",
+                        "groupBy": "accessDomain",
+                        "dataUnit": "byte"
                       }
                     }
                   }
@@ -2998,6 +3472,14 @@
           },
           "400": {
             "description": "Bad Request",
+            "headers": {
+              "Qtl-Request-Id": {
+                "description": "A string automatically generated by the API server to identify each request.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -3008,6 +3490,9 @@
                     },
                     "message": {
                       "$ref": "#/components/schemas/response.message"
+                    },
+                    "status": {
+                      "$ref": "#/components/schemas/response.status"
                     }
                   }
                 },
@@ -3015,39 +3500,93 @@
                   "MissingAuthHeader": {
                     "value": {
                       "code": "MissingAuthHeader",
-                      "message": "The HTTP authorization header is missing."
+                      "message": "The HTTP authorization header is missing.",
+                      "status": 0
                     }
                   },
                   "MissingDateHeader": {
                     "value": {
                       "code": "MissingDateHeader",
-                      "message": "Authorized request must have a Date header."
+                      "message": "Authorized request must have a Date header.",
+                      "status": 0
+                    }
+                  },
+                  "RequestExpired": {
+                    "value": {
+                      "code": "RequestExpired",
+                      "message": "Request has expired. Timestamp date is xxx.",
+                      "status": 0
+                    }
+                  },
+                  "InvalidURI": {
+                    "value": {
+                      "code": "InvalidURI",
+                      "message": "Could not parse the specified URI.",
+                      "status": 0
+                    }
+                  },
+                  "InvalidDatePeriod": {
+                    "value": {
+                      "code": "InvalidDatePeriod",
+                      "message": "The date specified is invalid.",
+                      "status": 0
+                    }
+                  },
+                  "MissingArgument": {
+                    "value": {
+                      "code": "MissingArgument",
+                      "message": "Required parameter is missing.",
+                      "status": 0
+                    }
+                  },
+                  "TimeRangeTooLarge": {
+                    "value": {
+                      "code": "TimeRangeTooLarge",
+                      "message": "The date range should be no more than 7 days when querying 1 minute intervals.\nThe date range should be no more than one month when querying 5 minute intervals.\nThe date range should be no more than one year when querying hourly, daily, or monthly intervals.",
+                      "status": 0
+                    }
+                  },
+                  "InvalidArgument": {
+                    "value": {
+                      "code": "InvalidArgument",
+                      "message": "There is a problem with a parameter name or value.",
+                      "status": 0
                     }
                   }
                 }
               }
             }
           },
-          "401": {
-            "description": "Unauthorized",
+          "403": {
+            "description": "Forbidden",
+            "headers": {
+              "Qtl-Request-Id": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "A string automatically generated by the API server to identify each request."
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "code": {
-                      "$ref": "#/components/schemas/response.code"
+                      "type": "string",
+                      "description": "AccessDenied"
                     },
                     "message": {
-                      "$ref": "#/components/schemas/response.message"
+                      "type": "string",
+                      "description": "Please enter valid credentials."
                     }
                   }
                 },
                 "examples": {
-                  "UnAuthorized": {
+                  "AccessDenied": {
                     "value": {
-                      "code": "UnAuthorized",
-                      "message": "Invalid authentication / authorization credentials."
+                      "code": "AccessDenied",
+                      "message": "Please enter valid credentials."
                     }
                   }
                 }
@@ -3093,17 +3632,14 @@
             }
           }
         },
-        "operationId": "get-report-regions",
-        "description": "Returns the summary of service regions for all or specified access domains. Parameters allow you to specify a time period and access domains.",
+        "operationId": "get-report-summary-volume",
+        "description": "Returns the traffic volume summary in a specified time period. ",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
           },
           {
             "$ref": "#/components/parameters/Date"
-          },
-          {
-            "$ref": "#/components/parameters/Content-Type"
           },
           {
             "$ref": "#/components/parameters/Accept-Encoding"
@@ -3121,237 +3657,33 @@
             "$ref": "#/components/parameters/dateto"
           },
           {
-            "$ref": "#/components/parameters/timezone"
-          },
-          {
             "$ref": "#/components/parameters/accessDomain"
           },
           {
             "$ref": "#/components/parameters/transport"
+          },
+          {
+            "$ref": "#/components/parameters/Content-Type"
+          },
+          {
+            "$ref": "#/components/parameters/country"
+          },
+          {
+            "$ref": "#/components/parameters/customerId"
+          },
+          {
+            "$ref": "#/components/parameters/customerName"
+          },
+          {
+            "$ref": "#/components/parameters/scope"
           }
         ]
-      }
-    },
-    "/report/ports": {
-      "get": {
-        "summary": "Query Ports",
-        "tags": [
-          "Reports"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "ports-report": {
-                      "type": "object",
-                      "properties": {
-                        "ports-80-443-summary": {
-                          "type": "integer",
-                          "description": "Indicates the total count of 80/443 ports."
-                        },
-                        "ports-non-80-443-summary": {
-                          "description": "Indicates total count of non 80/443 ports.",
-                          "type": "integer"
-                        },
-                        "ports-data": {
-                          "description": "A container of elements describing the ports usage.",
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "domain": {
-                                "type": "string",
-                                "description": "Indicates the HDT domain."
-                              },
-                              "ports": {
-                                "type": "string",
-                                "description": "List all the ports are being used."
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "example-1": {
-                    "value": {
-                      "ports-report": {
-                        "ports-80-443-summary": 5,
-                        "ports-non-80-443-summary": 1,
-                        "ports-data": [
-                          {
-                            "ports": "80",
-                            "domain": "0724-1.access.com.shland.com"
-                          },
-                          {
-                            "ports": "443",
-                            "domain": "1001.shland.com"
-                          },
-                          {
-                            "ports": "80,443",
-                            "domain": "1012-fromnet-inner1.com.shland.com"
-                          },
-                          {
-                            "ports": "80",
-                            "domain": "1022.shland.com"
-                          },
-                          {
-                            "ports": "8088",
-                            "domain": "1128.shland.com"
-                          }
-                        ]
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "$ref": "#/components/schemas/response.code"
-                    },
-                    "message": {
-                      "$ref": "#/components/schemas/response.message"
-                    }
-                  }
-                },
-                "examples": {
-                  "MissingAuthHeader": {
-                    "value": {
-                      "code": "MissingAuthHeader",
-                      "message": "The HTTP authorization header is missing."
-                    }
-                  },
-                  "MissingDateHeader": {
-                    "value": {
-                      "code": "MissingDateHeader",
-                      "message": "Authorized request must have a Date header."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "$ref": "#/components/schemas/response.code"
-                    },
-                    "message": {
-                      "$ref": "#/components/schemas/response.message"
-                    }
-                  }
-                },
-                "examples": {
-                  "UnAuthorized": {
-                    "value": {
-                      "code": "UnAuthorized",
-                      "message": "Invalid authentication / authorization credentials."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "headers": {
-              "Qtl-Request-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "A string automatically generated by the API server to identify each request."
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "$ref": "#/components/schemas/response.code"
-                    },
-                    "message": {
-                      "$ref": "#/components/schemas/response.message"
-                    },
-                    "status": {
-                      "$ref": "#/components/schemas/response.status"
-                    }
-                  }
-                },
-                "examples": {
-                  "InternalError": {
-                    "value": {
-                      "code": "InternalError",
-                      "message": "We encountered an internal error. Please try again.",
-                      "status": 0
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "operationId": "get-report-ports",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/Authorization"
-          },
-          {
-            "$ref": "#/components/parameters/Date"
-          },
-          {
-            "$ref": "#/components/parameters/Content-Type"
-          },
-          {
-            "$ref": "#/components/parameters/Accept-Encoding"
-          },
-          {
-            "$ref": "#/components/parameters/Accept"
-          },
-          {
-            "$ref": "#/components/parameters/On-Behalf-Of"
-          },
-          {
-            "$ref": "#/components/parameters/datefrom"
-          },
-          {
-            "$ref": "#/components/parameters/dateto"
-          },
-          {
-            "$ref": "#/components/parameters/timezone"
-          },
-          {
-            "$ref": "#/components/parameters/accessDomain"
-          },
-          {
-            "$ref": "#/components/parameters/transport"
-          }
-        ],
-        "description": "Returns the ports usage summary of all or specified access domains. Parameters allow you to specify a time period and access domains."
-      }
+      },
+      "parameters": []
     },
     "/serviceQuotas": {
       "get": {
-        "summary": "Query Service Quota List",
+        "summary": "Query service quota list",
         "tags": [
           "ServiceQuotas"
         ],
@@ -3549,7 +3881,7 @@
           }
         },
         "operationId": "get-serviceQuotas",
-        "description": "The API allows a reseller to get a list of service quotas of its child customers.\nBoth \"servicequotas\" and \"serviceQuotas\" are accepted in the path, which also applies to other APIs related to serviceQuotas.\n\n",
+        "description": "Returns a list of service quotas of its child customers.\nBoth \"servicequotas\" and \"serviceQuotas\" are accepted in the path, which also applies to other APIs related to serviceQuotas.\n\n",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
@@ -3939,7 +4271,7 @@
         }
       ],
       "get": {
-        "summary": "Query Service Quota by ID",
+        "summary": "Query service quota by ID",
         "tags": [
           "ServiceQuotas"
         ],
@@ -4064,7 +4396,7 @@
           }
         },
         "operationId": "get-serviceQuotas-serviceQuotaID",
-        "description": "Retrieves the detailed information of a service quota by service quota ID.\nThe service quota ID can be the string \"me\" to indicate the caller customer itself. \n",
+        "description": "Returns the details of a service quota by service quota ID.\nThe service quota ID can be the string \"me\" to indicate the caller customer itself. \n",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
@@ -4434,7 +4766,7 @@
         }
       ],
       "get": {
-        "summary": "Query Service Quota by customer ID",
+        "summary": "Query service quota by customer ID",
         "tags": [
           "ServiceQuotas"
         ],
@@ -4566,7 +4898,7 @@
           }
         },
         "operationId": "get-serviceQuotas-customerID",
-        "description": "Retrieves the detailed information of a service quota by customer ID.\nThe customer ID can be string \"me\" to indicate the caller customer itself. ",
+        "description": "Returns the details of a service quota by customer ID.\nThe customer ID can be string \"me\" to indicate the caller customer itself. ",
         "parameters": [
           {
             "$ref": "#/components/parameters/Authorization"
@@ -4936,7 +5268,7 @@
         }
       ],
       "get": {
-        "summary": "Query Service Quota Usage by ID",
+        "summary": "Query service quota usage by ID",
         "tags": [
           "ServiceQuotas"
         ],
@@ -5015,7 +5347,7 @@
           }
         },
         "operationId": "get-serviceQuotas-usage-serviceQuotaID",
-        "description": "Retrieves the detailed usage information of a service quota by service quota ID.\nThe service quota ID can be string \"me\" to indicate the caller customer itself. "
+        "description": "Returns the usage details of a service quota by service quota ID.\nThe service quota ID can be string \"me\" to indicate the caller customer itself. "
       }
     },
     "/serviceQuotas/usage/customer/{customerID}": {
@@ -5031,7 +5363,7 @@
         }
       ],
       "get": {
-        "summary": "Query Service Quota Usage by customer ID",
+        "summary": "Query service quota usage by customer ID",
         "tags": [
           "ServiceQuotas"
         ],
@@ -5110,7 +5442,7 @@
           }
         },
         "operationId": "get-serviceQuotas-usage-customerID",
-        "description": "Retrieves the detailed usage information of a service quota by customer ID.\nThe customer ID can be the string \"me\" to indicate the caller customer itself. \n"
+        "description": "Returns the usage details of a service quota by customer ID.\nThe customer ID can be the string \"me\" to indicate the caller customer itself. \n"
       }
     }
   },
@@ -5830,13 +6162,40 @@
           "type": "string"
         },
         "description": "A transport id or a list of transport ids separated by comma"
+      },
+      "country": {
+        "name": "country",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "A filter, a customer ID or a list of customer IDs separated by comma."
+      },
+      "customerName": {
+        "name": "customerName",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "A filter, a customer name or a list of customer names separated by comma."
+      },
+      "customerId": {
+        "name": "customerId",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "A filter, a customer ID or a list of customer IDs separated by comma."
       }
     },
     "securitySchemes": {
       "basicAuth": {
         "type": "http",
         "scheme": "basic",
-        "description": "All requests to CDNetworks' platform must be authenticated using an API login name and key assigned to your organization. For security, the API key is not passed directly but is secured as described below. \n\nThe authentication type is HTTP Basic, and the authorization string is specified in the HTTP request header called Authorization.\n```\n#!/bin/bash\n#URL of the CDN360 API server\nAPI_SERVER=https://ngapi.cdnetworks.com\n\n#You will be given the following information by the CDNetworks sales team\nUSER=\"{API user name}\"\nAPI_KEY=\"{API key (make sure to escape the $ sign if any)}\"\n\n#Date in RFC 1123 format\nDATE=`date \"+%a, %d %b %Y %H:%M:%S %Z\"`\n\n#Generate the password. Raw output from openssl by adding the \"-binary\" flag\npassw=$(echo -n \"$DATE\" | openssl dgst -sha1 -hmac \"$API_KEY\" -binary | base64)\necho \" \"\n\n#Construct the curl command to query list of applications\napiCall =\"curl -i --url '${API_SERVER}/hdt/v1/applications'\n                  -X GET\n                  -u $USER:$passw\n                  -H 'Date: $DATE'\n                  -H 'Accept: application/json'\"\neval $apiCall\necho \" \"\n```\n If you are a reseller, you can also specify a child customer's ID in an On-Behalf-Of HTTP header to make API calls to manage your child customer."
+        "description": "All requests to CDNetworks' platform must be authenticated using an API login name and key assigned to your organization. For security, the API key is not passed directly but is secured as described below. \n\nThe authentication type is HTTP Basic, and the authorization string is specified in the HTTP request header called Authorization.\n```\n#!/bin/bash\n#URL of the HDT API server\nAPI_SERVER=https://ngapi.cdnetworks.com\n\n#You will be given the following information by the CDNetworks sales team\nUSER=\"{API user name}\"\nAPI_KEY=\"{API key (make sure to escape the $ sign if any)}\"\n\n#Date in RFC 1123 format\nDATE=`date \"+%a, %d %b %Y %H:%M:%S %Z\"`\n\n#Generate the password. Raw output from openssl by adding the \"-binary\" flag\npassw=$(echo -n \"$DATE\" | openssl dgst -sha1 -hmac \"$API_KEY\" -binary | base64)\necho \" \"\n\n#Construct the curl command to query list of applications\napiCall =\"curl -i --url '${API_SERVER}/hdt/v1/applications'\n                  -X GET\n                  -u $USER:$passw\n                  -H 'Date: $DATE'\n                  -H 'Accept: application/json'\"\neval $apiCall\necho \" \"\n```\n If you are a reseller, you can also specify a child customer's ID in an On-Behalf-Of HTTP header to make API calls to manage your child customer."
       }
     },
     "responses": {}
