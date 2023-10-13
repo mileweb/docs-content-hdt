@@ -2752,35 +2752,6 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "x-examples": {
-                    "Example 1": {
-                      "domainsReport": {
-                        "domainMetrics": [
-                          "domain",
-                          "accessDomain",
-                          "accessPorts",
-                          "regions",
-                          "dedicatedIPService"
-                        ],
-                        "domainData": [
-                          [
-                            "test1.cc.qtlcname.com",
-                            "test1.cc",
-                            "80,443",
-                            "MiddleEast",
-                            "No"
-                          ],
-                          [
-                            "test2.cn.qtlcname.com",
-                            "test2.cn",
-                            "80,11",
-                            "MainlandChina,NorthAmerica,Europe,Asian-Pacific1,Asian-Pacific2,Asian-Pacific3,MiddleEast,SouthAmerica,Africa",
-                            "No"
-                          ]
-                        ]
-                      }
-                    }
-                  },
                   "properties": {
                     "domainsReport": {
                       "type": "object",
@@ -3074,23 +3045,6 @@
                         }
                       }
                     }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "requestsSummary": {
-                        "data": [
-                          3576,
-                          3575
-                        ],
-                        "startTime": "2023-09-15T00:00:00Z",
-                        "dataName": [
-                          "totalRequests",
-                          "succRequests"
-                        ],
-                        "endTime": "2023-09-15T00:15:00Z",
-                        "dataUnit": "count"
-                      }
-                    }
                   }
                 },
                 "examples": {
@@ -3114,15 +3068,44 @@
                   "Example 2": {
                     "value": {
                       "requestsSummary": {
-                        "data": [
-                          0
+                        "groups": [
+                          {
+                            "data": [
+                              2,
+                              2
+                            ],
+                            "group": "BE"
+                          },
+                          {
+                            "data": [
+                              2395,
+                              2394
+                            ],
+                            "group": "CN"
+                          },
+                          {
+                            "data": [
+                              74,
+                              74
+                            ],
+                            "group": "US"
+                          },
+                          {
+                            "data": [
+                              24,
+                              24
+                            ],
+                            "group": "ZA"
+                          }
                         ],
-                        "startTime": "string",
+                        "startTime": "2023-09-15T00:00:00Z",
                         "dataName": [
-                          "string"
+                          "totalRequests",
+                          "succRequests"
                         ],
-                        "endTime": "string",
-                        "dataUnit": "string"
+                        "endTime": "2023-09-15T00:15:00Z",
+                        "groupBy": "country",
+                        "dataUnit": "count"
                       }
                     }
                   }
@@ -3336,6 +3319,14 @@
           },
           {
             "$ref": "#/components/parameters/scope"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "groupby",
+            "description": "Possible options are “accessDomain”, “transport”, “country”, “customerId”, and “customerName”."
           }
         ]
       },
@@ -3387,25 +3378,6 @@
                         "dataUnit": {
                           "type": "string"
                         }
-                      }
-                    }
-                  },
-                  "x-examples": {
-                    "Example 1": {
-                      "volumeSummary": {
-                        "data": [
-                          140102786,
-                          11738478,
-                          128364308
-                        ],
-                        "startTime": "2023-09-15T00:00:00Z",
-                        "dataName": [
-                          "totalVolume",
-                          "uploadVolume",
-                          "downloadVolume"
-                        ],
-                        "endTime": "2023-09-15T00:15:00Z",
-                        "dataUnit": "byte"
                       }
                     }
                   }
@@ -3673,6 +3645,14 @@
           },
           {
             "$ref": "#/components/parameters/scope"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "description": "Possible options are “accessDomain”, “transport”, “country”, “customerId”, and “customerName”.",
+            "name": "groupby"
           }
         ]
       },
@@ -5458,8 +5438,7 @@
       "transport.type": {
         "title": "transportType",
         "type": "string",
-        "description": "Transport type, i.e., \"ipport\", \"vpn\" or \"socks5\".\nFor NG API, we only support ip-port transport.\nThis field is for internal use. For public, it is invisible and will be set to default value \"ipport\".",
-        "x-internal": true
+        "description": "Transport type, i.e., \"ipport\", \"vpn\" or \"socks5\".\nFor NG API, we only support ip-port transport.\nThis field is for internal use. For public, it is invisible and will be set to default value \"ipport\"."
       },
       "transport.name": {
         "title": "transportName",
@@ -5519,23 +5498,12 @@
       "transport.accessDomain": {
         "title": "accessDomain",
         "type": "string",
-        "description": "Access domain of accelerated application for the public users. The HDT API supports multiple domains separated by commas and wildcard to match multiple subdomains. For example:\naaa.domain1.com,*.domain2.com,*.domain3.org.cn\n\nNote:\n1. The HDT API supports up to one level of subdomains for \"accessDomain\" field;\n2. \"accessDomain\" can't be empty; \n3. When \"applicationProtocol\" is not empty, the combination of \"accessDomain\" and \"applicationProtocol\" field must be globally unique;\n4. When \"applicationProtocol\" is empty, the value of \"accessDomain\" is unique to each customer. Transports belong to the same customer can share \"accessDomain\". ",
-        "x-examples": {
-          "example-1": {
-            "accessDomain": "aaa.domain1.com"
-          },
-          "example-2": {
-            "accessDomain": "*.domain2.com"
-          }
-        }
+        "description": "Access domain of accelerated application for the public users. The HDT API supports multiple domains separated by commas and wildcard to match multiple subdomains. For example:\naaa.domain1.com,*.domain2.com,*.domain3.org.cn\n\nNote:\n1. The HDT API supports up to one level of subdomains for \"accessDomain\" field;\n2. \"accessDomain\" can't be empty; \n3. When \"applicationProtocol\" is not empty, the combination of \"accessDomain\" and \"applicationProtocol\" field must be globally unique;\n4. When \"applicationProtocol\" is empty, the value of \"accessDomain\" is unique to each customer. Transports belong to the same customer can share \"accessDomain\". "
       },
       "transport.status": {
         "type": "integer",
         "title": "transportStatus",
         "description": "Status of this transport. 1 means \"enabled\", while 0 means \"disabled\".",
-        "x-examples": {
-          "example-1": 1
-        },
         "enum": [
           0,
           1
@@ -5554,12 +5522,7 @@
       "transport.ipWhiteList": {
         "type": "string",
         "title": "ipWhiteList",
-        "description": "IP address white-list. Valid values are IP address, IP address segment, IP address range, or the combination of them separated by semicolons. Spaces, tabs or line breaks can only appear in front of or behind IP address. The default value is a blank string.\nThe version of IP in this list should keep the same with the one specified in field 'ipVersion'. If the field 'ipVersion' is empty, then IPv4 should be used by default.\n\nFor example:\nvalid:\n 11.11.12.3/20; 2.3.4.5-2.3.4.10;\n21.12.45.18\n\nInvalid:\n 11.11. 12.3/20;  2.3.4.5-2.3.\n4.10;\n21.12.45.18",
-        "x-examples": {
-          "example-1": {
-            "ipWhiteList": "11.11.12.3/20;  2.3.4.5-2.3.4.10; 21.12.45.18"
-          }
-        }
+        "description": "IP address white-list. Valid values are IP address, IP address segment, IP address range, or the combination of them separated by semicolons. Spaces, tabs or line breaks can only appear in front of or behind IP address. The default value is a blank string.\nThe version of IP in this list should keep the same with the one specified in field 'ipVersion'. If the field 'ipVersion' is empty, then IPv4 should be used by default.\n\nFor example:\nvalid:\n 11.11.12.3/20; 2.3.4.5-2.3.4.10;\n21.12.45.18\n\nInvalid:\n 11.11. 12.3/20;  2.3.4.5-2.3.\n4.10;\n21.12.45.18"
       },
       "transport.comments": {
         "title": "comments",
@@ -5569,19 +5532,6 @@
       "transport.transportData": {
         "title": "transport-data",
         "description": "A container of \"transportId\", \"transportCode\", \"transportType\", \"transportName\", \"status\" and some other elements describing a transport.",
-        "x-examples": {
-          "example-1": {
-            "transportId": 0,
-            "transportCode": "string",
-            "transportType": "string",
-            "transportName": "string",
-            "status": 1,
-            "accessDomain": "string",
-            "accessPort": 0,
-            "targetDomain": "string",
-            "targetPort": 0
-          }
-        },
         "type": "object",
         "properties": {
           "transportId": {
@@ -5717,49 +5667,12 @@
               "$ref": "#/components/schemas/report.download"
             }
           }
-        },
-        "x-examples": {
-          "example-1": [
-            {
-              "timestamp": "2014-07-31T23:05:00",
-              "upload": 197421,
-              "download": 297421
-            },
-            {
-              "timestamp": "2014-07-31T23:10:00",
-              "upload": 255564,
-              "download": 155564
-            },
-            {
-              "timestamp": "2014-07-31T23:15:00",
-              "upload": 516326,
-              "download": 316326
-            },
-            {
-              "timestamp": "2014-07-31T23:20:00",
-              "upload": 129685,
-              "download": 329685
-            },
-            {
-              "timestamp": "2014-07-31T23:25:00",
-              "upload": 516326,
-              "download": 316326
-            },
-            {
-              "timestamp": "2014-07-31T23:30:00",
-              "upload": 144774,
-              "download": 144774
-            }
-          ]
         }
       },
       "report.timestamp": {
         "title": "timestamp",
         "type": "string",
-        "description": "The timestamp is in RFC 3339 format and includes the offset from UTC.\nIf interval from request is \"oneminute\" or \"fiveminutes\", the format will be \"YYYY-MM-DD'T'hh:mm:00\", which indicates the end time of the interval.\nIf interval from request is \"hourly\", “daily”, or “monthly”, the format will be \"YYYY-MM-DD'T'hh:mm:00\", which indicates the start time of the interval.",
-        "x-examples": {
-          "example-1": "2014-07-31T23:05:00"
-        }
+        "description": "The timestamp is in RFC 3339 format and includes the offset from UTC.\nIf interval from request is \"oneminute\" or \"fiveminutes\", the format will be \"YYYY-MM-DD'T'hh:mm:00\", which indicates the end time of the interval.\nIf interval from request is \"hourly\", “daily”, or “monthly”, the format will be \"YYYY-MM-DD'T'hh:mm:00\", which indicates the start time of the interval."
       },
       "report.upload": {
         "title": "upload",
@@ -5817,40 +5730,6 @@
               "$ref": "#/components/schemas/report.successRequestsCount"
             }
           }
-        },
-        "x-examples": {
-          "example-1": [
-            {
-              "timestamp": "2014-07-31T23:05:00",
-              "total": 200,
-              "success": 200
-            },
-            {
-              "timestamp": "2014-07-31T23:10:00",
-              "total": 200,
-              "success": 200
-            },
-            {
-              "timestamp": "2014-07-31T23:15:00",
-              "total": 100,
-              "success": 100
-            },
-            {
-              "timestamp": "2014-07-31T23:20:00",
-              "total": 200,
-              "success": 100
-            },
-            {
-              "timestamp": "2014-07-31T23:25:00",
-              "total": 200,
-              "success": 200
-            },
-            {
-              "timestamp": "2014-07-31T23:30:00",
-              "total": 100,
-              "success": 100
-            }
-          ]
         }
       },
       "report.totalRequestsCount": {
@@ -5866,9 +5745,6 @@
       "response.status": {
         "title": "status",
         "type": "integer",
-        "x-examples": {
-          "example-1": {}
-        },
         "description": "0 or 1 to indicate whether response contains error or not. If 1, the request is handled successfully, and the expected result will be contained in 'content' field. Else the 'message' field will show the error details."
       },
       "response.message": {
@@ -6167,7 +6043,7 @@
         "schema": {
           "type": "string"
         },
-        "description": "A filter, a customer ID or a list of customer IDs separated by comma."
+        "description": "A filter, a country code (ALPHA-2) or a list of country code separated by comma. Indicate the country that the clients are from."
       },
       "customerName": {
         "name": "customerName",
