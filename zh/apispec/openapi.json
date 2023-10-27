@@ -2762,17 +2762,45 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "status": {
-                      "$ref": "#/components/schemas/response.status"
-                    },
-                    "message": {
-                      "$ref": "#/components/schemas/response.message"
+                    "code": {
+                      "type": "string"
                     },
                     "content": {
-                      "$ref": "#/components/schemas/report.requestsReport"
+                      "type": "object",
+                      "properties": {
+                        "records-count": {
+                          "type": "integer"
+                        },
+                        "connections-data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "total": {
+                                "type": "integer"
+                              },
+                              "success": {
+                                "type": "integer"
+                              },
+                              "timestamp": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "success-summary": {
+                          "type": "integer"
+                        },
+                        "total-summary": {
+                          "type": "integer"
+                        }
+                      }
                     },
-                    "code": {
-                      "$ref": "#/components/schemas/response.code"
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "integer"
                     }
                   }
                 },
@@ -3635,35 +3663,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "requestsSummary": {
-                      "type": "object",
-                      "properties": {
-                        "data": {
-                          "type": "array",
-                          "items": {
-                            "type": "integer"
-                          }
-                        },
-                        "startTime": {
-                          "type": "string"
-                        },
-                        "dataName": {
-                          "type": "array",
-                          "items": {
-                            "type": "string"
-                          }
-                        },
-                        "endTime": {
-                          "type": "string"
-                        },
-                        "dataUnit": {
-                          "type": "string"
-                        }
-                      }
-                    }
-                  }
+                  "type": "object"
                 },
                 "examples": {
                   "Example 1": {
