@@ -3044,8 +3044,7 @@
           {
             "$ref": "#/components/parameters/scope"
           }
-        ],
-        "deprecated": true
+        ]
       },
       "parameters": []
     },
