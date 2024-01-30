@@ -1,5 +1,5 @@
 # Copy a Transport
-You can create a new transport by copying an existing transport and then changing the configuration of the copied transport to suit your requirements.
+For the transport with a range of ports, you can create a new transport by copying an existing transport and then changing the configuration of the copied transport to suit your requirements.
 
 1. In the left pane, click **Transports** to display the Transports page.
 
