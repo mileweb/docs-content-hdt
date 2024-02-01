@@ -76,6 +76,10 @@
                 "path": "/docs/portal/transports/edit-transport.md"
               },
               {
+                "title": "复制加速项",
+                "path": "/docs/portal/transports/copy-transport.md"
+              },
+              {
                 "title": "加速项历史",
                 "path": "/docs/portal/transports/show-history.md"
               },
@@ -86,6 +90,10 @@
               {
                 "title": "删除加速项",
                 "path": "/docs/portal/transports/delete-transport.md"
+              },
+              {
+                "title": "常见问题",
+                "path": "/docs/portal/transports/faq.md"
               }
             ]
           },

@@ -3,7 +3,7 @@
 ### How to preserve client IP addresses on the HDT platform?
 You can configure HDT to preserve client IP addresses using the HDT web portal.
 
-For HTTP/HTTPS applications, the X-Forwarded-For (XFF) HTTP header is enabled by default. For other applications, you can enable the preservation of client IP addresses using the Preserve Client IP Addresses drop-down list in the Edit a transport page.
+For HTTP/HTTPS applications, the X-Forwarded-For (XFF) HTTP header is enabled by default. For other applications, you can enable the preservation of client IP addresses in the [Edit a Transport](</docs/portal/transports/edit-transport.md>) page.
 
 ![null](</docs/resources/images/faq/faq-preserveClientIP-1.png>)
 
