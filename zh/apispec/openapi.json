@@ -8,7 +8,7 @@
   },
   "servers": [
     {
-      "url": "https://ngapi.cdnetworks.com/hdt/v1"
+      "url": "https://ngapi.{{siteDomain}}/hdt/v1"
     }
   ],
   "paths": {
@@ -6685,7 +6685,7 @@
       "basicAuth": {
         "type": "http",
         "scheme": "basic",
-        "description": "All requests to {{title}}' platform must be authenticated using an API login name and key assigned to your organization. For security, the API key is not passed directly but is secured as described below. \n\nThe authentication type is HTTP Basic, and the authorization string is specified in the HTTP request header called Authorization.\n```\n#!/bin/bash\n#URL of the HDT API server\nAPI_SERVER=https://ngapi.cdnetworks.com\n\n#You will be given the following information by the {{title}} sales team\nUSER=\"{API user name}\"\nAPI_KEY=\"{API key (make sure to escape the $ sign if any)}\"\n\n#Date in RFC 1123 format\nDATE=`date \"+%a, %d %b %Y %H:%M:%S %Z\"`\n\n#Generate the password. Raw output from openssl by adding the \"-binary\" flag\npassw=$(echo -n \"$DATE\" | openssl dgst -sha1 -hmac \"$API_KEY\" -binary | base64)\necho \" \"\n\n#Construct the curl command to query list of applications\napiCall =\"curl -i --url '${API_SERVER}/hdt/v1/applications'\n                  -X GET\n                  -u $USER:$passw\n                  -H 'Date: $DATE'\n                  -H 'Accept: application/json'\"\neval $apiCall\necho \" \"\n```\n If you are a reseller, you can also specify a child customer's ID in an On-Behalf-Of HTTP header to make API calls to manage your child customer."
+        "description": "All requests to {{title}}' platform must be authenticated using an API login name and key assigned to your organization. For security, the API key is not passed directly but is secured as described below. \n\nThe authentication type is HTTP Basic, and the authorization string is specified in the HTTP request header called Authorization.\n```\n#!/bin/bash\n#URL of the HDT API server\nAPI_SERVER=https://ngapi.{{siteDomain}}\n\n#You will be given the following information by the {{title}} sales team\nUSER=\"{API user name}\"\nAPI_KEY=\"{API key (make sure to escape the $ sign if any)}\"\n\n#Date in RFC 1123 format\nDATE=`date \"+%a, %d %b %Y %H:%M:%S %Z\"`\n\n#Generate the password. Raw output from openssl by adding the \"-binary\" flag\npassw=$(echo -n \"$DATE\" | openssl dgst -sha1 -hmac \"$API_KEY\" -binary | base64)\necho \" \"\n\n#Construct the curl command to query list of applications\napiCall =\"curl -i --url '${API_SERVER}/hdt/v1/applications'\n                  -X GET\n                  -u $USER:$passw\n                  -H 'Date: $DATE'\n                  -H 'Accept: application/json'\"\neval $apiCall\necho \" \"\n```\n If you are a reseller, you can also specify a child customer's ID in an On-Behalf-Of HTTP header to make API calls to manage your child customer."
       }
     },
     "responses": {}
